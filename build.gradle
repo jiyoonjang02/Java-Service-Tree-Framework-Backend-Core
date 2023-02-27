@@ -1,0 +1,188 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+}
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.3.12.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'com.palantir.docker' version '0.28.0'
+    id 'maven-publish'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+import org.apache.tools.ant.taskdefs.condition.Os
+ext {
+    image = "313devgrp/java-service-tree-framework-backend-core"
+
+    artifactType = System.getenv("ARTIFACT_TYPE") ? System.getenv("ARTIFACT_TYPE").toUpperCase() : "SNAPSHOT"
+    repositoryType = "${artifactType}".equalsIgnoreCase("RELEASE") ? "release" : "snapshot"
+    //업로드 타입 정의 ( maven-release, maven-snapshot, ${repositoryType})
+    repositoryUrl = "http://www.313.co.kr/nexus/service/local/repositories/StandardProject/content"
+    metadataUrl = "${repositoryUrl}/313devgrp/java-service-tree-framework-backend-core/maven-metadata.xml"
+
+    //version 정보
+    majorVersion = 23
+    minorVersion = 01
+    //patchVersion = auto generation
+
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        println "*** Windows "
+    }else {
+        exec {
+            executable "wget"
+            args "-O", "${projectDir}/metadata.xml", "${metadataUrl}"
+        }
+    }
+    def metadataFile = new XmlSlurper().parse(new File("${projectDir}/metadata.xml"))
+    String latest = metadataFile."versioning"."latest"
+    String versionPrefix = latest.split("-")[0]
+    def (latestMajorVersion, latestMinorVersion, latestPatchVersion) = versionPrefix.tokenize(".")
+    if ( majorVersion > latestMajorVersion.toInteger()){
+        minorVersion = 0
+        patchVersion = 0
+    } else if (minorVersion > latestMinorVersion.toInteger()){
+        patchVersion = 0
+    } else {
+        patchVersion = latestPatchVersion.toInteger() + 1
+    }
+}
+
+group = "313devgrp"
+version = "${majorVersion}.${minorVersion}.${patchVersion}"
+
+bootJar {
+    baseName = project.name
+    version =  project.version
+}
+
+task generatePublishInfo {
+    def targetFile = new File("${projectDir}/spinnaker.properties")
+    targetFile.parentFile.mkdirs()
+    targetFile.withWriter("UTF-8") { w ->
+        w.writeLine "groupId = " + project.group
+        w.writeLine "artifactId = " + project.name
+        w.writeLine "version = " + project.version
+    }
+}
+
+publish {
+    dependsOn generatePublishInfo
+}
+
+def getMavenSettingsCredentials = {
+    String userHome = System.getProperty("user.home")
+    File mavenSettings = new File ( userHome, ".m2/settings.xml")
+
+    if (Os.isFamily(Os.FAMILY_WINDOWS)) {
+        if(!mavenSettings.exists()){
+            mavenSettings = new File("${projectDir}/settings.xml")
+        }
+    }else {
+        if(!mavenSettings.exists()){
+            mavenSettings = new File ("/jenkins_home/settings.xml")
+        }
+    }
+    def xmlSlurper = new XmlSlurper()
+    def output = xmlSlurper.parse(mavenSettings)
+    return output."servers"."server"
+}
+
+def getCredentials = {
+    def entries = getMavenSettingsCredentials()
+
+    for ( entry in entries ) {
+        if (project.version.endsWith("-SNAPSHOT") && entry."id".text() == "snapshots"){
+            return [username: entry.username.text(), password: entry.password.text()]
+        }else {
+            return [username: entry.username.text(), password: entry.password.text()]
+        }
+    }
+}
+
+publishing {
+    def mvnCredential = getCredentials()
+    repositories {
+        maven {
+            credentials{
+                username mvnCredential["username"]
+                password mvnCredential["password"]
+            }
+            url "${repositoryUrl}"
+        }
+    }
+
+    publications {
+        maven(MavenPublication) {
+            groupId = project.group
+            artifactId = project.name
+            version = project.version
+            artifact bootJar
+        }
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:Hoxton.SR9"
+    }
+}
+
+dependencies {
+
+    implementation('org.projectlombok:lombok')
+
+    implementation group: 'commons-lang', name: 'commons-lang', version: '2.6'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.10.1'
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation group: 'commons-beanutils', name: 'commons-beanutils', version: '1.9.4'
+    implementation group: 'org.apache.commons', name: 'commons-collections4', version: '4.4'
+    implementation group: 'org.unitils', name: 'unitils', version: '2.4'
+    implementation group: 'net.sourceforge.collections', name: 'collections-generic', version: '4.01'
+
+    // spring
+    implementation('org.springframework.boot:spring-boot-starter-web')
+    implementation('org.springframework.boot:spring-boot-starter-aop')
+    implementation "org.springframework.boot:spring-boot-starter-cache"
+    implementation "org.springframework.boot:spring-boot-starter-actuator"
+    implementation('org.springframework.boot:spring-boot-starter-validation')
+
+    // hibernate
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.15.Final'
+    implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.6.15.Final'
+
+    // Swagger
+    implementation('io.springfox:springfox-swagger2:2.9.2')
+    implementation('io.springfox:springfox-swagger-ui:2.9.2')
+
+    // Zipkin
+    implementation('org.springframework.cloud:spring-cloud-starter-sleuth')
+    implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
+
+    // redis - session
+    // spring에서 redis에 대한 의존성
+    implementation('org.springframework.boot:spring-boot-starter-data-redis')
+    // spring에서 redis를 session storage로 사용하기 위한 의존성
+    implementation('org.springframework.session:spring-session-data-redis')
+}
+
+configurations {
+    compile.exclude group: "org.slf4j", module: "slf4j-log4j12"
+}
+
+docker {
+    name "${image}"
+    noCache true
+    tags "${project.version}"
+    files tasks.bootJar.outputs.files, 'docker-entrypoint.sh'
+    buildArgs(['JAR_FILE': tasks.bootJar.outputs.files.singleFile.name, 'ENTRY_FILE': 'docker-entrypoint.sh'])
+}

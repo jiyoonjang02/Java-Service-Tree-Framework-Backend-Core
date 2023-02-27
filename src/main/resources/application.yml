@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: javaServiceTreeFrameworkBakcendCore
+  zipkin:
+    enabled: true
+    service.name: zipkin-service
+    sender.type: web
+    base-url: http://192.168.25.46:9411
+  sleuth:
+    enabled: true
+    sampler:
+      probability: 1.0
+  servlet:
+    multipart:
+      max-file-size: 10240MB
+      max-request-size: 10240MB
+
+server:
+  port: 31313
+  servlet:
+    session:
+      timeout: 1800

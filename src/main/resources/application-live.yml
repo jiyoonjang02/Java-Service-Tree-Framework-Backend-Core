@@ -1,0 +1,8 @@
+spring:
+  profiles:
+    active: live
+  session:
+    store-type: redis
+  redis:
+    host: 192.168.25.46
+    port: 6379
