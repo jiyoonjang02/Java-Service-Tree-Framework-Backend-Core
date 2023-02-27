@@ -1,4 +1,4 @@
-package config;
+package egovframework.com.ext.jstree.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

@@ -115,7 +115,7 @@ public class JsTreeHibernateController extends GenericAbstractController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/removeNode.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/removeNode.do", method = RequestMethod.DELETE)
     public ModelAndView removeNode(@Validated(value = RemoveNode.class) JsTreeHibernateDTO jsTreeHibernateDTO,
                                    BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors())
@@ -140,7 +140,7 @@ public class JsTreeHibernateController extends GenericAbstractController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/alterNode.do")
+    @RequestMapping(value = "/alterNode.do", method = RequestMethod.PUT)
     public ModelAndView alterNode(@Validated(value = AlterNode.class) JsTreeHibernateDTO jsTreeHibernateDTO,
                                   BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors()) {
@@ -158,7 +158,7 @@ public class JsTreeHibernateController extends GenericAbstractController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/alterNodeType.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/alterNodeType.do", method = RequestMethod.PUT)
     public ModelAndView alterNodeType(@Validated(value = AlterNodeType.class) JsTreeHibernateDTO jsTreeHibernateDTO,
                                       BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors()) {
@@ -173,7 +173,7 @@ public class JsTreeHibernateController extends GenericAbstractController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/moveNode.do", method = RequestMethod.POST)
+    @RequestMapping(value = "/moveNode.do", method = RequestMethod.PUT)
     public ModelAndView moveNode(@Validated(value = MoveNode.class) JsTreeHibernateDTO jsTreeHibernateDTO,
                                  BindingResult bindingResult, ModelMap model, HttpServletRequest request) throws Exception {
         if (bindingResult.hasErrors())

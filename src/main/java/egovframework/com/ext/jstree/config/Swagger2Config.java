@@ -1,4 +1,4 @@
-package config.apiList;
+package egovframework.com.ext.jstree.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

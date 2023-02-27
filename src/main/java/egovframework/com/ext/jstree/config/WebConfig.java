@@ -1,4 +1,4 @@
-package config;
+package egovframework.com.ext.jstree.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

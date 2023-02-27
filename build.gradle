@@ -160,6 +160,10 @@ dependencies {
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.15.Final'
     implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.6.15.Final'
 
+    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6
+    implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
+
+
     // Swagger
     implementation('io.springfox:springfox-swagger2:2.9.2')
     implementation('io.springfox:springfox-swagger-ui:2.9.2')

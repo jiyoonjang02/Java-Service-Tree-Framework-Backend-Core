@@ -14,9 +14,26 @@ spring:
     multipart:
       max-file-size: 10240MB
       max-request-size: 10240MB
+  datasource:
+    url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    username: OPERATION_DB
+    password: OPERATION_DB_1234
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  main:
+    allow-bean-definition-overriding: true
 
 server:
   port: 31313
   servlet:
     session:
       timeout: 1800
+
+# Database configuration props
+database:
+  driver: oracle.jdbc.driver.OracleDriver
+  url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
+  username: OPERATION_DB
+  password: OPERATION_DB_1234

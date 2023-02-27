@@ -2,15 +2,11 @@ package egovframework.com.ext.jstree.support.mvc;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import egovframework.com.ext.jstree.support.util.EgovMessageSource;
 import egovframework.com.ext.jstree.support.util.ParameterParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -19,11 +15,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class GenericAbstractController{
-
-	@Resource(name = "egovMessageSource")
-	EgovMessageSource egovMessageSource;
-
-	@Autowired
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
