@@ -159,8 +159,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.6.15.Final'
     implementation group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.6.15.Final'
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.5'
+    implementation group: 'javax.mail', name: 'mail', version: '1.4.7'
 
-    // https://mvnrepository.com/artifact/com.oracle.database.jdbc/ojdbc6
+    //oracle
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
 
