@@ -46,9 +46,8 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@CrossOrigin(origins = "http://localhost:9999")
 @RequestMapping(value = {"/auth-user/api/arms/pdService"})
-public class PdServiceController extends SHVAbstractController<PdService, PdServiceDTO> {
+public class UserPdServiceController extends SHVAbstractController<PdService, PdServiceDTO> {
 
     @Autowired
     @Qualifier("pdService")

@@ -43,7 +43,7 @@ public abstract class JsTreeHibernateBaseDTO implements Serializable {
 	private long status;
 	private String ajaxMessage;
 
-	private String childcount;
+	private String childcount = "";
 
 	private String searchStr;
 

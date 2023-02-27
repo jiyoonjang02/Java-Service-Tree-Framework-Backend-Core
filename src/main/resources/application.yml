@@ -20,8 +20,7 @@ spring:
     username: OPERATION_DB
     password: OPERATION_DB_1234
   jpa:
-    hibernate:
-      ddl-auto: create-drop
+    open-in-view: false
   main:
     allow-bean-definition-overriding: true
 
@@ -30,6 +29,7 @@ server:
   servlet:
     session:
       timeout: 1800
+  contextPath: /
 
 # Database configuration props
 database:
