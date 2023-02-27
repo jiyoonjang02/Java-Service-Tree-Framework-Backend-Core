@@ -131,7 +131,7 @@ public class PdServiceController extends SHVAbstractController<PdService, PdServ
      * @throws Exception
      */
     @ResponseBody
-    @RequestMapping(value="/uploadFileToNode.do")
+    @RequestMapping(value="/uploadFileToNode.do", method = RequestMethod.POST)
     public ModelAndView uploadFileToNode(final MultipartHttpServletRequest multiRequest,
                                          HttpServletRequest request, Model model) throws Exception {
 

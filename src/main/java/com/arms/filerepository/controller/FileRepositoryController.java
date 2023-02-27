@@ -72,7 +72,7 @@ public class FileRepositoryController extends SHVAbstractController<FileReposito
     }
 
     @ResponseBody
-    @RequestMapping(value="/deleteFileByNode/{fileId}")
+    @RequestMapping(value="/deleteFileByNode/{fileId}", method = RequestMethod.DELETE)
     public ModelAndView deleteFileByNode(@PathVariable(value ="fileId") Long fileId, ModelMap model,
                                          HttpServletRequest request) throws Exception {
 
@@ -87,7 +87,7 @@ public class FileRepositoryController extends SHVAbstractController<FileReposito
 
 
 
-    @RequestMapping(value="/downloadFileByNode/{fileId}")
+    @RequestMapping(value="/downloadFileByNode/{fileId}", method = RequestMethod.GET)
     public void downloadFile(@PathVariable(value ="fileId") Long fileId,
                              HttpServletRequest request, HttpServletResponse response) throws Exception {
 
