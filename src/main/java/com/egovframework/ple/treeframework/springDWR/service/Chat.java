@@ -24,6 +24,7 @@ public class Chat {
 		Global.chat = this;
 	}
 
+	@RemoteMethod
 	public String sendMessage(final String message) {
 		final String username;
 		try {
@@ -48,10 +49,12 @@ public class Chat {
 		return Global.SUCCESS;
 	}
 
+	@RemoteMethod
 	public static Set<User> getOnlineSet() {
 		return Global.onlineSet;
 	}
 
+	@RemoteMethod
 	public void updateOnlineList() {
 		Browser.withCurrentPage(new Runnable() {
 			@Override
@@ -61,6 +64,7 @@ public class Chat {
 		});
 	}
 
+	@RemoteMethod
 	public String login(final String username) {
 		if (Global.onlineSet.contains(new User(username)) || "".equals(username)) {
 			return Global.ERROR;
@@ -72,6 +76,7 @@ public class Chat {
 		}
 	}
 
+	@RemoteMethod
 	public String logout(final String username) {
 		if (!Global.onlineSet.contains(new User(username))) {
 			return Global.ERROR;
@@ -83,6 +88,7 @@ public class Chat {
 		}
 	}
 
+	@RemoteMethod
 	private String time() {
 		return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 	}

@@ -1,36 +1,55 @@
 package com.config;
 
+import org.directwebremoting.servlet.DwrServlet;
 import org.directwebremoting.spring.DwrSpringServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
+import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.util.UrlPathHelper;
 
 @Configuration
-@ImportResource("classpath:com/egovframework/spring/context-dwr.xml")
-public class DwrConfig {
+public class DwrConfig implements WebMvcConfigurer {
+
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/dwr/**").addResourceLocations("/dwr/");
+    }
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/dwr").setViewName("forward:/dwr/index.html");
+    }
+
+    @Override
+    public void configurePathMatch(PathMatchConfigurer configurer) {
+        UrlPathHelper urlPathHelper = new UrlPathHelper();
+        urlPathHelper.setRemoveSemicolonContent(false);
+        configurer.setUrlPathHelper(urlPathHelper);
+    }
 
     @Bean
-    public ServletRegistrationBean servletRegistrationBean() {
-
-
-
-        DwrSpringServlet servlet = new DwrSpringServlet();
-        ServletRegistrationBean registrationBean = new ServletRegistrationBean(servlet, "/dwr/*");
-        // Set to true to enable DWR to debug and enter the test page.
-        registrationBean.addInitParameter("debug", "true");
+    public ServletRegistrationBean<DwrServlet> dwrServletRegistration() {
+        DwrServlet servlet = new DwrServlet();
+        ServletRegistrationBean<DwrServlet> registration = new ServletRegistrationBean<>(servlet, "/dwr/*");
+        registration.setName("dwr");
+        registration.addInitParameter("debug", "true");
 
         //pollAndCometEnabled set to true to increase the loadability of the server, although DWR has a mechanism to protect the server from overload.
-        registrationBean.addInitParameter("pollAndCometEnabled", "true");
-        registrationBean.addInitParameter("activeReverseAjaxEnabled", "true");
+        registration.addInitParameter("pollAndCometEnabled", "true");
+        registration.addInitParameter("activeReverseAjaxEnabled", "true");
 
-        registrationBean.addInitParameter("initApplicationScopeCreatorsAtStartup", "false");
-        registrationBean.addInitParameter("jsonpEnabled", "false");
-        registrationBean.addInitParameter("org.directwebremoting.extend.ScriptSessionManager", "com.egovframework.ple.treeframework.springDWR.util.ScriptSessionManager");
-        registrationBean.addInitParameter("allowScriptTagRemoting", "true");
+        registration.addInitParameter("initApplicationScopeCreatorsAtStartup", "false");
+        registration.addInitParameter("jsonpEnabled", "false");
+        registration.addInitParameter("org.directwebremoting.extend.ScriptSessionManager", "com.egovframework.ple.treeframework.springDWR.util.ScriptSessionManager");
+        registration.addInitParameter("allowScriptTagRemoting", "true");
 
-        registrationBean.addInitParameter("maxWaitAfterWrite", "60");
-        return registrationBean;
+        registration.addInitParameter("maxWaitAfterWrite", "60");
+        return registration;
     }
 
 }
