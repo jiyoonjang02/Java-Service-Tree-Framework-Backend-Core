@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:dwr="http://www.directwebremoting.org/schema/spring-dwr"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.directwebremoting.org/schema/spring-dwr http://www.directwebremoting.org/schema/spring-dwr-3.0.xsd">
+
+    <dwr:configuration>
+        <dwr:convert type="bean" class="com.egovframework.ple.treeframework.springDWR.domain.User"></dwr:convert>
+    </dwr:configuration>
+    <dwr:annotation-config/>
+    <dwr:annotation-scan base-package="com.egovframework.ple.treeframework.springDWR.*.*" scanDataTransferObject="true"
+                         scanRemoteProxy="true"/>
+</beans>
