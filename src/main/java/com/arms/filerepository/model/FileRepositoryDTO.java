@@ -13,6 +13,8 @@ package com.arms.filerepository.model;
 
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateDTO;
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateSearchDTO;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 
