@@ -19,6 +19,11 @@ spring:
     driverClassName: oracle.jdbc.driver.OracleDriver
     username: OPERATION_DB
     password: OPERATION_DB_1234
+    hikari:
+      driver-class-name: oracle.jdbc.driver.OracleDriver
+      jdbc-url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
+      username: OPERATION_DB
+      password: OPERATION_DB_1234
   jpa:
     open-in-view: false
   main:
