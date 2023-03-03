@@ -173,7 +173,6 @@ dependencies {
     //oracle
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
-
     // Swagger
     implementation('io.springfox:springfox-swagger2:2.9.2')
     implementation('io.springfox:springfox-swagger-ui:2.9.2')
@@ -183,10 +182,9 @@ dependencies {
     implementation('org.springframework.cloud:spring-cloud-starter-zipkin')
 
     // redis - session
-    // spring에서 redis에 대한 의존성
     implementation('org.springframework.boot:spring-boot-starter-data-redis')
-    // spring에서 redis를 session storage로 사용하기 위한 의존성
     implementation('org.springframework.session:spring-session-data-redis')
+
 }
 
 configurations {
