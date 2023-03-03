@@ -11,23 +11,23 @@
  */
 package com.arms.armsinstaller.controller;
 
+import com.egovframework.ple.treeframework.springmybatis.dao.ISampleDAO;
+import com.egovframework.ple.treeframework.springmybatis.vo.SampleEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 import com.egovframework.ple.treeframework.springhibernate.controller.SHVAbstractController;
 
@@ -43,11 +43,25 @@ public class ArmsInstallerController extends SHVAbstractController<ArmsInstaller
     @Qualifier("armsInstaller")
     private ArmsInstaller armsInstaller;
 
+    @Resource(name = "ISampleDAO")
+    private ISampleDAO sampleDAO;
+
     @PostConstruct
     public void initialize() {
         setJsTreeHibernateService(armsInstaller);
     }
 
-	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+    @ResponseBody
+    @RequestMapping(
+            value = {"/getMybatisSample.do"},
+            method = {RequestMethod.GET}
+    )
+    public List<SampleEntity> getMybatisSample(ModelMap model, HttpServletRequest request) throws Exception {
+
+        return sampleDAO.getListSample();
+
+    }
 
 }

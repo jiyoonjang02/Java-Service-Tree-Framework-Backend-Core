@@ -168,8 +168,7 @@ dependencies {
 
 
     //mybatis
-//    implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-//    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.3.0'
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.3'
 
     //oracle
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
