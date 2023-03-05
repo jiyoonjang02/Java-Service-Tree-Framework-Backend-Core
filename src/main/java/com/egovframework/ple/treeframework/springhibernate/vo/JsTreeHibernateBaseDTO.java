@@ -108,9 +108,7 @@ public abstract class JsTreeHibernateBaseDTO implements Serializable {
 		attr = new HashMap<String, String>();
 	}
 
-	@Id
-	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="JsTreeSequence")
-	@Column(name = "c_id")
+	@Transient
 	public Long getC_id() {
 		return c_id;
 	}

@@ -13,6 +13,7 @@ package com.arms.pdserviceversion.model;
 
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateDTO;
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateSearchDTO;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -31,7 +32,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "JsTreeSequence", sequenceName = "S_T_ARMS_PDSERVICEVERSION", allocationSize = 1)
+@SequenceGenerator(name = "S_T_ARMS_PDSERVICEVERSION", sequenceName = "S_T_ARMS_PDSERVICEVERSION", allocationSize = 1)
 public class PdServiceVersionDTO extends JsTreeHibernateSearchDTO implements Serializable {
 
     public PdServiceVersionDTO() {
@@ -41,6 +42,14 @@ public class PdServiceVersionDTO extends JsTreeHibernateSearchDTO implements Ser
     public PdServiceVersionDTO(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
+    }
+
+    @Override
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_PDSERVICEVERSION")
+    @Column(name = "c_id")
+    public Long getC_id() {
+        return super.getC_id();
     }
 
     //@Getter @Setter

@@ -1,20 +1,25 @@
 package com.egovframework.ple.treeframework.springhibernate.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.*;
+import org.hibernate.annotations.Cache;
 
+import javax.persistence.*;
 import javax.persistence.Entity;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "T_COMPREHENSIVETREE_HIBER")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "JsTreeSequence", sequenceName = "S_COMPREHENSIVETREE_HIBER", allocationSize = 1)
+@SequenceGenerator(name = "S_COMPREHENSIVETREE_HIBER", sequenceName = "S_COMPREHENSIVETREE_HIBER", allocationSize = 1)
 public class JsTreeHibernateDTO extends JsTreeHibernateSearchDTO implements Serializable {
 
 	public JsTreeHibernateDTO() {
@@ -24,6 +29,14 @@ public class JsTreeHibernateDTO extends JsTreeHibernateSearchDTO implements Seri
 	public JsTreeHibernateDTO(Boolean copyBooleanValue) {
 		super();
 		this.copyBooleanValue = copyBooleanValue;
+	}
+
+	@Override
+	@Id
+	@GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_COMPREHENSIVETREE_HIBER")
+	@Column(name = "c_id")
+	public Long getC_id() {
+		return super.getC_id();
 	}
 
 	/*

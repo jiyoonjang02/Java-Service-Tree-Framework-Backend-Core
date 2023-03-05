@@ -13,8 +13,7 @@ package com.arms.filerepository.model;
 
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateDTO;
 import com.egovframework.ple.treeframework.springhibernate.vo.JsTreeHibernateSearchDTO;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
 
@@ -24,12 +23,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
+@Getter
+@Setter
 @Table(name = "T_ARMS_FILEREPOSITORY")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "JsTreeSequence", sequenceName = "S_T_ARMS_FILEREPOSITORY", allocationSize = 1)
+@SequenceGenerator(name = "S_T_ARMS_FILEREPOSITORY", sequenceName = "S_T_ARMS_FILEREPOSITORY", allocationSize = 1)
 public class FileRepositoryDTO extends JsTreeHibernateSearchDTO implements Serializable {
 
     public FileRepositoryDTO() {
@@ -39,6 +40,14 @@ public class FileRepositoryDTO extends JsTreeHibernateSearchDTO implements Seria
     public FileRepositoryDTO(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
+    }
+
+    @Override
+    @Id
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_FILEREPOSITORY")
+    @Column(name = "c_id")
+    public Long getC_id() {
+        return super.getC_id();
     }
 
     //@Getter @Setter
