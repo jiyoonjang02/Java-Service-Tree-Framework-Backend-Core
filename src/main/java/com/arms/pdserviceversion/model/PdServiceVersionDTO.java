@@ -11,8 +11,8 @@
  */
 package com.arms.pdserviceversion.model;
 
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreDTO;
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
+import com.egovframework.ple.treeframework.springdata.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.springdata.model.TreeSearchEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -32,7 +32,7 @@ import java.io.Serializable;
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_T_ARMS_PDSERVICEVERSION", sequenceName = "S_T_ARMS_PDSERVICEVERSION", allocationSize = 1)
-public class PdServiceVersionDTO extends CoreSearchDTO implements Serializable {
+public class PdServiceVersionDTO extends TreeSearchEntity implements Serializable {
 
     public PdServiceVersionDTO() {
         super();
@@ -86,8 +86,8 @@ public class PdServiceVersionDTO extends CoreSearchDTO implements Serializable {
     }
 
     @Override
-    public <T extends CoreSearchDTO> void setFieldFromNewInstance(T paramInstance) {
-        if( paramInstance instanceof CoreDTO){
+    public <T extends TreeSearchEntity> void setFieldFromNewInstance(T paramInstance) {
+        if( paramInstance instanceof TreeBaseEntity){
             if(paramInstance.isCopied()) {
                 this.setC_title("copy_" + this.getC_title());
             }

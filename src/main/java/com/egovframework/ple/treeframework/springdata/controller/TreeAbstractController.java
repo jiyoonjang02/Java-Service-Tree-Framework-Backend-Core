@@ -3,10 +3,9 @@ package com.egovframework.ple.treeframework.springdata.controller;
 
 import com.egovframework.ple.treeframework.springdata.model.TreeSearchEntity;
 import com.egovframework.ple.treeframework.springdata.service.TreeService;
-import com.egovframework.ple.treeframework.springhibernate.controller.GenericAbstractController;
-import com.egovframework.ple.treeframework.springhibernate.util.ParameterParser;
-import com.egovframework.ple.treeframework.springhibernate.util.Util_TitleChecker;
-import com.egovframework.ple.treeframework.springhibernate.validation.group.*;
+import com.egovframework.ple.treeframework.springdata.util.ParameterParser;
+import com.egovframework.ple.treeframework.springdata.util.Util_TitleChecker;
+import com.egovframework.ple.treeframework.springdata.validation.group.*;
 import com.google.common.collect.Maps;
 import org.hibernate.criterion.Order;
 import org.springframework.ui.ModelMap;

@@ -1,6 +1,5 @@
 package com.egovframework.ple.treeframework.springdata.model;
 
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreBaseDTO;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 

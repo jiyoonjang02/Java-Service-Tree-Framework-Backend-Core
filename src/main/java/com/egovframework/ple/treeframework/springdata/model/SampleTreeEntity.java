@@ -1,7 +1,5 @@
 package com.egovframework.ple.treeframework.springdata.model;
 
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreDTO;
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.*;

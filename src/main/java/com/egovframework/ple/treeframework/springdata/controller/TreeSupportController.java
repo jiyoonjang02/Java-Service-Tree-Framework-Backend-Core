@@ -2,7 +2,7 @@ package com.egovframework.ple.treeframework.springdata.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.egovframework.ple.treeframework.springhibernate.util.ParameterParser;
+import com.egovframework.ple.treeframework.springdata.util.ParameterParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ExceptionHandler;

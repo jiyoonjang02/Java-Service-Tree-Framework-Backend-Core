@@ -1,8 +1,7 @@
 package com.egovframework.ple.treeframework.springdata.model;
 
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreBaseDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.egovframework.ple.treeframework.springhibernate.util.PaginationInfo;
+import com.egovframework.ple.treeframework.springdata.util.PaginationInfo;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.MappedSuperclass;

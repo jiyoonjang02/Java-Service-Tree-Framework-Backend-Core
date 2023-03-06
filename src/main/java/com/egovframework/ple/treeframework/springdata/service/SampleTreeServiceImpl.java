@@ -1,17 +1,8 @@
 package com.egovframework.ple.treeframework.springdata.service;
 
-import com.arms.pdservice.model.PdServiceDTO;
-import com.arms.pdservice.service.PdService;
 import com.egovframework.ple.treeframework.springdata.dao.SampleTreeRepository;
 import com.egovframework.ple.treeframework.springdata.model.SampleTreeEntity;
-import com.egovframework.ple.treeframework.springdata.onlineV2.account.dao.AccountRepository;
-import com.egovframework.ple.treeframework.springdata.onlineV2.account.model.AccountEntity;
-import com.egovframework.ple.treeframework.springhibernate.service.CoreServiceImpl;
 import lombok.AllArgsConstructor;
-import org.apache.commons.lang3.ObjectUtils;
-import org.hibernate.criterion.Criterion;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -22,9 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.Predicate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor

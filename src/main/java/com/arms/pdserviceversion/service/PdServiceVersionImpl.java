@@ -12,7 +12,7 @@
 package com.arms.pdserviceversion.service;
 
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
-import com.egovframework.ple.treeframework.springhibernate.service.CoreServiceImpl;
+import com.egovframework.ple.treeframework.springdata.service.TreeServiceImpl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service("pdServiceVersion")
-public class PdServiceVersionImpl extends CoreServiceImpl implements PdServiceVersion{
+public class PdServiceVersionImpl extends TreeServiceImpl implements PdServiceVersion{
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 

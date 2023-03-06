@@ -1,9 +1,6 @@
 package com.egovframework.ple.treeframework.springdata.dao;
 
 import com.egovframework.ple.treeframework.springdata.model.TreeSearchEntity;
-import com.egovframework.ple.treeframework.springhibernate.dao.CoreAbstractDao;
-import com.egovframework.ple.treeframework.springhibernate.dao.CoreDao;
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
 import org.springframework.stereotype.Repository;
 
 import java.io.Serializable;

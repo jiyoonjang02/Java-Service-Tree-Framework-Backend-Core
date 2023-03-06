@@ -12,11 +12,11 @@
 package com.arms.pdserviceversion.service;
 
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
-import com.egovframework.ple.treeframework.springhibernate.service.CoreService;
+import com.egovframework.ple.treeframework.springdata.service.TreeService;
 
 import java.util.List;
 
-public interface PdServiceVersion extends CoreService {
+public interface PdServiceVersion extends TreeService {
 
     public List<PdServiceVersionDTO> getVersionListByPdService(PdServiceVersionDTO pdServiceVersionDTO) throws Exception;
 

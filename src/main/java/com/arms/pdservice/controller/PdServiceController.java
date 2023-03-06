@@ -16,12 +16,12 @@ import com.arms.pdservice.model.PdServiceDTO;
 import com.arms.pdservice.service.PdService;
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
 import com.arms.pdserviceversion.service.PdServiceVersion;
-import com.egovframework.ple.treeframework.springhibernate.util.FileHandler;
-import com.egovframework.ple.treeframework.springhibernate.controller.CoreAbstractController;
-import com.egovframework.ple.treeframework.springhibernate.util.Util_TitleChecker;
-import com.egovframework.ple.treeframework.springhibernate.validation.group.AddNode;
-import com.egovframework.ple.treeframework.springhibernate.util.ParameterParser;
-import com.egovframework.ple.treeframework.springhibernate.util.EgovFormBasedFileVo;
+import com.egovframework.ple.treeframework.springdata.controller.TreeAbstractController;
+import com.egovframework.ple.treeframework.springdata.util.FileHandler;
+import com.egovframework.ple.treeframework.springdata.util.Util_TitleChecker;
+import com.egovframework.ple.treeframework.springdata.validation.group.AddNode;
+import com.egovframework.ple.treeframework.springdata.util.ParameterParser;
+import com.egovframework.ple.treeframework.springdata.util.EgovFormBasedFileVo;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,7 +46,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping(value = {"/arms/pdService"})
-public class PdServiceController extends CoreAbstractController<PdService, PdServiceDTO> {
+public class PdServiceController extends TreeAbstractController<PdService, PdServiceDTO> {
 
     @Autowired
     @Qualifier("pdService")
@@ -62,7 +62,7 @@ public class PdServiceController extends CoreAbstractController<PdService, PdSer
 
     @PostConstruct
     public void initialize() {
-        setCoreService(pdService);
+        setTreeService(pdService);
     }
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());

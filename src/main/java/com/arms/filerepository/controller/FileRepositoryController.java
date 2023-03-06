@@ -13,10 +13,10 @@ package com.arms.filerepository.controller;
 
 import com.arms.filerepository.model.FileRepositoryDTO;
 import com.arms.filerepository.service.FileRepository;
-import com.egovframework.ple.treeframework.springhibernate.util.PropertiesReader;
-import com.egovframework.ple.treeframework.springhibernate.controller.CoreAbstractController;
-import com.egovframework.ple.treeframework.springhibernate.util.ParameterParser;
-import com.egovframework.ple.treeframework.springhibernate.util.EgovFormBasedFileUtil;
+import com.egovframework.ple.treeframework.springdata.controller.TreeAbstractController;
+import com.egovframework.ple.treeframework.springdata.util.PropertiesReader;
+import com.egovframework.ple.treeframework.springdata.util.ParameterParser;
+import com.egovframework.ple.treeframework.springdata.util.EgovFormBasedFileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,7 +39,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping(value = {"/arms/fileRepository"})
-public class FileRepositoryController extends CoreAbstractController<FileRepository, FileRepositoryDTO> {
+public class FileRepositoryController extends TreeAbstractController<FileRepository, FileRepositoryDTO> {
 
     @Autowired
     @Qualifier("fileRepository")
@@ -47,7 +47,7 @@ public class FileRepositoryController extends CoreAbstractController<FileReposit
 
     @PostConstruct
     public void initialize() {
-        setCoreService(fileRepository);
+        setTreeService(fileRepository);
     }
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());

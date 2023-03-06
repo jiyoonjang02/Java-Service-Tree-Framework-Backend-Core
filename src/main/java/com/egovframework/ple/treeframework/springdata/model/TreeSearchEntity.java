@@ -1,8 +1,6 @@
 package com.egovframework.ple.treeframework.springdata.model;
-import com.egovframework.ple.treeframework.springhibernate.vo.CorePaginatedDTO;
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.egovframework.ple.treeframework.springhibernate.util.StringUtils;
+import com.egovframework.ple.treeframework.springdata.util.StringUtils;
 import org.hibernate.criterion.*;
 
 import javax.persistence.Transient;

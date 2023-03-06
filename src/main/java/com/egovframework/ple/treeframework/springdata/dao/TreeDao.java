@@ -1,7 +1,6 @@
 package com.egovframework.ple.treeframework.springdata.dao;
 
 import com.egovframework.ple.treeframework.springdata.model.TreeSearchEntity;
-import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
 import org.hibernate.LockMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

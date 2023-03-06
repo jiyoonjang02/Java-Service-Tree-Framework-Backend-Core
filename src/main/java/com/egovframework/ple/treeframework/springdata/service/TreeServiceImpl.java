@@ -2,9 +2,9 @@ package com.egovframework.ple.treeframework.springdata.service;
 
 import com.egovframework.ple.treeframework.springdata.dao.TreeDao;
 import com.egovframework.ple.treeframework.springdata.model.TreeSearchEntity;
-import com.egovframework.ple.treeframework.springhibernate.interceptor.RouteTableInterceptor;
-import com.egovframework.ple.treeframework.springhibernate.util.PaginationInfo;
-import com.egovframework.ple.treeframework.springhibernate.util.StringUtils;
+import com.egovframework.ple.treeframework.springdata.interceptor.RouteTableInterceptor;
+import com.egovframework.ple.treeframework.springdata.util.PaginationInfo;
+import com.egovframework.ple.treeframework.springdata.util.StringUtils;
 import org.apache.commons.collections15.CollectionUtils;
 import org.apache.commons.collections15.Transformer;
 import org.apache.commons.lang.math.NumberUtils;
