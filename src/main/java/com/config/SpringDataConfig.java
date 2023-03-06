@@ -1,12 +1,9 @@
 package com.config;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Properties;
-import javax.persistence.EntityManager;
 import javax.sql.DataSource;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
 import org.springframework.boot.autoconfigure.orm.jpa.JpaProperties;
@@ -27,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaAuditing
 @EnableJpaRepositories(
-        basePackages = "com.egovframework.ple.treeframework.springdata.*"
+        basePackages = "com.egovframework.ple.coreframework.springdata.*"
         ,entityManagerFactoryRef = "entityManagerJpaFactory"
         ,transactionManagerRef =  "transactionJpaManager"
 )

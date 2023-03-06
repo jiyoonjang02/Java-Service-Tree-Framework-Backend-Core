@@ -12,7 +12,7 @@
 package com.arms.pdserviceversion.service;
 
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
-import com.egovframework.ple.treeframework.springdata.service.TreeServiceImpl;
+import com.egovframework.ple.coreframework.springdata.service.TreeServiceImpl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;

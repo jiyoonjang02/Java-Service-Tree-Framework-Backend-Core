@@ -11,7 +11,7 @@
  */
 package com.arms.filerepository.service;
 
-import com.egovframework.ple.treeframework.springdata.service.TreeService;
+import com.egovframework.ple.coreframework.springdata.service.TreeService;
 
 public interface FileRepository extends TreeService {
 
