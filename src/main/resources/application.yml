@@ -42,6 +42,15 @@ spring:
   main:
     allow-bean-definition-overriding: true
 
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type:
+          descriptor:
+            sql: trace
+
 server:
   port: 31313
   servlet:

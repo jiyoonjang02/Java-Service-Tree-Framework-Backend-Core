@@ -1,4 +1,4 @@
-package com.egovframework.ple.treeframework.springdata.onlineV2.account.model;
+package com.egovframework.ple.treeframework.springdata.model;
 
 import com.egovframework.ple.treeframework.springhibernate.vo.CoreDTO;
 import com.egovframework.ple.treeframework.springhibernate.vo.CoreSearchDTO;
@@ -21,13 +21,13 @@ import java.io.Serializable;
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_USER_SELECTED_ITEM", sequenceName = "S_USER_SELECTED_ITEM", allocationSize = 1)
-public class CoreSampleEntity extends CoreSearchDTO implements Serializable {
+public class SampleTreeEntity  extends TreeSearchEntity implements Serializable {
 
-    public CoreSampleEntity() {
+    public SampleTreeEntity() {
         super();
     }
 
-    public CoreSampleEntity(Boolean copyBooleanValue) {
+    public SampleTreeEntity(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
     }
@@ -40,8 +40,6 @@ public class CoreSampleEntity extends CoreSearchDTO implements Serializable {
         return super.getC_id();
     }
 
-    //@Getter @Setter
-
     @Column(name="user_cid")
     private String user_cid;
 
@@ -50,7 +48,6 @@ public class CoreSampleEntity extends CoreSearchDTO implements Serializable {
 
     @Column(name="compare_item_cid")
     private Long compare_item_cid;
-
     /*
      * Extend Bean Field
      */
@@ -72,11 +69,13 @@ public class CoreSampleEntity extends CoreSearchDTO implements Serializable {
     }
 
     @Override
-    public <T extends CoreSearchDTO> void setFieldFromNewInstance(T paramInstance) {
-        if( paramInstance instanceof CoreDTO){
+    public <T extends TreeSearchEntity> void setFieldFromNewInstance(T paramInstance) {
+
+        if( paramInstance instanceof TreeBaseEntity){
             if(paramInstance.isCopied()) {
                 this.setC_title("copy_" + this.getC_title());
             }
         }
     }
+
 }
