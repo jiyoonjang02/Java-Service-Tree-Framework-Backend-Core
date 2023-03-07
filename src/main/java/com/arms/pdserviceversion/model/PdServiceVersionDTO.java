@@ -11,8 +11,8 @@
  */
 package com.arms.pdserviceversion.model;
 
-import com.egovframework.ple.springdata.model.TreeBaseEntity;
-import com.egovframework.ple.springdata.model.TreeSearchEntity;
+import com.egovframework.ple.core.model.TreeBaseEntity;
+import com.egovframework.ple.core.model.TreeSearchEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;

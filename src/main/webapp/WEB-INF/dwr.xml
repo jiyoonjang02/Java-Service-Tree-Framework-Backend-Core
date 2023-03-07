@@ -6,10 +6,10 @@
 <dwr>
     <allow>
         <create creator="new" javascript="Chat">
-            <param name="class" value="com.egovframework.ple.springdwr.service.Chat"/>
+            <param name="class" value="com.egovframework.ple.core.remote.Chat"/>
         </create>
         <create creator="new" javascript="Dummy">
-            <param name="class" value="com.egovframework.ple.springdwr.service.Dummy"/>
+            <param name="class" value="com.egovframework.ple.core.remote.Dummy"/>
         </create>
     </allow>
 </dwr>

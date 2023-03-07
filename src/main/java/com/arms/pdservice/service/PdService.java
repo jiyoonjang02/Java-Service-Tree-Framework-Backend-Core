@@ -12,7 +12,7 @@
 package com.arms.pdservice.service;
 
 import com.arms.pdservice.model.PdServiceDTO;
-import com.egovframework.ple.springdata.service.TreeService;
+import com.egovframework.ple.core.service.TreeService;
 
 import java.util.List;
 
