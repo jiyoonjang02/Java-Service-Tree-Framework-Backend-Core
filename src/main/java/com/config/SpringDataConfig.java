@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaAuditing
 @EnableJpaRepositories(
-        basePackages = "com.egovframework.ple.coreframework.springdata.*"
+        basePackages = "com.egovframework.ple.springdata.*"
         ,entityManagerFactoryRef = "entityManagerJpaFactory"
         ,transactionManagerRef =  "transactionJpaManager"
 )
@@ -47,7 +47,7 @@ public class SpringDataConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerJpaFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(onlyJpaDataSource());
-        em.setPackagesToScan("com.egovframework.ple.treeframework.springdata.*");
+        em.setPackagesToScan("com.egovframework.ple.springdata.*");
         em.setJpaPropertyMap(jpaProperties.getProperties());
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return em;
@@ -64,7 +64,7 @@ public class SpringDataConfig {
     public LocalSessionFactoryBean sessionJpaFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(onlyJpaDataSource());
-        sessionFactory.setPackagesToScan("com.egovframework.ple.treeframework.springdata.*");
+        sessionFactory.setPackagesToScan("com.egovframework.ple.springdata.*");
         Map<String, Object> hibernateProps
                 = hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
 

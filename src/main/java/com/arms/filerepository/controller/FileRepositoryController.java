@@ -13,10 +13,10 @@ package com.arms.filerepository.controller;
 
 import com.arms.filerepository.model.FileRepositoryDTO;
 import com.arms.filerepository.service.FileRepository;
-import com.egovframework.ple.coreframework.springdata.controller.TreeAbstractController;
-import com.egovframework.ple.coreframework.springdata.util.PropertiesReader;
-import com.egovframework.ple.coreframework.springdata.util.ParameterParser;
-import com.egovframework.ple.coreframework.springdata.util.EgovFormBasedFileUtil;
+import com.egovframework.ple.springdata.controller.TreeAbstractController;
+import com.egovframework.ple.springdata.util.PropertiesReader;
+import com.egovframework.ple.springdata.util.ParameterParser;
+import com.egovframework.ple.springdata.util.EgovFormBasedFileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

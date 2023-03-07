@@ -30,7 +30,7 @@
 			</props>
 		</property>
 		<property name="entityInterceptor">
-			<bean class="com.egovframework.ple.coreframework.springdata.interceptor.RouteTableInterceptor" />
+			<bean class="com.egovframework.ple.springdata.interceptor.RouteTableInterceptor" />
 		</property>
 		<property name="packagesToScan">
 			<list>
