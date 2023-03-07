@@ -13,6 +13,7 @@ package com.arms.pdservice.service;
 
 import com.arms.pdservice.model.PdServiceEntity;
 import com.egovframework.ple.core.service.TreeServiceImpl;
+import lombok.AllArgsConstructor;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
@@ -24,6 +25,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@AllArgsConstructor
 @Service("pdService")
 public class PdServiceImpl extends TreeServiceImpl implements PdService {
 
