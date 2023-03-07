@@ -11,7 +11,7 @@
  */
 package com.arms.pdservice.service;
 
-import com.arms.pdservice.model.PdServiceDTO;
+import com.arms.pdservice.model.PdServiceEntity;
 import com.egovframework.ple.core.service.TreeServiceImpl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
@@ -35,15 +35,15 @@ public class PdServiceImpl extends TreeServiceImpl implements PdService {
     private static final String REQ_PREFIX_TABLENAME_BY_PDSERVICE_STATUS = new String("T_ARMS_REQSTATUS_");
 
     @Override
-    public List<PdServiceDTO> getNodesWithoutRoot(PdServiceDTO pdServiceDTO) throws Exception {
-        pdServiceDTO.setOrder(Order.desc("c_id"));
+    public List<PdServiceEntity> getNodesWithoutRoot(PdServiceEntity pdServiceEntity) throws Exception {
+        pdServiceEntity.setOrder(Order.desc("c_id"));
         Criterion criterion = Restrictions.not(
                 // replace "id" below with property name, depending on what you're filtering against
                 Restrictions.in("c_id", new Object[] {1L, 2L})
         );
-        pdServiceDTO.getCriterions().add(criterion);
-        List<PdServiceDTO> list = this.getChildNode(pdServiceDTO);
-        for (PdServiceDTO dto: list) {
+        pdServiceEntity.getCriterions().add(criterion);
+        List<PdServiceEntity> list = this.getChildNode(pdServiceEntity);
+        for (PdServiceEntity dto: list) {
             dto.setC_contents("force empty");
         }
         return list;
@@ -51,23 +51,23 @@ public class PdServiceImpl extends TreeServiceImpl implements PdService {
 
 
     @Override
-    public PdServiceDTO addNodeToEndPosition(PdServiceDTO pdServiceDTO) throws Exception {
+    public PdServiceEntity addNodeToEndPosition(PdServiceEntity pdServiceEntity) throws Exception {
         //루트 노드를 기준으로 리스트를 검색
-        PdServiceDTO paramPdServiceDTO = new PdServiceDTO();
-        paramPdServiceDTO.setWhere("c_parentid", ROOT_NODE_ID);
-        List<PdServiceDTO> list = this.getChildNode(paramPdServiceDTO);
+        PdServiceEntity paramPdServiceEntity = new PdServiceEntity();
+        paramPdServiceEntity.setWhere("c_parentid", ROOT_NODE_ID);
+        List<PdServiceEntity> list = this.getChildNode(paramPdServiceEntity);
 
         //검색된 노드중 maxPosition을 찾는다.
-        PdServiceDTO maxPositionPdServiceDTO = list
+        PdServiceEntity maxPositionPdServiceEntity = list
                 .stream()
-                .max(Comparator.comparing(PdServiceDTO::getC_position))
+                .max(Comparator.comparing(PdServiceEntity::getC_position))
                 .orElseThrow(NoSuchElementException::new);
 
         //노드 값 셋팅
-        pdServiceDTO.setRef(ROOT_NODE_ID);
-        pdServiceDTO.setC_position(maxPositionPdServiceDTO.getC_position() + 1);
-        pdServiceDTO.setC_type(NODE_TYPE);
+        pdServiceEntity.setRef(ROOT_NODE_ID);
+        pdServiceEntity.setC_position(maxPositionPdServiceEntity.getC_position() + 1);
+        pdServiceEntity.setC_type(NODE_TYPE);
 
-        return this.addNode(pdServiceDTO);
+        return this.addNode(pdServiceEntity);
     }
 }

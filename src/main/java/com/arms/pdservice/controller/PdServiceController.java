@@ -12,7 +12,7 @@
 package com.arms.pdservice.controller;
 
 import com.arms.filerepository.service.FileRepository;
-import com.arms.pdservice.model.PdServiceDTO;
+import com.arms.pdservice.model.PdServiceEntity;
 import com.arms.pdservice.service.PdService;
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
 import com.arms.pdserviceversion.service.PdServiceVersion;
@@ -50,7 +50,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping(value = {"/arms/pdService"})
-public class PdServiceController extends TreeAbstractController<PdService, PdServiceDTO> {
+public class PdServiceController extends TreeAbstractController<PdService, PdServiceEntity> {
 
     @Autowired
     @Qualifier("pdService")
@@ -78,16 +78,16 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             value = {"/addPdServiceNode.do"},
             method = {RequestMethod.POST}
     )
-    public ModelAndView addPdServiceNode(@Validated({AddNode.class}) PdServiceDTO pdServiceDTO,
+    public ModelAndView addPdServiceNode(@Validated({AddNode.class}) PdServiceEntity pdServiceEntity,
                                          BindingResult bindingResult, ModelMap model) throws Exception {
 
         if (bindingResult.hasErrors()) {
             throw new RuntimeException();
         } else {
-            pdServiceDTO.setC_title(Util_TitleChecker.StringReplace(pdServiceDTO.getC_title()));
+            pdServiceEntity.setC_title(Util_TitleChecker.StringReplace(pdServiceEntity.getC_title()));
 
             //제품(서비스) 데이터 등록
-            PdServiceDTO addedNode = pdService.addNode(pdServiceDTO);
+            PdServiceEntity addedNode = pdService.addNode(pdServiceEntity);
 
             //제품(서비스) 생성시 - 요구사항 TABLE 생성
             //pdService.setDynamicReqAddDB(addedNode);
@@ -115,13 +115,13 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
 
     @ResponseBody
     @RequestMapping(value = "/addEndNodeByRoot.do", method = RequestMethod.POST)
-    public ModelAndView addEndNodeByRoot(PdServiceDTO pdServiceDTO,
+    public ModelAndView addEndNodeByRoot(PdServiceEntity pdServiceEntity,
                                          BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors())
             throw new RuntimeException();
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", pdService.addNodeToEndPosition(pdServiceDTO));
+        modelAndView.addObject("result", pdService.addNodeToEndPosition(pdServiceEntity));
 
         return modelAndView;
     }
@@ -155,10 +155,10 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             value = {"/getPdServiceMonitor.do"},
             method = {RequestMethod.GET}
     )
-    public ModelAndView getPdServiceMonitor(PdServiceDTO pdServiceDTO, ModelMap model, HttpServletRequest request) throws Exception {
+    public ModelAndView getPdServiceMonitor(PdServiceEntity pdServiceEntity, ModelMap model, HttpServletRequest request) throws Exception {
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", pdService.getNodesWithoutRoot(pdServiceDTO));
+        modelAndView.addObject("result", pdService.getNodesWithoutRoot(pdServiceEntity));
         return modelAndView;
 
     }

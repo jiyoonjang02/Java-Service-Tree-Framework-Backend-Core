@@ -11,15 +11,15 @@
  */
 package com.arms.pdservice.service;
 
-import com.arms.pdservice.model.PdServiceDTO;
+import com.arms.pdservice.model.PdServiceEntity;
 import com.egovframework.ple.core.service.TreeService;
 
 import java.util.List;
 
 public interface PdService extends TreeService {
 
-    public List<PdServiceDTO> getNodesWithoutRoot(PdServiceDTO pdServiceDTO) throws Exception;
+    public List<PdServiceEntity> getNodesWithoutRoot(PdServiceEntity pdServiceEntity) throws Exception;
 
-    public PdServiceDTO addNodeToEndPosition(PdServiceDTO pdServiceDTO) throws Exception;
+    public PdServiceEntity addNodeToEndPosition(PdServiceEntity pdServiceEntity) throws Exception;
 
 }

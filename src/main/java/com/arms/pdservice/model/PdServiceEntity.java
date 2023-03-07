@@ -32,13 +32,13 @@ import java.io.Serializable;
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_T_ARMS_PDSERVICE", sequenceName = "S_T_ARMS_PDSERVICE", allocationSize = 1)
-public class PdServiceDTO extends TreeSearchEntity implements Serializable {
+public class PdServiceEntity extends TreeSearchEntity implements Serializable {
 
-    public PdServiceDTO() {
+    public PdServiceEntity() {
         super();
     }
 
-    public PdServiceDTO(Boolean copyBooleanValue) {
+    public PdServiceEntity(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
     }
