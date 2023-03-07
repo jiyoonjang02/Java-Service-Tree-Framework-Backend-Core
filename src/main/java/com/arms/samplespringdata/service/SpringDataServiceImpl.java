@@ -1,12 +1,12 @@
-package com.arms.sample.account.service;
+package com.arms.samplespringdata.service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import javax.persistence.criteria.Predicate;
 
-import com.arms.sample.account.dao.AccountRepository;
-import com.arms.sample.account.model.AccountEntity;
+import com.arms.samplespringdata.dao.SpringDataRepository;
+import com.arms.samplespringdata.model.SpringDataEntity;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.ObjectUtils;
 import org.springframework.data.domain.Page;
@@ -17,15 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 
 @AllArgsConstructor
 @Service
-public class AccountServiceV2Impl implements AccountServiceV2 {
+public class SpringDataServiceImpl implements SpringDataService {
 
-    private final AccountRepository accountRepository;
+    private final SpringDataRepository springDataRepository;
 
     @Override
     @Transactional(transactionManager = "transactionJpaManager")
-    public String join(AccountEntity accountEntity) {
+    public String join(SpringDataEntity springDataEntity) {
         try {
-            return accountRepository.save(accountEntity).getUserId();
+            return springDataRepository.save(springDataEntity).getUserId();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -37,38 +37,38 @@ public class AccountServiceV2Impl implements AccountServiceV2 {
     @Override
     @Transactional(transactionManager = "transactionJpaManager")
     public String cancel(String userId) {
-        AccountEntity accountEntity = accountRepository.findById(userId);
-        accountEntity.cancel();
-        return accountRepository.save(accountEntity).getUserId();
+        SpringDataEntity springDataEntity = springDataRepository.findById(userId);
+        springDataEntity.cancel();
+        return springDataRepository.save(springDataEntity).getUserId();
     }
 
     @Override
     @Transactional(transactionManager = "transactionJpaManager")
-    public String update(AccountEntity accountEntity) {
-        return accountRepository.save(accountEntity).getUserId();
+    public String update(SpringDataEntity springDataEntity) {
+        return springDataRepository.save(springDataEntity).getUserId();
     }
 
     @Override
     @Transactional(transactionManager = "transactionJpaManager")
     public String delete(String userId) {
-        return accountRepository.delete(userId);
+        return springDataRepository.delete(userId);
     }
 
 
     @Override
-    public Page<AccountEntity> findAllBy(AccountEntity accountEntity, Pageable pageable) {
-        return accountRepository.findAllBy(
-                        searchWith(accountEntity), pageable);
+    public Page<SpringDataEntity> findAllBy(SpringDataEntity springDataEntity, Pageable pageable) {
+        return springDataRepository.findAllBy(
+                        searchWith(springDataEntity), pageable);
     }
 
     @Override
-    public List<AccountEntity> findAllBy(AccountEntity accountDTO) {
-        return accountRepository.findAllBy(
+    public List<SpringDataEntity> findAllBy(SpringDataEntity accountDTO) {
+        return springDataRepository.findAllBy(
                         searchWith(accountDTO))
                 .stream().collect(Collectors.toList());
     }
 
-    private Specification<AccountEntity> searchWith(AccountEntity accountDTO
+    private Specification<SpringDataEntity> searchWith(SpringDataEntity accountDTO
     ) {
         return ((root, query, builder) -> {
             List<Predicate> predicates = new ArrayList<>();

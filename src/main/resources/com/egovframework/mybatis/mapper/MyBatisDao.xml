@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.egovframework.ple.core.mapper.TreeMapperDao">
+<mapper namespace="com.arms.samplemybastis.mapper.MyBatisDao">
 
 
-    <select id="getListSample" resultType="com.egovframework.ple.core.mapper.SampleMapperEntity">
+    <select id="getListSample" resultType="com.arms.samplemybastis.model.MyBatisEntity">
         SELECT
         *
         /*   post_id as postId

@@ -1,4 +1,4 @@
-package com.arms.sample.account.enums;
+package com.arms.samplespringdata.enums;
 
 public enum Authority {
     ROLE_ADMIN,

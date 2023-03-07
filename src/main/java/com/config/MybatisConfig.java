@@ -37,7 +37,7 @@ public class MybatisConfig {
         sqlSessionFactoryBean.setDataSource(onlyMybatisDataSource());
         // mybatis 설정 파일 세팅
         sqlSessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:com/egovframework/mybatis/mybatis-config.xml"));
-        // TreeMapperDao.xml 위치 패키지 주소
+        // MyBatisDao.xml 위치 패키지 주소
         sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:com/egovframework/mybatis/mapper/**/*.xml"));
 
         return sqlSessionFactoryBean.getObject();

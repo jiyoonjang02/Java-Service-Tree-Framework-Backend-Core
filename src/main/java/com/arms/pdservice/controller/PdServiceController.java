@@ -22,6 +22,7 @@ import com.egovframework.ple.core.util.Util_TitleChecker;
 import com.egovframework.ple.core.validation.group.AddNode;
 import com.egovframework.ple.core.util.ParameterParser;
 import com.egovframework.ple.core.util.EgovFormBasedFileVo;
+import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,6 +47,8 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@RestController
+@AllArgsConstructor
 @RequestMapping(value = {"/arms/pdService"})
 public class PdServiceController extends TreeAbstractController<PdService, PdServiceDTO> {
 

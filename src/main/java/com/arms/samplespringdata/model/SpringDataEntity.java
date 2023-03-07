@@ -1,4 +1,4 @@
-package com.arms.sample.account.model;
+package com.arms.samplespringdata.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,7 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.arms.sample.account.enums.UserStatus;
+import com.arms.samplespringdata.enums.UserStatus;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,10 +22,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Builder
 @NoArgsConstructor(access = AccessLevel.PUBLIC)
 @AllArgsConstructor
-@Table(name = "SPRING_DATA_ACCOUNT")
+@Table(name = "SPRING_DATA_SAMPLE")
 @DynamicInsert
 @DynamicUpdate
-public class AccountEntity {
+public class SpringDataEntity {
 
     @Id
     @GenericGenerator(name = "system-uuid", strategy = "uuid")
