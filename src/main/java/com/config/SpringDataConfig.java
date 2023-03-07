@@ -47,7 +47,7 @@ public class SpringDataConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerJpaFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(onlyJpaDataSource());
-        em.setPackagesToScan(new String[] { "com.egovframework.ple.core.*"});
+        em.setPackagesToScan(new String[] { "com.egovframework.ple.core.**.model", "com.arms.**.model"});
         em.setJpaPropertyMap(jpaProperties.getProperties());
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return em;
@@ -64,7 +64,7 @@ public class SpringDataConfig {
     public LocalSessionFactoryBean sessionJpaFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(onlyJpaDataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.egovframework.ple.core.*" });
+        sessionFactory.setPackagesToScan(new String[] { "com.egovframework.ple.core.**.model", "com.arms.**.model" });
         Map<String, Object> hibernateProps
                 = hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
 

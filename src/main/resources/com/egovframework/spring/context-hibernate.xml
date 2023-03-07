@@ -34,7 +34,7 @@
 		</property>
 		<property name="packagesToScan">
 			<list>
-				<value>com</value>
+				<value>com.**.model</value>
 			</list>
 		</property>
 	</bean>
