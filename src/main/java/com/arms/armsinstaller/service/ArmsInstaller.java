@@ -11,7 +11,7 @@
  */
 package com.arms.armsinstaller.service;
 
-import com.egovframework.ple.core.service.TreeService;
+import com.egovframework.ple.serviceframework.service.TreeService;
 
 public interface ArmsInstaller extends TreeService {
 

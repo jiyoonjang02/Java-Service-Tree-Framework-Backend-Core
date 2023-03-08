@@ -11,8 +11,8 @@
  */
 package com.arms.armsinstallerlog.model;
 
-import com.egovframework.ple.core.model.TreeBaseEntity;
-import com.egovframework.ple.core.model.TreeSearchEntity;
+import com.egovframework.ple.serviceframework.model.TreeBaseEntity;
+import com.egovframework.ple.serviceframework.model.TreeSearchEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;

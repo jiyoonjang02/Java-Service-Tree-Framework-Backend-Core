@@ -13,9 +13,9 @@ package com.arms.pdserviceversion.controller;
 
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
 import com.arms.pdserviceversion.service.PdServiceVersion;
-import com.egovframework.ple.core.controller.TreeAbstractController;
-import com.egovframework.ple.core.util.StringUtility;
-import com.egovframework.ple.core.util.ParameterParser;
+import com.egovframework.ple.serviceframework.controller.TreeAbstractController;
+import com.egovframework.ple.serviceframework.util.StringUtility;
+import com.egovframework.ple.serviceframework.util.ParameterParser;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

@@ -12,7 +12,7 @@
 package com.arms.pdserviceversion.service;
 
 import com.arms.pdserviceversion.model.PdServiceVersionDTO;
-import com.egovframework.ple.core.service.TreeService;
+import com.egovframework.ple.serviceframework.service.TreeService;
 
 import java.util.List;
 

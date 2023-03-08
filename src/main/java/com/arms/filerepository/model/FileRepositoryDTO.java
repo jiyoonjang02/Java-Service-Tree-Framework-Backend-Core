@@ -11,8 +11,8 @@
  */
 package com.arms.filerepository.model;
 
-import com.egovframework.ple.core.model.TreeBaseEntity;
-import com.egovframework.ple.core.model.TreeSearchEntity;
+import com.egovframework.ple.serviceframework.model.TreeBaseEntity;
+import com.egovframework.ple.serviceframework.model.TreeSearchEntity;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;

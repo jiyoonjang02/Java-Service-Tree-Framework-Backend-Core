@@ -1,8 +1,8 @@
 package com.arms.samplemybastis.controller;
 
 import com.arms.samplemybastis.service.MyBatisService;
-import com.egovframework.ple.core.controller.CommonResponse;
-import com.egovframework.ple.core.controller.TreeSupportController;
+import com.egovframework.ple.serviceframework.controller.CommonResponse;
+import com.egovframework.ple.serviceframework.controller.TreeSupportController;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

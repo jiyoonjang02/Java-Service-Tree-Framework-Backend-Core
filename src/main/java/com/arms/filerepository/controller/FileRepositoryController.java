@@ -13,10 +13,10 @@ package com.arms.filerepository.controller;
 
 import com.arms.filerepository.model.FileRepositoryDTO;
 import com.arms.filerepository.service.FileRepository;
-import com.egovframework.ple.core.controller.TreeAbstractController;
-import com.egovframework.ple.core.util.PropertiesReader;
-import com.egovframework.ple.core.util.ParameterParser;
-import com.egovframework.ple.core.util.EgovFormBasedFileUtil;
+import com.egovframework.ple.serviceframework.controller.TreeAbstractController;
+import com.egovframework.ple.serviceframework.util.PropertiesReader;
+import com.egovframework.ple.serviceframework.util.ParameterParser;
+import com.egovframework.ple.serviceframework.util.EgovFormBasedFileUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
