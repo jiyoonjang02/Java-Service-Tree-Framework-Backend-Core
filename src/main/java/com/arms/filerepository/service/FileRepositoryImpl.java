@@ -11,7 +11,7 @@
  */
 package com.arms.filerepository.service;
 
-import com.egovframework.ple.serviceframework.service.TreeServiceImpl;
+import com.egovframework.ple.treeframework.service.TreeServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

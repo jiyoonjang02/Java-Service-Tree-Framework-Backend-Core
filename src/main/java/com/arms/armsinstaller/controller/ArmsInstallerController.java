@@ -1,7 +1,7 @@
 /*
  * @author Dongmin.lee
- * @since 2023-03-07
- * @version 23.03.07
+ * @since 2023-03-08
+ * @version 23.03.08
  * @see <pre>
  *  Copyright (C) 2007 by 313 DEV GRP, Inc - All Rights Reserved
  *  Unauthorized copying of this file, via any medium is strictly prohibited
@@ -11,7 +11,7 @@
  */
 package com.arms.armsinstaller.controller;
 
-import com.egovframework.ple.serviceframework.controller.TreeAbstractController;
+import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

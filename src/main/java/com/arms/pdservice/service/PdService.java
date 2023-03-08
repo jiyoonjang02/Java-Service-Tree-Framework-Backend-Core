@@ -12,7 +12,7 @@
 package com.arms.pdservice.service;
 
 import com.arms.pdservice.model.PdServiceEntity;
-import com.egovframework.ple.serviceframework.service.TreeService;
+import com.egovframework.ple.treeframework.service.TreeService;
 
 import java.util.List;
 

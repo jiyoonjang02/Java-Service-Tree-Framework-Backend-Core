@@ -12,7 +12,7 @@
 package com.arms.pdservice.service;
 
 import com.arms.pdservice.model.PdServiceEntity;
-import com.egovframework.ple.serviceframework.service.TreeServiceImpl;
+import com.egovframework.ple.treeframework.service.TreeServiceImpl;
 import lombok.AllArgsConstructor;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;

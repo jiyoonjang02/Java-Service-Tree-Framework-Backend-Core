@@ -24,7 +24,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableJpaAuditing
 @EnableJpaRepositories(
-        basePackages = {"com.egovframework.ple.serviceframework.*", "com.arms.*"}
+        basePackages = {"com.egovframework.ple.treeframework.*", "com.arms.*"}
         ,entityManagerFactoryRef = "entityManagerJpaFactory"
         ,transactionManagerRef =  "transactionJpaManager"
 )
@@ -47,7 +47,7 @@ public class SpringDataConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerJpaFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(onlyJpaDataSource());
-        em.setPackagesToScan(new String[] { "com.egovframework.ple.serviceframework.**.model", "com.arms.**.model"});
+        em.setPackagesToScan(new String[] { "com.egovframework.ple.treeframework.**.model", "com.arms.**.model"});
         em.setJpaPropertyMap(jpaProperties.getProperties());
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return em;
@@ -64,7 +64,7 @@ public class SpringDataConfig {
     public LocalSessionFactoryBean sessionJpaFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(onlyJpaDataSource());
-        sessionFactory.setPackagesToScan(new String[] { "com.egovframework.ple.serviceframework.**.model", "com.arms.**.model" });
+        sessionFactory.setPackagesToScan(new String[] { "com.egovframework.ple.treeframework.**.model", "com.arms.**.model" });
         Map<String, Object> hibernateProps
                 = hibernateProperties.determineHibernateProperties(jpaProperties.getProperties(), new HibernateSettings());
 

@@ -11,7 +11,7 @@
  */
 package com.arms.network.service;
 
-import com.egovframework.ple.serviceframework.service.TreeService;
+import com.egovframework.ple.treeframework.service.TreeService;
 
 public interface Network extends TreeService {
 

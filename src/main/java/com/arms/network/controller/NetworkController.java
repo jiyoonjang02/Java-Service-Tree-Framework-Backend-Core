@@ -11,7 +11,7 @@
  */
 package com.arms.network.controller;
 
-import com.egovframework.ple.serviceframework.controller.TreeAbstractController;
+import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

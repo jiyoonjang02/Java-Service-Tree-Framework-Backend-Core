@@ -1,7 +1,7 @@
 package com.arms.samplespringdata.controller;
 import com.arms.samplespringdata.model.SpringDataEntity;
 import com.arms.samplespringdata.service.SpringDataService;
-import com.egovframework.ple.serviceframework.controller.CommonResponse;
+import com.egovframework.ple.treeframework.controller.CommonResponse;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;

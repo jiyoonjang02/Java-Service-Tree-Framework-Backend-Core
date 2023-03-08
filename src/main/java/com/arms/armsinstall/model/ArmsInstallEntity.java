@@ -1,7 +1,7 @@
 /*
  * @author Dongmin.lee
- * @since 2023-03-07
- * @version 23.03.07
+ * @since 2023-03-08
+ * @version 23.03.08
  * @see <pre>
  *  Copyright (C) 2007 by 313 DEV GRP, Inc - All Rights Reserved
  *  Unauthorized copying of this file, via any medium is strictly prohibited
@@ -11,8 +11,8 @@
  */
 package com.arms.armsinstall.model;
 
-import com.egovframework.ple.serviceframework.model.TreeBaseEntity;
-import com.egovframework.ple.serviceframework.model.TreeSearchEntity;
+import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
