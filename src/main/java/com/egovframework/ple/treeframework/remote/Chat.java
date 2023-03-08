@@ -11,7 +11,6 @@
  */
 package com.egovframework.ple.treeframework.remote;
 
-import com.egovframework.ple.treeframework.model.Global;
 import org.directwebremoting.Browser;
 import org.directwebremoting.ScriptSessions;
 import org.directwebremoting.WebContextFactory;

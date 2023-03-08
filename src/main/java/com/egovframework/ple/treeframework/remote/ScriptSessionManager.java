@@ -11,7 +11,6 @@
  */
 package com.egovframework.ple.treeframework.remote;
 
-import com.egovframework.ple.treeframework.model.Global;
 import org.directwebremoting.event.ScriptSessionEvent;
 import org.directwebremoting.event.ScriptSessionListener;
 import org.directwebremoting.impl.DefaultScriptSessionManager;

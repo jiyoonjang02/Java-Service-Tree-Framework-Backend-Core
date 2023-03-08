@@ -9,7 +9,7 @@
  *  Written by 313 developer group <313@313.co.kr>, December 2010
  * </pre>
  */
-package com.egovframework.ple.treeframework.model;
+package com.egovframework.ple.treeframework.remote;
 
 import com.egovframework.ple.treeframework.remote.User;
 import com.egovframework.ple.treeframework.remote.Chat;
