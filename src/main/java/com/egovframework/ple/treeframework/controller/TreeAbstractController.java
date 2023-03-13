@@ -42,7 +42,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
 
     @ResponseBody
     @RequestMapping(value = "/getNode.do", method = RequestMethod.GET)
-    public ModelAndView getNode(V coreSearchDTO, HttpServletRequest request) throws Exception {
+    public ModelAndView getNode(V treeSearchEntity, HttpServletRequest request) throws Exception {
 
         ParameterParser parser = new ParameterParser(request);
 
@@ -50,7 +50,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
             throw new RuntimeException();
         }
 
-        V returnVO = treeService.getNode(coreSearchDTO);
+        V returnVO = treeService.getNode(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
         modelAndView.addObject("result", returnVO);
@@ -59,7 +59,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
 
     @ResponseBody
     @RequestMapping(value = "/getChildNode.do", method = RequestMethod.GET)
-    public ModelAndView getChildNode(V coreSearchDTO, HttpServletRequest request)
+    public ModelAndView getChildNode(V treeSearchEntity, HttpServletRequest request)
             throws Exception {
 
         ParameterParser parser = new ParameterParser(request);
@@ -68,8 +68,8 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
             throw new RuntimeException();
         }
 
-        coreSearchDTO.setWhere("c_parentid", new Long(parser.get("c_id")));
-        List<TreeSearchEntity> list = treeService.getChildNode(coreSearchDTO);
+        treeSearchEntity.setWhere("c_parentid", new Long(parser.get("c_id")));
+        List<TreeSearchEntity> list = treeService.getChildNode(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
         modelAndView.addObject("result", list);
@@ -78,20 +78,20 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
 
     @ResponseBody
     @RequestMapping(value = "/getPaginatedChildNode.do", method = RequestMethod.GET)
-    public ModelAndView getPaginatedChildNode(V paginatedTreeSearchEntity, ModelMap model,
+    public ModelAndView getPaginatedChildNode(V treeSearchEntity, ModelMap model,
                                               HttpServletRequest request) throws Exception {
 
-        if (paginatedTreeSearchEntity.getC_id() <= 0 || paginatedTreeSearchEntity.getPageIndex() <= 0
-                || paginatedTreeSearchEntity.getPageUnit() <= 0 || paginatedTreeSearchEntity.getPageSize() <= 0) {
+        if (treeSearchEntity.getC_id() <= 0 || treeSearchEntity.getPageIndex() <= 0
+                || treeSearchEntity.getPageUnit() <= 0 || treeSearchEntity.getPageSize() <= 0) {
             throw new RuntimeException();
         }
-        paginatedTreeSearchEntity.setWhere("c_parentid", paginatedTreeSearchEntity.getC_id());
-        List<TreeSearchEntity> resultChildNodes = treeService.getPaginatedChildNode(paginatedTreeSearchEntity);
-        paginatedTreeSearchEntity.getPaginationInfo().setTotalRecordCount(resultChildNodes.size());
+        treeSearchEntity.setWhere("c_parentid", treeSearchEntity.getC_id());
+        List<TreeSearchEntity> resultChildNodes = treeService.getPaginatedChildNode(treeSearchEntity);
+        treeSearchEntity.getPaginationInfo().setTotalRecordCount(resultChildNodes.size());
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
         HashMap<String, Object> resultMap = Maps.newHashMap();
-        resultMap.put("paginationInfo", paginatedTreeSearchEntity.getPaginationInfo());
+        resultMap.put("paginationInfo", treeSearchEntity.getPaginationInfo());
         resultMap.put("result", resultChildNodes);
         modelAndView.addObject("result", resultMap);
         return modelAndView;
@@ -99,7 +99,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
 
     @ResponseBody
     @RequestMapping(value = "/searchNode.do", method = RequestMethod.GET)
-    public ModelAndView searchNode(V coreSearchDTO, ModelMap model, HttpServletRequest request)
+    public ModelAndView searchNode(V treeSearchEntity, ModelMap model, HttpServletRequest request)
             throws Exception {
 
         ParameterParser parser = new ParameterParser(request);
@@ -108,54 +108,54 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
             throw new RuntimeException();
         }
 
-        coreSearchDTO.setWhereLike("c_title", parser.get("parser"));
+        treeSearchEntity.setWhereLike("c_title", parser.get("parser"));
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", treeService.searchNode(coreSearchDTO));
+        modelAndView.addObject("result", treeService.searchNode(treeSearchEntity));
         return modelAndView;
     }
 
     @ResponseBody
     @RequestMapping(value = "/addNode.do", method = RequestMethod.POST)
-    public ModelAndView addNode(@Validated(value = AddNode.class) V coreSearchDTO,
+    public ModelAndView addNode(@Validated(value = AddNode.class) V treeSearchEntity,
                                 BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors())
             throw new RuntimeException();
 
-        coreSearchDTO.setC_title(Util_TitleChecker.StringReplace(coreSearchDTO.getC_title()));
+        treeSearchEntity.setC_title(Util_TitleChecker.StringReplace(treeSearchEntity.getC_title()));
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", treeService.addNode(coreSearchDTO));
+        modelAndView.addObject("result", treeService.addNode(treeSearchEntity));
         return modelAndView;
     }
 
     @ResponseBody
     @RequestMapping(value = "/removeNode.do", method = RequestMethod.DELETE)
-    public ModelAndView removeNode(@Validated(value = RemoveNode.class) V coreSearchDTO,
+    public ModelAndView removeNode(@Validated(value = RemoveNode.class) V treeSearchEntity,
                                    BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors())
             throw new RuntimeException();
 
-        coreSearchDTO.setStatus(treeService.removeNode(coreSearchDTO));
-        setJsonDefaultSetting(coreSearchDTO);
+        treeSearchEntity.setStatus(treeService.removeNode(treeSearchEntity));
+        setJsonDefaultSetting(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", coreSearchDTO);
+        modelAndView.addObject("result", treeSearchEntity);
         return modelAndView;
     }
 
-    public void setJsonDefaultSetting(V coreSearchDTO) {
+    public void setJsonDefaultSetting(V treeSearchEntity) {
         long defaultSettingValue = 0;
-        coreSearchDTO.setC_parentid(defaultSettingValue);
-        coreSearchDTO.setC_position(defaultSettingValue);
-        coreSearchDTO.setC_left(defaultSettingValue);
-        coreSearchDTO.setC_right(defaultSettingValue);
-        coreSearchDTO.setC_level(defaultSettingValue);
-        coreSearchDTO.setRef(defaultSettingValue);
+        treeSearchEntity.setC_parentid(defaultSettingValue);
+        treeSearchEntity.setC_position(defaultSettingValue);
+        treeSearchEntity.setC_left(defaultSettingValue);
+        treeSearchEntity.setC_right(defaultSettingValue);
+        treeSearchEntity.setC_level(defaultSettingValue);
+        treeSearchEntity.setRef(defaultSettingValue);
     }
 
     @ResponseBody
     @RequestMapping(value = "/updateNode.do", method = RequestMethod.PUT)
-    public ModelAndView updateNode(@Validated(value = UpdateNode.class) V coreSearchDTO,
+    public ModelAndView updateNode(@Validated(value = UpdateNode.class) V treeSearchEntity,
                                    BindingResult bindingResult, HttpServletRequest request, ModelMap model) throws Exception {
 
         if (bindingResult.hasErrors()) {
@@ -163,55 +163,55 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
         }
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", treeService.updateNode(coreSearchDTO));
+        modelAndView.addObject("result", treeService.updateNode(treeSearchEntity));
         return modelAndView;
     }
 
     @ResponseBody
     @RequestMapping(value = "/alterNode.do", method = RequestMethod.PUT)
-    public ModelAndView alterNode(@Validated(value = AlterNode.class) V coreSearchDTO,
+    public ModelAndView alterNode(@Validated(value = AlterNode.class) V treeSearchEntity,
                                   BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors()) {
             throw new RuntimeException();
         }
 
-        coreSearchDTO.setC_title(Util_TitleChecker.StringReplace(coreSearchDTO.getC_title()));
+        treeSearchEntity.setC_title(Util_TitleChecker.StringReplace(treeSearchEntity.getC_title()));
 
-        coreSearchDTO.setStatus(treeService.alterNode(coreSearchDTO));
-        setJsonDefaultSetting(coreSearchDTO);
+        treeSearchEntity.setStatus(treeService.alterNode(treeSearchEntity));
+        setJsonDefaultSetting(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", coreSearchDTO);
+        modelAndView.addObject("result", treeSearchEntity);
         return modelAndView;
     }
 
     @ResponseBody
     @RequestMapping(value = "/alterNodeType.do", method = RequestMethod.PUT)
-    public ModelAndView alterNodeType(@Validated(value = AlterNodeType.class) V coreSearchDTO,
+    public ModelAndView alterNodeType(@Validated(value = AlterNodeType.class) V treeSearchEntity,
                                       BindingResult bindingResult, ModelMap model) throws Exception {
         if (bindingResult.hasErrors()) {
             throw new RuntimeException();
         }
 
-        treeService.alterNodeType(coreSearchDTO);
-        setJsonDefaultSetting(coreSearchDTO);
+        treeService.alterNodeType(treeSearchEntity);
+        setJsonDefaultSetting(treeSearchEntity);
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", coreSearchDTO);
+        modelAndView.addObject("result", treeSearchEntity);
         return modelAndView;
     }
 
     @ResponseBody
     @RequestMapping(value = "/moveNode.do", method = RequestMethod.POST)
-    public ModelAndView moveNode(@Validated(value = MoveNode.class) V coreSearchDTO,
+    public ModelAndView moveNode(@Validated(value = MoveNode.class) V treeSearchEntity,
                                  BindingResult bindingResult, ModelMap model, HttpServletRequest request) throws Exception {
         if (bindingResult.hasErrors())
             throw new RuntimeException();
 
-        treeService.moveNode(coreSearchDTO, request);
-        setJsonDefaultSetting(coreSearchDTO);
+        treeService.moveNode(treeSearchEntity, request);
+        setJsonDefaultSetting(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", coreSearchDTO);
+        modelAndView.addObject("result", treeSearchEntity);
         return modelAndView;
     }
 
@@ -227,11 +227,11 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
 
     @ResponseBody
     @RequestMapping(value = "/getMonitor.do", method = RequestMethod.GET)
-    public ModelAndView getMonitor(V coreSearchDTO, ModelMap model, HttpServletRequest request)
+    public ModelAndView getMonitor(V treeSearchEntity, ModelMap model, HttpServletRequest request)
             throws Exception {
 
-        coreSearchDTO.setOrder(Order.desc("c_id"));
-        List<TreeSearchEntity> list = treeService.getChildNode(coreSearchDTO);
+        treeSearchEntity.setOrder(Order.desc("c_id"));
+        List<TreeSearchEntity> list = treeService.getChildNode(treeSearchEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
         modelAndView.addObject("result", list);

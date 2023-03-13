@@ -50,66 +50,66 @@ public class TreeServiceImpl implements TreeService {
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends TreeSearchEntity> T getNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> T getNode(T treeSearchEntity) throws Exception {
 
         logger.info("CoreServiceImpl :: getNode");
-        treeDao.setClazz(coreSearchDTO.getClass());
-        coreSearchDTO.setWhere("c_id", coreSearchDTO.getC_id());
-        Object uniqueObj = treeDao.getUnique(coreSearchDTO);
+        treeDao.setClazz(treeSearchEntity.getClass());
+        treeSearchEntity.setWhere("c_id", treeSearchEntity.getC_id());
+        Object uniqueObj = treeDao.getUnique(treeSearchEntity);
         return (T) uniqueObj;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends TreeSearchEntity> List<T> getChildNodeWithoutPaging(T coreSearchDTO) throws Exception {
-        treeDao.setClazz(coreSearchDTO.getClass());
-        List<T> list = treeDao.getListWithoutPaging(coreSearchDTO);
+    public <T extends TreeSearchEntity> List<T> getChildNodeWithoutPaging(T treeSearchEntity) throws Exception {
+        treeDao.setClazz(treeSearchEntity.getClass());
+        List<T> list = treeDao.getListWithoutPaging(treeSearchEntity);
         return list;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends TreeSearchEntity> List<T> getChildNode(T coreSearchDTO) throws Exception {
-        treeDao.setClazz(coreSearchDTO.getClass());
-        coreSearchDTO.setOrder(Order.desc("c_position"));
-        List<T> list = treeDao.getList(coreSearchDTO);
+    public <T extends TreeSearchEntity> List<T> getChildNode(T treeSearchEntity) throws Exception {
+        treeDao.setClazz(treeSearchEntity.getClass());
+        treeSearchEntity.setOrder(Order.desc("c_position"));
+        List<T> list = treeDao.getList(treeSearchEntity);
         return list;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends TreeSearchEntity> List<T> getPaginatedChildNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> List<T> getPaginatedChildNode(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        int totalCount = treeDao.getCount(coreSearchDTO);
+        int totalCount = treeDao.getCount(treeSearchEntity);
 
-        int autoPageSize = (int) Math.ceil(totalCount / coreSearchDTO.getPageUnit());
+        int autoPageSize = (int) Math.ceil(totalCount / treeSearchEntity.getPageUnit());
 
         /** paging */
-        PaginationInfo paginationInfo = coreSearchDTO.getPaginationInfo();
+        PaginationInfo paginationInfo = treeSearchEntity.getPaginationInfo();
         paginationInfo.setTotalRecordCount(totalCount);
-        paginationInfo.setCurrentPageNo(coreSearchDTO.getPageIndex());
-        paginationInfo.setRecordCountPerPage(coreSearchDTO.getPageUnit());
+        paginationInfo.setCurrentPageNo(treeSearchEntity.getPageIndex());
+        paginationInfo.setRecordCountPerPage(treeSearchEntity.getPageUnit());
         paginationInfo.setPageSize(autoPageSize);
 
-        coreSearchDTO.setFirstIndex(paginationInfo.getFirstRecordIndex());
-        coreSearchDTO.setLastIndex(paginationInfo.getLastRecordIndex());
-        coreSearchDTO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+        treeSearchEntity.setFirstIndex(paginationInfo.getFirstRecordIndex());
+        treeSearchEntity.setLastIndex(paginationInfo.getLastRecordIndex());
+        treeSearchEntity.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
 
-        coreSearchDTO.setOrder(Order.desc("c_left"));
-        List<T> list = treeDao.getList(coreSearchDTO);
+        treeSearchEntity.setOrder(Order.desc("c_left"));
+        List<T> list = treeDao.getList(treeSearchEntity);
         list.stream().forEach(data -> data.getPaginationInfo().setTotalRecordCount(totalCount));
         return list;
     }
 
     @SuppressWarnings("unchecked")
     @Override
-    public <T extends TreeSearchEntity> List<String> searchNode(T coreSearchDTO) throws Exception {
-        treeDao.setClazz(coreSearchDTO.getClass());
+    public <T extends TreeSearchEntity> List<String> searchNode(T treeSearchEntity) throws Exception {
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        coreSearchDTO.setOrder(Order.asc("c_id"));
-        List<T> collectionObjects = treeDao.getList(coreSearchDTO);
+        treeSearchEntity.setOrder(Order.asc("c_id"));
+        List<T> collectionObjects = treeDao.getList(treeSearchEntity);
         List<String> returnList = new ArrayList<String>();
         for (T rowObject : collectionObjects) {
             String rowData = "#node_" + rowObject.getC_id();
@@ -121,16 +121,16 @@ public class TreeServiceImpl implements TreeService {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> T addNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> T addNode(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
 
-        if (coreSearchDTO.getRef() < 0) {
+        if (treeSearchEntity.getRef() < 0) {
             throw new RuntimeException("ref is minus");
         } else {
 
-            T nodeByRef = (T) treeDao.getUnique(coreSearchDTO.getRef());
+            T nodeByRef = (T) treeDao.getUnique(treeSearchEntity.getRef());
 
             if ("default".equals(nodeByRef.getC_type())) {
                 throw new RuntimeException("nodeByRef is default Type");
@@ -139,7 +139,7 @@ public class TreeServiceImpl implements TreeService {
             nodeByRef.setWhere("c_parentid", nodeByRef.getC_id());
             final long lastPosiotionOfNodeByRef = treeDao.getCount(nodeByRef);
 
-            coreSearchDTO.setC_position(lastPosiotionOfNodeByRef);
+            treeSearchEntity.setC_position(lastPosiotionOfNodeByRef);
 
             long rightPointFromNodeByRef = nodeByRef.getC_right();
             rightPointFromNodeByRef = Math.max(rightPointFromNodeByRef, 1);
@@ -147,36 +147,36 @@ public class TreeServiceImpl implements TreeService {
             long spaceOfTargetNode = 2;
 
             this.stretchLeftRightForMyselfFromTree(spaceOfTargetNode, rightPointFromNodeByRef,
-                    coreSearchDTO.getCopy(), null, coreSearchDTO);
+                    treeSearchEntity.getCopy(), null, treeSearchEntity);
 
-            long targetNodeLevel = coreSearchDTO.getRef() == 0 ? 0 : nodeByRef.getC_level() + 1;
+            long targetNodeLevel = treeSearchEntity.getRef() == 0 ? 0 : nodeByRef.getC_level() + 1;
 
-            coreSearchDTO.setC_parentid(coreSearchDTO.getRef());
-            coreSearchDTO.setC_left(rightPointFromNodeByRef);
-            coreSearchDTO.setC_right(rightPointFromNodeByRef + 1);
-            coreSearchDTO.setC_level(targetNodeLevel);
+            treeSearchEntity.setC_parentid(treeSearchEntity.getRef());
+            treeSearchEntity.setC_left(rightPointFromNodeByRef);
+            treeSearchEntity.setC_right(rightPointFromNodeByRef + 1);
+            treeSearchEntity.setC_level(targetNodeLevel);
 
-            long insertSeqResult = (long) treeDao.insert(coreSearchDTO);
+            long insertSeqResult = (long) treeDao.insert(treeSearchEntity);
             if (insertSeqResult > 0) {
                 final long SUCCESS = 1;
-                coreSearchDTO.setStatus(SUCCESS);
-                coreSearchDTO.setId(insertSeqResult);
+                treeSearchEntity.setStatus(SUCCESS);
+                treeSearchEntity.setId(insertSeqResult);
             } else {
                 throw new RuntimeException("심각한 오류 발생 - 삽입 노드");
             }
         }
-        return coreSearchDTO;
+        return treeSearchEntity;
     }
 
     @SuppressWarnings("unchecked")
     public <T extends TreeSearchEntity> void stretchLeftRightForMyselfFromTree(long spaceOfTargetNode,
                                                                             long rightPositionFromNodeByRef, long copy, Collection<Long> c_idsByChildNodeFromNodeById,
-                                                                            T coreSearchDTO) throws Exception {
+                                                                            T treeSearchEntity) throws Exception {
 
-        DetachedCriteria detachedLeftCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria detachedLeftCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         stretchLeft(spaceOfTargetNode, rightPositionFromNodeByRef, copy, c_idsByChildNodeFromNodeById,
                 detachedLeftCriteria);
-        DetachedCriteria detachedRightCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria detachedRightCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         stretchRight(spaceOfTargetNode, rightPositionFromNodeByRef, copy, c_idsByChildNodeFromNodeById,
                 detachedRightCriteria);
     }
@@ -238,33 +238,33 @@ public class TreeServiceImpl implements TreeService {
      * 파라미터로 넘겨진 인스턴스의 정보를 이용해 리플렉션하여 새로운 인스턴스를 만들어 반환한다.
      * 리플렉션을 위한 타입 정보를 제공하기 위한 인스턴스
      *
-     * @param coreSearchDTO
+     * @param treeSearchEntity
      * @return T extends TreeSearchEntity
      * @throws ClassNotFoundException
      * @throws InstantiationException
      * @throws IllegalAccessException
      */
     @SuppressWarnings("unchecked")
-    public <T extends TreeSearchEntity> T newInstance(T coreSearchDTO) throws Exception {
-        Class<T> target = (Class<T>) Class.forName(coreSearchDTO.getClass().getCanonicalName());
+    public <T extends TreeSearchEntity> T newInstance(T treeSearchEntity) throws Exception {
+        Class<T> target = (Class<T>) Class.forName(treeSearchEntity.getClass().getCanonicalName());
         return target.newInstance();
     }
 
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> int removeNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> int removeNode(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        Criterion whereGetNode = Restrictions.eq("c_id", coreSearchDTO.getC_id());
+        Criterion whereGetNode = Restrictions.eq("c_id", treeSearchEntity.getC_id());
         T removeNode = (T) treeDao.getUnique(whereGetNode);
 
         long spaceOfTargetNode = removeNode.getC_right() - removeNode.getC_left() + 1;
 
         removeNode.setSpaceOfTargetNode(spaceOfTargetNode);
 
-        DetachedCriteria detachedDeleteCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria detachedDeleteCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         Criterion where = Restrictions.ge("c_left", removeNode.getC_left());
         detachedDeleteCriteria.add(where);
         detachedDeleteCriteria.add(Restrictions.and(Restrictions.le("c_right", removeNode.getC_right())));
@@ -278,7 +278,7 @@ public class TreeServiceImpl implements TreeService {
             System.out.println(e.getMessage());
         }
 
-        DetachedCriteria detachedRemovedAfterLeftFixCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria detachedRemovedAfterLeftFixCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         Criterion whereRemovedAfterLeftFix = Restrictions.gt("c_left", removeNode.getC_right());
         detachedRemovedAfterLeftFixCriteria.add(whereRemovedAfterLeftFix);
         detachedRemovedAfterLeftFixCriteria.addOrder(Order.asc("c_id"));
@@ -290,7 +290,7 @@ public class TreeServiceImpl implements TreeService {
         }
 
         DetachedCriteria detachedRemovedAfterRightFixCriteria = DetachedCriteria
-                .forClass(coreSearchDTO.getClass());
+                .forClass(treeSearchEntity.getClass());
         Criterion whereRemovedAfterRightFix = Restrictions.gt("c_right", removeNode.getC_left());
         detachedRemovedAfterRightFixCriteria.add(whereRemovedAfterRightFix);
         detachedRemovedAfterRightFixCriteria.addOrder(Order.asc("c_id"));
@@ -301,7 +301,7 @@ public class TreeServiceImpl implements TreeService {
             treeDao.update(perRightFixTreeSearchEntity);
         }
 
-        DetachedCriteria detachedRemovedAfterPositionFixCriteria = DetachedCriteria.forClass(coreSearchDTO
+        DetachedCriteria detachedRemovedAfterPositionFixCriteria = DetachedCriteria.forClass(treeSearchEntity
                 .getClass());
         Criterion whereRemovedAfterPositionFix = Restrictions.eq("c_parentid", removeNode.getC_parentid());
         detachedRemovedAfterPositionFixCriteria.add(whereRemovedAfterPositionFix);
@@ -320,17 +320,17 @@ public class TreeServiceImpl implements TreeService {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> int updateNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> int updateNode(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        T alterTargetNode = (T) treeDao.getUnique(coreSearchDTO.getC_id());
+        T alterTargetNode = (T) treeDao.getUnique(treeSearchEntity.getC_id());
 
-        for (Field field : ReflectionUtils.getAllFields(coreSearchDTO.getClass())) {
+        for (Field field : ReflectionUtils.getAllFields(treeSearchEntity.getClass())) {
 
             field.setAccessible(true);
 
-            Object value = field.get(coreSearchDTO);
+            Object value = field.get(treeSearchEntity);
 
             if (!ObjectUtils.isEmpty(value)) {
                 field.setAccessible(true);
@@ -347,13 +347,13 @@ public class TreeServiceImpl implements TreeService {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> int alterNode(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> int alterNode(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        T alterTargetNode = (T) treeDao.getUnique(coreSearchDTO.getC_id());
-        alterTargetNode.setC_title(coreSearchDTO.getC_title());
-        alterTargetNode.setFieldFromNewInstance(coreSearchDTO);
+        T alterTargetNode = (T) treeDao.getUnique(treeSearchEntity.getC_id());
+        alterTargetNode.setC_title(treeSearchEntity.getC_title());
+        alterTargetNode.setFieldFromNewInstance(treeSearchEntity);
         treeDao.update(alterTargetNode);
         return 1;
     }
@@ -361,25 +361,25 @@ public class TreeServiceImpl implements TreeService {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> int alterNodeType(T coreSearchDTO) throws Exception {
+    public <T extends TreeSearchEntity> int alterNodeType(T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
-        T nodeById = (T) treeDao.getUnique(coreSearchDTO.getC_id());
+        T nodeById = (T) treeDao.getUnique(treeSearchEntity.getC_id());
 
-        if (nodeById.getC_type().equals(coreSearchDTO.getC_type())) {
+        if (nodeById.getC_type().equals(treeSearchEntity.getC_type())) {
             return 1;
-        } else if ("default".equals(coreSearchDTO.getC_type())) {
+        } else if ("default".equals(treeSearchEntity.getC_type())) {
             nodeById.setWhere("c_parentid", nodeById.getC_id());
             List<T> childNodesFromNodeById = treeDao.getList(nodeById);
             if (childNodesFromNodeById.size() != 0) {
                 throw new RuntimeException("하위에 노드가 있는데 디폴트로 바꾸려고 함");
             } else {
-                nodeById.setC_type(coreSearchDTO.getC_type());
+                nodeById.setC_type(treeSearchEntity.getC_type());
                 treeDao.update(nodeById);
             }
-        } else if ("folder".equals(coreSearchDTO.getC_type())) {
-            nodeById.setC_type(coreSearchDTO.getC_type());
+        } else if ("folder".equals(treeSearchEntity.getC_type())) {
+            nodeById.setC_type(treeSearchEntity.getC_type());
             treeDao.update(nodeById);
             return 1;
         }
@@ -389,23 +389,23 @@ public class TreeServiceImpl implements TreeService {
     @SuppressWarnings("unchecked")
     @Override
     @Transactional(rollbackFor = {Exception.class}, isolation = Isolation.SERIALIZABLE, propagation = Propagation.REQUIRED)
-    public <T extends TreeSearchEntity> T moveNode(T coreSearchDTO, HttpServletRequest request)
+    public <T extends TreeSearchEntity> T moveNode(T treeSearchEntity, HttpServletRequest request)
             throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         treeDao.getCurrentSession().setCacheMode(CacheMode.IGNORE);
 
         logger.debug("***********************MoveNode***********************");
         logger.debug("-----------------------getNode 완료-----------------------");
 
-        T nodeById = getNode(coreSearchDTO);
+        T nodeById = getNode(treeSearchEntity);
         if (nodeById == null) {
             throw new RuntimeException("nodeById is null");
         }
         Long nodeByIdLeft = nodeById.getC_left();
 
         logger.debug("-----------------------getChildNodeByLeftRight 완료-----------------------");
-        DetachedCriteria getChildNodeByLeftRightCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria getChildNodeByLeftRightCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
 
         Criterion criterion = Restrictions.and(
                 Restrictions.ge("c_left", nodeById.getC_left()),
@@ -416,29 +416,29 @@ public class TreeServiceImpl implements TreeService {
         List<T> childNodesFromNodeById = treeDao.getListWithoutPaging(getChildNodeByLeftRightCriteria);
 
         logger.debug("-----------------------position 값이 over될때 방어코드-----------------------");
-        DetachedCriteria getChildNodeByPositionCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria getChildNodeByPositionCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
 
-        Criterion postion_criterion = Restrictions.eq("c_parentid", coreSearchDTO.getRef());
+        Criterion postion_criterion = Restrictions.eq("c_parentid", treeSearchEntity.getRef());
         getChildNodeByPositionCriteria.add(postion_criterion);
         int refChildCount = treeDao.getListWithoutPaging(getChildNodeByPositionCriteria).size();
-        if (coreSearchDTO.getC_position() > refChildCount) {
-            coreSearchDTO.setC_position(Long.valueOf(refChildCount));
+        if (treeSearchEntity.getC_position() > refChildCount) {
+            treeSearchEntity.setC_position(Long.valueOf(refChildCount));
         }
 
         logger.debug("-----------------------nodeByRef 완료-----------------------");
-        T nodeByRef = (T) treeDao.getUnique(coreSearchDTO.getRef());
+        T nodeByRef = (T) treeDao.getUnique(treeSearchEntity.getRef());
         if (StringUtils.equals(nodeByRef.getC_type(), "default")) {
             throw new RuntimeException("ref is not default type");
         }
         long rightPointFromNodeByRef = nodeByRef.getC_right();
 
         logger.debug("-----------------------childNodesFromNodeByRef 완료-----------------------");
-        DetachedCriteria getNodeByRefCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria getNodeByRefCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         Criterion whereNodeByRef = Restrictions.eq("c_parentid", nodeByRef.getC_id());
         getNodeByRefCriteria.add(whereNodeByRef);
         List<T> childNodesFromNodeByRef = (List<T>) treeDao.getListWithoutPaging(getNodeByRefCriteria);
 
-        T t_ComprehensiveTree = newInstance(coreSearchDTO);
+        T t_ComprehensiveTree = newInstance(treeSearchEntity);
 
         long spaceOfTargetNode = 2;
         Collection<Long> c_idsByChildNodeFromNodeById = null;
@@ -451,13 +451,13 @@ public class TreeServiceImpl implements TreeService {
             }
         });
 
-        if (c_idsByChildNodeFromNodeById.contains(coreSearchDTO.getRef())) {
+        if (c_idsByChildNodeFromNodeById.contains(treeSearchEntity.getRef())) {
             throw new RuntimeException("myself contains already refTargetNode");
         }
 
         spaceOfTargetNode = nodeById.getC_right() - nodeById.getC_left() + 1;
 
-        if (!coreSearchDTO.isCopied()) {
+        if (!treeSearchEntity.isCopied()) {
             logger.debug("-----------------------cutMyself 완료-----------------------");
             this.cutMyself(nodeById, spaceOfTargetNode, c_idsByChildNodeFromNodeById);
         }
@@ -465,25 +465,25 @@ public class TreeServiceImpl implements TreeService {
         logger.debug("-----------------------calculatePostion 완료-----------------------");
 
         //bug fix: 세션 값이 유지되므로, 구분자를 줘야 하는 문제를 테이블 명으로 잡았음.
-        Table table = coreSearchDTO.getClass().getAnnotation(Table.class);
+        Table table = treeSearchEntity.getClass().getAnnotation(Table.class);
         String tableName = table.name();
 
         tableName = RouteTableInterceptor.setArmsReplaceTableName(request, tableName);
-        this.calculatePostion(coreSearchDTO, nodeById, childNodesFromNodeByRef, request, tableName);
+        this.calculatePostion(treeSearchEntity, nodeById, childNodesFromNodeByRef, request, tableName);
 
         if (rightPointFromNodeByRef < 1) {
             rightPointFromNodeByRef = 1;
         }
 
-        if (!coreSearchDTO.isCopied()) {
+        if (!treeSearchEntity.isCopied()) {
             logger.debug("-----------------------stretchPositionForMyselfFromTree 완료-----------------------");
-            this.stretchPositionForMyselfFromTree(c_idsByChildNodeFromNodeById, coreSearchDTO);
+            this.stretchPositionForMyselfFromTree(c_idsByChildNodeFromNodeById, treeSearchEntity);
 
-            int selfPosition = (nodeById.getC_parentid() == coreSearchDTO.getRef() && coreSearchDTO
+            int selfPosition = (nodeById.getC_parentid() == treeSearchEntity.getRef() && treeSearchEntity
                     .getC_position() > nodeById.getC_position()) ? 1 : 0;
 
             for (T child : childNodesFromNodeByRef) {
-                if (child.getC_position() - selfPosition == coreSearchDTO.getC_position()) {
+                if (child.getC_position() - selfPosition == treeSearchEntity.getC_position()) {
                     rightPointFromNodeByRef = child.getC_left();
                     break;
                 }
@@ -496,7 +496,7 @@ public class TreeServiceImpl implements TreeService {
 
         logger.debug("-----------------------stretchLeftRightForMyselfFromTree 완료-----------------------");
         this.stretchLeftRightForMyselfFromTree(spaceOfTargetNode, rightPointFromNodeByRef,
-                coreSearchDTO.getCopy(), c_idsByChildNodeFromNodeById, coreSearchDTO);
+                treeSearchEntity.getCopy(), c_idsByChildNodeFromNodeById, treeSearchEntity);
 
         if (logger.isDebugEnabled()) {
             logger.debug(">>>>>>>>>>>>>>>>>>>>" + rightPointFromNodeByRef);
@@ -509,20 +509,20 @@ public class TreeServiceImpl implements TreeService {
             logger.debug(">>>>>>>>>>>>>>>>>>>>" + comparePoint);
         }
 
-        if (coreSearchDTO.isCopied()) {
+        if (treeSearchEntity.isCopied()) {
             logger.debug("-----------------------pasteMyselfFromTree 완료-----------------------");
             long insertSeqResult = this
-                    .pasteMyselfFromTree(coreSearchDTO.getRef(), comparePoint, spaceOfTargetNode,
+                    .pasteMyselfFromTree(treeSearchEntity.getRef(), comparePoint, spaceOfTargetNode,
                             targetNodeLevel, c_idsByChildNodeFromNodeById, rightPointFromNodeByRef, nodeById);
             t_ComprehensiveTree.setId(insertSeqResult);
             logger.debug("-----------------------fixPositionParentIdOfCopyNodes-----------------------");
-            this.fixPositionParentIdOfCopyNodes(insertSeqResult, coreSearchDTO.getC_position(), coreSearchDTO);
+            this.fixPositionParentIdOfCopyNodes(insertSeqResult, treeSearchEntity.getC_position(), treeSearchEntity);
         } else {
             logger.debug("-----------------------enterMyselfFromTree 완료-----------------------");
-            this.enterMyselfFromTree(coreSearchDTO.getRef(), coreSearchDTO.getC_position(),
-                    coreSearchDTO.getC_id(), comparePoint, targetNodeLevel, c_idsByChildNodeFromNodeById,
-                    coreSearchDTO);
-            enterMyselfFixLeftRight(comparePoint, targetNodeLevel, c_idsByChildNodeFromNodeById, coreSearchDTO);
+            this.enterMyselfFromTree(treeSearchEntity.getRef(), treeSearchEntity.getC_position(),
+                    treeSearchEntity.getC_id(), comparePoint, targetNodeLevel, c_idsByChildNodeFromNodeById,
+                    treeSearchEntity);
+            enterMyselfFixLeftRight(comparePoint, targetNodeLevel, c_idsByChildNodeFromNodeById, treeSearchEntity);
         }
 
         return t_ComprehensiveTree;
@@ -530,12 +530,12 @@ public class TreeServiceImpl implements TreeService {
 
     @SuppressWarnings("unchecked")
     public <T extends TreeSearchEntity> void enterMyselfFromTree(long ref, long c_position, long c_id,
-                                                              long idif, long ldif, Collection<Long> c_idsByChildNodeFromNodeById, T coreSearchDTO) throws Exception {
+                                                              long idif, long ldif, Collection<Long> c_idsByChildNodeFromNodeById, T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
         logger.debug("-----------------------enterMyselfFixPosition-----------------------");
 
-        T childEnterMyselfFixPosition = (T) treeDao.getUnique(coreSearchDTO.getC_id());
+        T childEnterMyselfFixPosition = (T) treeDao.getUnique(treeSearchEntity.getC_id());
         childEnterMyselfFixPosition.setC_parentid(ref);
         childEnterMyselfFixPosition.setC_position(c_position);
         treeDao.update(childEnterMyselfFixPosition);
@@ -544,9 +544,9 @@ public class TreeServiceImpl implements TreeService {
 
     @SuppressWarnings("unchecked")
     public <T extends TreeSearchEntity> void enterMyselfFixLeftRight(long idif, long ldif,
-                                                                  Collection<Long> c_idsByChildNodeFromNodeById, T coreSearchDTO) {
+                                                                  Collection<Long> c_idsByChildNodeFromNodeById, T treeSearchEntity) {
         logger.debug("-----------------------enterMyselfFixLeftRight-----------------------");
-        DetachedCriteria detachedEnterMyselfFixLeftRightCriteria = DetachedCriteria.forClass(coreSearchDTO
+        DetachedCriteria detachedEnterMyselfFixLeftRightCriteria = DetachedCriteria.forClass(treeSearchEntity
                 .getClass());
         if (c_idsByChildNodeFromNodeById != null && c_idsByChildNodeFromNodeById.size() > 0) {
             Criterion whereEnterMyselfFixLeftRight = Restrictions.in("c_id", c_idsByChildNodeFromNodeById);
@@ -567,14 +567,14 @@ public class TreeServiceImpl implements TreeService {
 
     @SuppressWarnings("unchecked")
     public <T extends TreeSearchEntity> void fixPositionParentIdOfCopyNodes(long insertSeqResult,
-                                                                         long position, T coreSearchDTO) throws Exception {
+                                                                         long position, T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
+        treeDao.setClazz(treeSearchEntity.getClass());
 
         T node = (T) treeDao.getUnique(insertSeqResult);
 
         logger.debug("-----------------------fixPositionParentIdOfCopyNodes 완료-----------------------");
-        DetachedCriteria getChildNodeByLeftRightCriteria = DetachedCriteria.forClass(coreSearchDTO.getClass());
+        DetachedCriteria getChildNodeByLeftRightCriteria = DetachedCriteria.forClass(treeSearchEntity.getClass());
         Criterion whereChildNodeByLeftRight = Restrictions.ge("c_left", node.getC_left());
         getChildNodeByLeftRightCriteria.add(whereChildNodeByLeftRight);
         getChildNodeByLeftRightCriteria.add(Restrictions.and(Restrictions.le("c_right", node.getC_right())));
@@ -680,18 +680,18 @@ public class TreeServiceImpl implements TreeService {
 
     @SuppressWarnings("unchecked")
     public <T extends TreeSearchEntity> void stretchPositionForMyselfFromTree(
-            Collection<Long> c_idsByChildNodeFromNodeById, T coreSearchDTO) throws Exception {
+            Collection<Long> c_idsByChildNodeFromNodeById, T treeSearchEntity) throws Exception {
 
-        treeDao.setClazz(coreSearchDTO.getClass());
-        coreSearchDTO.setC_idsByChildNodeFromNodeById(c_idsByChildNodeFromNodeById);
+        treeDao.setClazz(treeSearchEntity.getClass());
+        treeSearchEntity.setC_idsByChildNodeFromNodeById(c_idsByChildNodeFromNodeById);
 
-        DetachedCriteria detachedStretchPositionForMyselfCriteria = DetachedCriteria.forClass(coreSearchDTO
+        DetachedCriteria detachedStretchPositionForMyselfCriteria = DetachedCriteria.forClass(treeSearchEntity
                 .getClass());
-        Criterion whereStretchPositionForMyself = Restrictions.eq("c_parentid", coreSearchDTO.getRef());
+        Criterion whereStretchPositionForMyself = Restrictions.eq("c_parentid", treeSearchEntity.getRef());
         detachedStretchPositionForMyselfCriteria.add(whereStretchPositionForMyself);
         detachedStretchPositionForMyselfCriteria.add(Restrictions.and(Restrictions.ge("c_position",
-                coreSearchDTO.getC_position())));
-        if (coreSearchDTO.getCopy() == 0) {
+                treeSearchEntity.getC_position())));
+        if (treeSearchEntity.getCopy() == 0) {
             if (c_idsByChildNodeFromNodeById != null && c_idsByChildNodeFromNodeById.size() > 0) {
                 detachedStretchPositionForMyselfCriteria.add(Restrictions.and(Restrictions.not(Restrictions.in("c_id",
                         c_idsByChildNodeFromNodeById))));
@@ -708,13 +708,13 @@ public class TreeServiceImpl implements TreeService {
 
     }
 
-    public <T extends TreeSearchEntity> void calculatePostion(T coreSearchDTO, T nodeById,
-                                                           List<T> childNodesFromNodeByRef, HttpServletRequest request, String tableName) throws Exception {
+    public <T extends TreeSearchEntity> void calculatePostion(T treeSearchEntity, T nodeById,
+                                                              List<T> childNodesFromNodeByRef, HttpServletRequest request, String tableName) throws Exception {
         HttpSession session = request.getSession();
 
-        final boolean isMoveNodeInMyParent = (coreSearchDTO.getRef() == nodeById.getC_parentid());
-        final boolean isMultiCounterZero = (coreSearchDTO.getMultiCounter() == 0);
-        final boolean isBeyondTheCurrentToMoveNodes = (coreSearchDTO.getC_position() > nodeById.getC_position());
+        final boolean isMoveNodeInMyParent = (treeSearchEntity.getRef() == nodeById.getC_parentid());
+        final boolean isMultiCounterZero = (treeSearchEntity.getMultiCounter() == 0);
+        final boolean isBeyondTheCurrentToMoveNodes = (treeSearchEntity.getC_position() > nodeById.getC_position());
 
         if (isMoveNodeInMyParent) {
             if (logger.isDebugEnabled()) {
@@ -727,35 +727,35 @@ public class TreeServiceImpl implements TreeService {
                         logger.debug(">>>>>>>>>>>>>>>이동 할 노드가 현재보다 뒤일때");
                         logger.debug("노드값=" + nodeById.getC_title());
                         logger.debug("노드의 초기 위치값=" + nodeById.getC_position());
-                        logger.debug("노드의 요청받은 위치값=" + coreSearchDTO.getC_position());
-                        logger.debug("노드의 요청받은 멀티카운터=" + coreSearchDTO.getMultiCounter());
+                        logger.debug("노드의 요청받은 위치값=" + treeSearchEntity.getC_position());
+                        logger.debug("노드의 요청받은 멀티카운터=" + treeSearchEntity.getMultiCounter());
                     }
 
-                    final boolean isFolderToMoveNodes = (coreSearchDTO.getC_position() > childNodesFromNodeByRef
+                    final boolean isFolderToMoveNodes = (treeSearchEntity.getC_position() > childNodesFromNodeByRef
                             .size());
 
                     if (isFolderToMoveNodes) {
                         if (logger.isDebugEnabled()) {
-                            logger.debug("노드 이동시 폴더를 대상으로 했을때 생기는 버그 발생 =" + coreSearchDTO.getC_position());
+                            logger.debug("노드 이동시 폴더를 대상으로 했을때 생기는 버그 발생 =" + treeSearchEntity.getC_position());
                         }
                         long childNodesFromNodeByRefCnt = childNodesFromNodeByRef.size();
-                        coreSearchDTO.setC_position(childNodesFromNodeByRefCnt);
+                        treeSearchEntity.setC_position(childNodesFromNodeByRefCnt);
                     } else {
-                        coreSearchDTO.setC_position(coreSearchDTO.getC_position() - 1);
+                        treeSearchEntity.setC_position(treeSearchEntity.getC_position() - 1);
                     }
                 }
 
                 if (logger.isDebugEnabled()) {
-                    logger.debug("노드의 최종 위치값=" + coreSearchDTO.getC_position());
+                    logger.debug("노드의 최종 위치값=" + treeSearchEntity.getC_position());
                 }
-                session.setAttribute(tableName + "_settedPosition", coreSearchDTO.getC_position());
+                session.setAttribute(tableName + "_settedPosition", treeSearchEntity.getC_position());
             } else {
                 if (logger.isDebugEnabled()) {
                     logger.debug(">>>>>>>>>>>>>>>멀티 카운터가 0 이 아닐때");
                     logger.debug("노드값=" + nodeById.getC_title());
                     logger.debug("노드의 초기 위치값=" + nodeById.getC_position());
-                    logger.debug("노드의 요청받은 위치값=" + coreSearchDTO.getC_position());
-                    logger.debug("노드의 요청받은 멀티카운터=" + coreSearchDTO.getMultiCounter());
+                    logger.debug("노드의 요청받은 위치값=" + treeSearchEntity.getC_position());
+                    logger.debug("노드의 요청받은 멀티카운터=" + treeSearchEntity.getMultiCounter());
                     logger.debug("0번 노드의 위치값=" + session.getAttribute(tableName + "_settedPosition"));
                 }
 
@@ -775,7 +775,7 @@ public class TreeServiceImpl implements TreeService {
                         logger.debug(">>>>>>>>>>>>>>>멀티 노드의 위치가 0번 노드보다 앞일때");
                     }
 
-                    if (coreSearchDTO.isCopied()) {
+                    if (treeSearchEntity.isCopied()) {
                         increasePosition = (Integer) session.getAttribute(tableName + "_settedPosition") + 1;
                     } else {
                         increasePosition = (Integer) session.getAttribute(tableName + "_settedPosition");
@@ -784,9 +784,9 @@ public class TreeServiceImpl implements TreeService {
                 }
                 session.setAttribute(tableName + "_settedPosition", increasePosition);
 
-                coreSearchDTO.setC_position(increasePosition);
+                treeSearchEntity.setC_position(increasePosition);
 
-                final boolean isSamePosition = (nodeById.getC_position() == coreSearchDTO.getC_position());
+                final boolean isSamePosition = (nodeById.getC_position() == treeSearchEntity.getC_position());
 
                 if (isSamePosition) {
                     if (logger.isDebugEnabled()) {
@@ -797,7 +797,7 @@ public class TreeServiceImpl implements TreeService {
                 }
 
                 if (logger.isDebugEnabled()) {
-                    logger.debug("노드의 최종 위치값=" + coreSearchDTO.getC_position());
+                    logger.debug("노드의 최종 위치값=" + treeSearchEntity.getC_position());
                 }
             }
         } else {
@@ -810,28 +810,28 @@ public class TreeServiceImpl implements TreeService {
                     logger.debug(">>>>>>>>>>>>>>>멀티 카운터가 0 일때");
                     logger.debug("노드값=" + nodeById.getC_title());
                     logger.debug("노드의 초기 위치값=" + nodeById.getC_position());
-                    logger.debug("노드의 요청받은 위치값=" + coreSearchDTO.getC_position());
-                    logger.debug("노드의 요청받은 멀티카운터=" + coreSearchDTO.getMultiCounter());
-                    logger.debug("노드의 최종 위치값=" + coreSearchDTO.getC_position());
+                    logger.debug("노드의 요청받은 위치값=" + treeSearchEntity.getC_position());
+                    logger.debug("노드의 요청받은 멀티카운터=" + treeSearchEntity.getMultiCounter());
+                    logger.debug("노드의 최종 위치값=" + treeSearchEntity.getC_position());
                 }
 
-                session.setAttribute(tableName + "_settedPosition", coreSearchDTO.getC_position());
+                session.setAttribute(tableName + "_settedPosition", treeSearchEntity.getC_position());
             } else {
                 if (logger.isDebugEnabled()) {
                     logger.debug(">>>>>>>>>>>>>>>멀티 카운터가 0 이 아닐때");
                     logger.debug("노드값=" + nodeById.getC_title());
                     logger.debug("노드의 초기 위치값=" + nodeById.getC_position());
-                    logger.debug("노드의 요청받은 위치값=" + coreSearchDTO.getC_position());
-                    logger.debug("노드의 요청받은 멀티카운터=" + coreSearchDTO.getMultiCounter());
+                    logger.debug("노드의 요청받은 위치값=" + treeSearchEntity.getC_position());
+                    logger.debug("노드의 요청받은 멀티카운터=" + treeSearchEntity.getMultiCounter());
                 }
 
                 long increasePosition = 0;
                 increasePosition = NumberUtils.toLong(session.getAttribute(tableName + "_settedPosition").toString()) + 1;
-                coreSearchDTO.setC_position(increasePosition);
+                treeSearchEntity.setC_position(increasePosition);
                 session.setAttribute(tableName + "_settedPosition", increasePosition);
 
                 if (logger.isDebugEnabled()) {
-                    logger.debug("노드의 최종 위치값=" + coreSearchDTO.getC_position());
+                    logger.debug("노드의 최종 위치값=" + treeSearchEntity.getC_position());
                 }
             }
         }

@@ -18,26 +18,26 @@ import java.util.List;
 
 public interface TreeService {
 
-    public <T extends TreeSearchEntity> T getNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> T getNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> int updateNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> int updateNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> List<T> getChildNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> List<T> getChildNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> List<T> getChildNodeWithoutPaging(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> List<T> getChildNodeWithoutPaging(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> List<T> getPaginatedChildNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> List<T> getPaginatedChildNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> List<String> searchNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> List<String> searchNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> T addNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> T addNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> int removeNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> int removeNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> int alterNode(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> int alterNode(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> int alterNodeType(T coreSearchDTO) throws Exception;
+    public <T extends TreeSearchEntity> int alterNodeType(T treeSearchEntity) throws Exception;
 
-    public <T extends TreeSearchEntity> T moveNode(T coreSearchDTO, HttpServletRequest request) throws Exception;
+    public <T extends TreeSearchEntity> T moveNode(T treeSearchEntity, HttpServletRequest request) throws Exception;
 
 }

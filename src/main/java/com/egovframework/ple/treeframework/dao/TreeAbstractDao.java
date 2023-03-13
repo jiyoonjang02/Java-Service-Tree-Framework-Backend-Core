@@ -48,9 +48,9 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return DetachedCriteria.forClass(getEntityClass());
     }
 
-    private DetachedCriteria getCriteria(T extractSearchDTO) {
+    private DetachedCriteria getCriteria(T treeSearchEntity) {
         DetachedCriteria criteria = DetachedCriteria.forClass(getEntityClass());
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             criteria.add(criterion);
         }
         return criteria;
@@ -70,9 +70,9 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return (T) list.get(0);
     }
 
-    public T getUnique(T extractSearchDTO) {
+    public T getUnique(T treeSearchEntity) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
-        for (Criterion c : extractSearchDTO.getCriterions()) {
+        for (Criterion c : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(c);
         }
         List<T> list = (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria);
@@ -119,32 +119,32 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, offset, limit);
     }
 
-    public List<T> getList(T extractSearchDTO) {
+    public List<T> getList(T treeSearchEntity) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
-        for (Order order : extractSearchDTO.getOrder()) {
+        for (Order order : treeSearchEntity.getOrder()) {
             detachedCriteria.addOrder(order);
         }
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(criterion);
         }
-        List<T> list = (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, extractSearchDTO.getFirstIndex(),
-                extractSearchDTO.getLastIndex());
+        List<T> list = (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, treeSearchEntity.getFirstIndex(),
+                treeSearchEntity.getLastIndex());
         if (list.isEmpty()) {
             return new ArrayList<>();
         }
         return list;
     }
 
-    public List<T> getList(T extractSearchDTO, Criterion... criterion) {
+    public List<T> getList(T treeSearchEntity, Criterion... criterion) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
         for (Criterion c : criterion) {
             detachedCriteria.add(c);
         }
-        for (Order order : extractSearchDTO.getOrder()) {
+        for (Order order : treeSearchEntity.getOrder()) {
             detachedCriteria.addOrder(order);
         }
-        return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, extractSearchDTO.getFirstIndex(),
-                extractSearchDTO.getLastIndex());
+        return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, treeSearchEntity.getFirstIndex(),
+                treeSearchEntity.getLastIndex());
     }
 
     public List<T> getList(Criterion... criterions) {
@@ -174,25 +174,25 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return list;
     }
 
-    public List<T> getGroupByList(T extractSearchDTO, String target) {
+    public List<T> getGroupByList(T treeSearchEntity, String target) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
-        for (Order order : extractSearchDTO.getOrder()) {
+        for (Order order : treeSearchEntity.getOrder()) {
             detachedCriteria.addOrder(order);
         }
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(criterion);
         }
         ProjectionList projectList = Projections.projectionList();
         projectList.add(Projections.groupProperty(target));
         detachedCriteria.setProjection(projectList);
-        return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, extractSearchDTO.getFirstIndex(),
-                extractSearchDTO.getLastIndex());
+        return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria, treeSearchEntity.getFirstIndex(),
+                treeSearchEntity.getLastIndex());
     }
 
-    public Map<String, Long> getGroupByList(T extractSearchDTO, String groupProperty, String sumProperty) {
+    public Map<String, Long> getGroupByList(T treeSearchEntity, String groupProperty, String sumProperty) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
         Map<String, Long> result = new HashMap<String, Long>();
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(criterion);
         }
         ProjectionList projectList = Projections.projectionList();
@@ -214,9 +214,9 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return result;
     }
 
-    public int getGroupByCount(T extractSearchDTO, String tagert) {
+    public int getGroupByCount(T treeSearchEntity, String tagert) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(criterion);
         }
         ProjectionList projectList = Projections.projectionList();
@@ -239,12 +239,12 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria);
     }
 
-    public List<T> getListWithoutPaging(T extractSearchDTO) {
+    public List<T> getListWithoutPaging(T treeSearchEntity) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
-        for (Order order : extractSearchDTO.getOrder()) {
+        for (Order order : treeSearchEntity.getOrder()) {
             detachedCriteria.addOrder(order);
         }
-        for (Criterion criterion : extractSearchDTO.getCriterions()) {
+        for (Criterion criterion : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(criterion);
         }
         return (List<T>) getHibernateTemplate().findByCriteria(detachedCriteria);
@@ -282,10 +282,10 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return total.intValue();
     }
 
-    public int getCount(T extractSearchDTO) {
+    public int getCount(T treeSearchEntity) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
 
-        for (Criterion c : extractSearchDTO.getCriterions()) {
+        for (Criterion c : treeSearchEntity.getCriterions()) {
             detachedCriteria.add(c);
         }
 
@@ -301,7 +301,7 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return total.intValue();
     }
 
-    public int getCount(T extractSearchDTO, List<Criterion> criterions) {
+    public int getCount(T treeSearchEntity, List<Criterion> criterions) {
         DetachedCriteria detachedCriteria = createDetachedCriteria();
 
         for (Criterion c : criterions) {
@@ -350,8 +350,8 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         return sum != null ? sum.intValue() : 0;
     }
 
-    public int getSum(T extractSearchDTO, String propertyName) {
-        DetachedCriteria criteria = getCriteria(extractSearchDTO);
+    public int getSum(T treeSearchEntity, String propertyName) {
+        DetachedCriteria criteria = getCriteria(treeSearchEntity);
         criteria.add(Restrictions.isNotNull(propertyName));
         criteria.setProjection(Projections.sum(propertyName));
         List<?> l = getHibernateTemplate().findByCriteria(criteria);
@@ -394,22 +394,22 @@ public abstract class TreeAbstractDao<T extends TreeSearchEntity, ID extends Ser
         getHibernateTemplate().saveOrUpdate(newInstance);
     }
 
-    public void update(T transientObject) {
-        getHibernateTemplate().update(transientObject);
+    public void update(T treeSearchEntity) {
+        getHibernateTemplate().update(treeSearchEntity);
         getHibernateTemplate().flush();
         getHibernateTemplate().clear();
     }
 
-    public void merge(T transientObject) {
-        getHibernateTemplate().merge(transientObject);
+    public void merge(T treeSearchEntity) {
+        getHibernateTemplate().merge(treeSearchEntity);
     }
 
     public int bulkUpdate(String queryString, Object... value) {
         return getHibernateTemplate().bulkUpdate(queryString, value);
     }
 
-    public void delete(T persistentObject) {
-        getHibernateTemplate().delete(persistentObject);
+    public void delete(T treeSearchEntity) {
+        getHibernateTemplate().delete(treeSearchEntity);
         getHibernateTemplate().flush();
         getHibernateTemplate().clear();
     }
