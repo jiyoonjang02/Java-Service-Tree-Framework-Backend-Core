@@ -13,11 +13,15 @@ package com.egovframework.ple.treeframework.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.egovframework.ple.treeframework.util.StringUtils;
+import io.swagger.annotations.ApiModelProperty;
 import org.hibernate.criterion.*;
 
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Transient;
 import java.io.Serializable;
 import java.util.*;
+
+@MappedSuperclass
 public abstract class TreeSearchEntity extends TreePaginatedEntity implements Serializable {
 
     @JsonIgnore
@@ -31,23 +35,10 @@ public abstract class TreeSearchEntity extends TreePaginatedEntity implements Se
     @JsonIgnore
     private int whereCount = 0;
 
-    public TreeSearchEntity() {
-        super();
-    }
-
-    public TreeSearchEntity(List<Order> order, List<Criterion> criterions, Projection projection,
-                         Map<String, Object> whereMap, int whereCount) {
-        super();
-        this.order = order;
-        this.criterions = criterions;
-        this.projection = projection;
-        this.whereMap = whereMap;
-        this.whereCount = whereCount;
-    }
-
     public abstract <T extends TreeSearchEntity> void setFieldFromNewInstance(T paramInstance);
 
     @Transient
+    @ApiModelProperty(value = "[ignore] 내부 처리용 ref class",dataType = "string")
     public List<Order> getOrder() {
         return order;
     }
@@ -57,11 +48,13 @@ public abstract class TreeSearchEntity extends TreePaginatedEntity implements Se
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public List<Criterion> getCriterions() {
         return criterions;
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getWhereMap(String key) {
         if (this.whereMap.containsKey(key)) {
             String value = (String) whereMap.get(key);
@@ -72,6 +65,7 @@ public abstract class TreeSearchEntity extends TreePaginatedEntity implements Se
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getWhereCount() {
         return whereCount;
     }
@@ -148,6 +142,7 @@ public abstract class TreeSearchEntity extends TreePaginatedEntity implements Se
     }
 
     @Transient
+    @ApiModelProperty(value = "[ignore] 내부 처리용 ref class",dataType = "string")
     public Projection getProjection() {
         return projection;
     }
@@ -175,6 +170,7 @@ public abstract class TreeSearchEntity extends TreePaginatedEntity implements Se
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public List<Criterion> getMembersCriterions(String propertyName, Object value, String seperator) {
         List<Criterion> criterionLists = new ArrayList<>();
 

@@ -13,6 +13,7 @@ package com.arms.pdservice.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -33,15 +34,6 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_T_ARMS_PDSERVICE", sequenceName = "S_T_ARMS_PDSERVICE", allocationSize = 1)
 public class PdServiceEntity extends TreeSearchEntity implements Serializable {
-
-    public PdServiceEntity() {
-        super();
-    }
-
-    public PdServiceEntity(Boolean copyBooleanValue) {
-        super();
-        this.copyBooleanValue = copyBooleanValue;
-    }
 
     @Override
     @Id
@@ -98,6 +90,7 @@ public class PdServiceEntity extends TreeSearchEntity implements Serializable {
     private Boolean copyBooleanValue;
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public Boolean getCopyBooleanValue() {
         copyBooleanValue = false;
         if (this.getCopy() == 0) {

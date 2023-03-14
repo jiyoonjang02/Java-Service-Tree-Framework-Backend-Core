@@ -13,6 +13,7 @@ package com.arms.armsinstaller.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -34,15 +35,6 @@ import java.io.Serializable;
 @SequenceGenerator(name = "S_T_ARMS_ARMSINSTALLER", sequenceName = "S_T_ARMS_ARMSINSTALLER", allocationSize = 1)
 public class ArmsInstallerEntity extends TreeSearchEntity implements Serializable {
 
-    public ArmsInstallerEntity() {
-        super();
-    }
-
-    public ArmsInstallerEntity(Boolean copyBooleanValue) {
-        super();
-        this.copyBooleanValue = copyBooleanValue;
-    }
-
  	@Override
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_ARMSINSTALLER")
@@ -58,6 +50,7 @@ public class ArmsInstallerEntity extends TreeSearchEntity implements Serializabl
     private Boolean copyBooleanValue;
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public Boolean getCopyBooleanValue() {
         copyBooleanValue = false;
         if (this.getCopy() == 0) {

@@ -11,6 +11,7 @@
  */
 package com.egovframework.ple.treeframework.model;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 
@@ -54,7 +55,7 @@ public abstract class TreeBaseEntity implements Serializable {
     private long status;
     private String ajaxMessage;
 
-    private String childcount = "";
+    private String childcount;
 
     private String searchStr;
 
@@ -76,48 +77,9 @@ public abstract class TreeBaseEntity implements Serializable {
     private long idifRight;
 
     private long id;
-    private final HashMap<String, String> attr;
 
-    public TreeBaseEntity() {
-        super();
-        attr = new HashMap<String, String>();
-    }
+    private final HashMap<String, String> attr = new HashMap<String, String>();;
 
-    public TreeBaseEntity(Long c_id, Long c_parentid, Long c_position, Long c_left,
-                       Long c_right, Long c_level, String c_title, String c_type, long ref, long copy, long multiCounter,
-                       long status, String ajaxMessage, String childcount, String searchStr, long idif, long ldif,
-                       long spaceOfTargetNode, Collection<Long> c_idsByChildNodeFromNodeById, long fixCopyId,
-                       long fixCopyPosition, long rightPositionFromNodeByRef, TreeBaseEntity nodeById, long idifLeft,
-                       long idifRight, long id) {
-        super();
-        this.c_id = c_id;
-        this.c_parentid = c_parentid;
-        this.c_position = c_position;
-        this.c_left = c_left;
-        this.c_right = c_right;
-        this.c_level = c_level;
-        this.c_title = c_title;
-        this.c_type = c_type;
-        this.ref = ref;
-        this.copy = copy;
-        this.multiCounter = multiCounter;
-        this.status = status;
-        this.ajaxMessage = ajaxMessage;
-        this.childcount = childcount;
-        this.searchStr = searchStr;
-        this.idif = idif;
-        this.ldif = ldif;
-        this.spaceOfTargetNode = spaceOfTargetNode;
-        this.c_idsByChildNodeFromNodeById = c_idsByChildNodeFromNodeById;
-        this.fixCopyId = fixCopyId;
-        this.fixCopyPosition = fixCopyPosition;
-        this.rightPositionFromNodeByRef = rightPositionFromNodeByRef;
-        this.nodeById = nodeById;
-        this.idifLeft = idifLeft;
-        this.idifRight = idifRight;
-        this.id = id;
-        attr = new HashMap<String, String>();
-    }
 
     @Transient
     public Long getC_id() {
@@ -129,6 +91,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Column(name = "c_parentid")
+    @ApiModelProperty(hidden = true)
     public Long getC_parentid() {
         return c_parentid;
     }
@@ -147,6 +110,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Column(name = "c_left")
+    @ApiModelProperty(hidden = true)
     public Long getC_left() {
         return c_left;
     }
@@ -156,6 +120,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Column(name = "c_right")
+    @ApiModelProperty(hidden = true)
     public Long getC_right() {
         return c_right;
     }
@@ -165,6 +130,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Column(name = "c_level")
+    @ApiModelProperty(hidden = true)
     public Long getC_level() {
         return c_level;
     }
@@ -192,11 +158,13 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getData() {
         return c_title;
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public boolean isCopied() {
         return this.getCopy() == 1;
     }
@@ -229,6 +197,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getState() {
         String returnCode = new String();
 
@@ -243,6 +212,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getStatus() {
         return status;
     }
@@ -252,6 +222,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getChildcount() {
         if((getC_right() - getC_left())>1){
             return "InChild";
@@ -264,6 +235,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getFixCopyId() {
         return fixCopyId;
     }
@@ -273,6 +245,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getAjaxMessage() {
         return ajaxMessage;
     }
@@ -282,6 +255,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchStr() {
         return searchStr;
     }
@@ -291,6 +265,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getIdif() {
         return idif;
     }
@@ -300,6 +275,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getLdif() {
         return ldif;
     }
@@ -309,6 +285,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getSpaceOfTargetNode() {
         return spaceOfTargetNode;
     }
@@ -318,6 +295,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public Collection<Long> getC_idsByChildNodeFromNodeById() {
         return c_idsByChildNodeFromNodeById;
     }
@@ -327,6 +305,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getFixCopyPosition() {
         return fixCopyPosition;
     }
@@ -336,6 +315,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getRightPositionFromNodeByRef() {
         return rightPositionFromNodeByRef;
     }
@@ -345,6 +325,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(value = "[ignore] 내부 처리용 ref class",dataType = "string")
     public TreeBaseEntity getNodeById() {
         return nodeById;
     }
@@ -354,6 +335,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getIdifLeft() {
         return idifLeft;
     }
@@ -363,6 +345,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getIdifRight() {
         return idifRight;
     }
@@ -372,6 +355,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public long getId() {
         return id;
     }
@@ -381,6 +365,7 @@ public abstract class TreeBaseEntity implements Serializable {
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public HashMap<String, String> getAttr() {
         attr.put("id", "node_" + c_id);
         attr.put("rel", c_type);
@@ -389,6 +374,7 @@ public abstract class TreeBaseEntity implements Serializable {
 
     @Override
     @Transient
+    @ApiModelProperty(hidden = true)
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }

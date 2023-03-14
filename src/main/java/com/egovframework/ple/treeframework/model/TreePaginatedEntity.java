@@ -13,6 +13,7 @@ package com.egovframework.ple.treeframework.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.egovframework.ple.treeframework.util.PaginationInfo;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.MappedSuperclass;
@@ -69,29 +70,6 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     @JsonIgnore
     PaginationInfo paginationInfo = new PaginationInfo();
 
-    public TreePaginatedEntity() {
-        super();
-        paginationSetting();
-    }
-
-    public TreePaginatedEntity(String searchCondition, String searchKeyword, String searchUseYn, int pageIndex,
-                            int pageUnit, int pageSize, int firstIndex, int lastIndex, int recordCountPerPage,
-                            String searchKeywordFrom, String searchKeywordTo) {
-        super();
-        this.searchCondition = searchCondition;
-        this.searchKeyword = searchKeyword;
-        this.searchUseYn = searchUseYn;
-        this.pageIndex = pageIndex;
-        this.pageUnit = pageUnit;
-        this.pageSize = pageSize;
-        this.firstIndex = firstIndex;
-        this.lastIndex = lastIndex;
-        this.recordCountPerPage = recordCountPerPage;
-        this.searchKeywordFrom = searchKeywordFrom;
-        this.searchKeywordTo = searchKeywordTo;
-        paginationSetting();
-    }
-
     private void paginationSetting() {
         paginationInfo.setCurrentPageNo(getPageIndex());
         paginationInfo.setRecordCountPerPage(getPageUnit());
@@ -104,6 +82,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
 
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getFirstIndex() {
         return firstIndex;
     }
@@ -113,6 +92,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getLastIndex() {
         return lastIndex;
     }
@@ -122,6 +102,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getRecordCountPerPage() {
         return recordCountPerPage;
     }
@@ -131,6 +112,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchCondition() {
         return searchCondition;
     }
@@ -140,6 +122,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchKeyword() {
         return searchKeyword;
     }
@@ -149,6 +132,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchUseYn() {
         return searchUseYn;
     }
@@ -158,6 +142,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getPageIndex() {
         return pageIndex;
     }
@@ -167,6 +152,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getPageUnit() {
         return pageUnit;
     }
@@ -176,6 +162,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public int getPageSize() {
         return pageSize;
     }
@@ -185,6 +172,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public String toString() {
         return ToStringBuilder.reflectionToString(this);
     }
@@ -195,6 +183,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
      * @return String
      */
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchKeywordFrom() {
         return searchKeywordFrom;
     }
@@ -212,6 +201,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
      * @return String
      */
     @Transient
+    @ApiModelProperty(hidden = true)
     public String getSearchKeywordTo() {
         return searchKeywordTo;
     }
@@ -225,6 +215,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
     }
 
     @Transient
+    @ApiModelProperty(value = "[ignore] 내부 처리용 ref class",dataType = "string")
     public PaginationInfo getPaginationInfo() {
         return paginationInfo;
     }

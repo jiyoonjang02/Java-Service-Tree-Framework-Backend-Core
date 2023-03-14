@@ -13,6 +13,7 @@ package com.arms.armsinstalllog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.Cache;
@@ -34,15 +35,6 @@ import java.io.Serializable;
 @SequenceGenerator(name = "S_T_ARMS_ARMSINSTALLLOG", sequenceName = "S_T_ARMS_ARMSINSTALLLOG", allocationSize = 1)
 public class ArmsInstallLogEntity extends TreeSearchEntity implements Serializable {
 
-    public ArmsInstallLogEntity() {
-        super();
-    }
-
-    public ArmsInstallLogEntity(Boolean copyBooleanValue) {
-        super();
-        this.copyBooleanValue = copyBooleanValue;
-    }
-
  	@Override
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_ARMSINSTALLLOG")
@@ -58,6 +50,7 @@ public class ArmsInstallLogEntity extends TreeSearchEntity implements Serializab
     private Boolean copyBooleanValue;
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public Boolean getCopyBooleanValue() {
         copyBooleanValue = false;
         if (this.getCopy() == 0) {

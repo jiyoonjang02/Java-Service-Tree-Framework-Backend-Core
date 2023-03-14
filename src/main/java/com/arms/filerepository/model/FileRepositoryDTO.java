@@ -13,6 +13,7 @@ package com.arms.filerepository.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.*;
@@ -32,15 +33,6 @@ import java.io.Serializable;
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_T_ARMS_FILEREPOSITORY", sequenceName = "S_T_ARMS_FILEREPOSITORY", allocationSize = 1)
 public class FileRepositoryDTO extends TreeSearchEntity implements Serializable {
-
-    public FileRepositoryDTO() {
-        super();
-    }
-
-    public FileRepositoryDTO(Boolean copyBooleanValue) {
-        super();
-        this.copyBooleanValue = copyBooleanValue;
-    }
 
     @Override
     @Id
@@ -170,6 +162,7 @@ public class FileRepositoryDTO extends TreeSearchEntity implements Serializable 
     private Boolean copyBooleanValue;
 
     @Transient
+    @ApiModelProperty(hidden = true)
     public Boolean getCopyBooleanValue() {
         copyBooleanValue = false;
         if (this.getCopy() == 0) {
