@@ -17,6 +17,8 @@ import com.egovframework.ple.treeframework.util.ParameterParser;
 import com.egovframework.ple.treeframework.util.Util_TitleChecker;
 import com.egovframework.ple.treeframework.validation.group.*;
 import com.google.common.collect.Maps;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.hibernate.criterion.Order;
 import org.springframework.ui.ModelMap;
 import org.springframework.util.StringUtils;
@@ -31,6 +33,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 
+@Api("TreeFramework")
 public abstract class TreeAbstractController<T extends TreeService, V extends TreeSearchEntity> extends TreeSupportController {
 
     private T treeService;
@@ -40,6 +43,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
         this.treeService = treeService;
     }
 
+    @ApiOperation(  value = "[Select] TreeFramework의 GetNode" )
     @ResponseBody
     @RequestMapping(value = "/getNode.do", method = RequestMethod.GET)
     public ModelAndView getNode(V treeSearchEntity, HttpServletRequest request) throws Exception {
@@ -114,6 +118,7 @@ public abstract class TreeAbstractController<T extends TreeService, V extends Tr
         return modelAndView;
     }
 
+    @ApiOperation(  value = "[Insert] TreeFramework의 AddNode")
     @ResponseBody
     @RequestMapping(value = "/addNode.do", method = RequestMethod.POST)
     public ModelAndView addNode(@Validated(value = AddNode.class) V treeSearchEntity,

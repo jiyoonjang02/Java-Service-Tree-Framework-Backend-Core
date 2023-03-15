@@ -50,8 +50,27 @@ public class Swagger2Config {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("테스트 API 타이틀")
-                .description("테스트 API 상세소개 및 사용법 등")
+                .title("PLE TreeFramework")
+                .description(
+                    "<span style='color:blue'><strong>&#8880; Select &trade;&#8881;</strong></span>\n\n" +
+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>[ getNode.do ]</span>\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_id</span> -> ( c_id 값의 Node Return )\n\n" +
+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>[ getChildNode.do ]</span>\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_id</span> -> ( c_id 값의 Node 하위 ( 자식 ) Node Return )\n\n" +
+
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>[ getPaginatedChildNode.do ]</span>\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_id</span> -> ( c_id 값의 Node 하위 ( 자식 ) Node를 페이징 처리하여 Return )\n\n" +
+
+                    "<br><br>" +
+                    "<span style='color:blue'><strong>&#8880; Insert&trade; &#8881;</strong></span>\n\n" +
+                    "<span style='color:blue'>[addNode.do]</span>\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;ref</span> -> ( 어느 부모 아이디 밑으로 추가할 건지 )\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_position</span> -> ( 추가될 때 어느 포지션 위치 값으로 들어 갈 건지 )\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_title</span> -> ( 추가될 노드의 값 )\n\n" +
+                    "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:blue'>&copy;c_type</span> -> ( Branch 인 경우는 folder, Leaf 인 경우는 default )"
+                )
                 .contact(new Contact("mile", "milenote.tistory.com", "skn@futurenuri.com"))
                 .version("1.0")
                 .build();
