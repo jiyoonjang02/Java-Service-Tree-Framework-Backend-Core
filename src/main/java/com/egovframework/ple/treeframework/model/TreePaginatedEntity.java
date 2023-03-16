@@ -53,7 +53,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
 
     /** lastIndex */
     @JsonIgnore
-    private int lastIndex = 1;
+    private int lastIndex = 9999;
 
     /** recordCountPerPage */
     @JsonIgnore

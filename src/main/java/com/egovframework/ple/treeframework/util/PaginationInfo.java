@@ -16,6 +16,8 @@ package com.egovframework.ple.treeframework.util;
  * limitations under the License.
  */
 
+import javax.persistence.MappedSuperclass;
+
 /**
  * PaginationInfo.java
  * <p/><b>NOTE:</b><pre>
@@ -60,6 +62,7 @@ package com.egovframework.ple.treeframework.util;
  *
  * </pre>
  */
+@MappedSuperclass
 public class PaginationInfo {
 
     /**
