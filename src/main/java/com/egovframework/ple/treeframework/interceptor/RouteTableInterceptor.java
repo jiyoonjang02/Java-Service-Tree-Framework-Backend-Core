@@ -134,7 +134,7 @@ public class RouteTableInterceptor extends EmptyInterceptor{
         return prepedStatement;
     }
 
-    public static String setArmsReplaceTableName(HttpServletRequest request, String tableName) throws Exception {
+    public static String setReplaceTableName(HttpServletRequest request, String tableName) throws Exception {
 
         String servletPath = request.getServletPath();
 
@@ -194,8 +194,8 @@ public class RouteTableInterceptor extends EmptyInterceptor{
                 }
             }
         }
-        logger.info("RouteTableInterceptor :: setArmsReplaceTableName -> " + servletPath);
-        logger.info("RouteTableInterceptor :: setArmsReplaceTableName -> " + tableName);
+        logger.info("RouteTableInterceptor :: setReplaceTableName -> " + servletPath);
+        logger.info("RouteTableInterceptor :: setReplaceTableName -> " + tableName);
         return tableName;
     }
 }

@@ -11,10 +11,14 @@
  */
 package com.arms.armsinstaller.service;
 
+import com.arms.armsinstaller.model.ArmsInstallerEntity;
+import com.arms.samplemybastis.model.MyBatisEntity;
 import com.egovframework.ple.treeframework.service.TreeService;
+
+import java.util.List;
 
 public interface ArmsInstaller extends TreeService {
 
-
+    public Integer makeDataBase() throws Exception;
 
 }

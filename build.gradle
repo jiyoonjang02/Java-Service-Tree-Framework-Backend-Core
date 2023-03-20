@@ -175,6 +175,7 @@ dependencies {
 
     //oracle
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
+    implementation 'mysql:mysql-connector-java:8.0.32'
 
     // Swagger
     implementation('io.springfox:springfox-swagger2:2.9.2')

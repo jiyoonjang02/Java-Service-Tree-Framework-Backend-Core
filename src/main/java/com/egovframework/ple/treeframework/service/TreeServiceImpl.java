@@ -468,7 +468,7 @@ public class TreeServiceImpl implements TreeService {
         Table table = treeSearchEntity.getClass().getAnnotation(Table.class);
         String tableName = table.name();
 
-        tableName = RouteTableInterceptor.setArmsReplaceTableName(request, tableName);
+        tableName = RouteTableInterceptor.setReplaceTableName(request, tableName);
         this.calculatePostion(treeSearchEntity, nodeById, childNodesFromNodeByRef, request, tableName);
 
         if (rightPointFromNodeByRef < 1) {

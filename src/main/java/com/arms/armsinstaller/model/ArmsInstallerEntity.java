@@ -13,6 +13,7 @@ package com.arms.armsinstaller.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -47,6 +48,7 @@ public class ArmsInstallerEntity extends TreeSearchEntity implements Serializabl
     /*
      * Extend Bean Field
      */
+    @JsonIgnore
     private Boolean copyBooleanValue;
 
     @Transient

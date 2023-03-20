@@ -11,6 +11,7 @@
  */
 package com.egovframework.ple.treeframework.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
@@ -53,31 +54,48 @@ public abstract class TreeBaseEntity implements Serializable {
     private long multiCounter;
 
     private long status;
+
+    @JsonIgnore
     private String ajaxMessage;
 
+    @JsonIgnore
     private String childcount;
 
     private String searchStr;
 
+    @JsonIgnore
     private long idif;
+
+    @JsonIgnore
     private long ldif;
 
+    @JsonIgnore
     private long spaceOfTargetNode;
 
+    @JsonIgnore
     private Collection<Long> c_idsByChildNodeFromNodeById;
 
+    @JsonIgnore
     private long fixCopyId;
+
+    @JsonIgnore
     private long fixCopyPosition;
 
+    @JsonIgnore
     private long rightPositionFromNodeByRef;
 
+    @JsonIgnore
     private TreeBaseEntity nodeById;
 
+    @JsonIgnore
     private long idifLeft;
+
+    @JsonIgnore
     private long idifRight;
 
     private long id;
 
+    @JsonIgnore
     private final HashMap<String, String> attr = new HashMap<String, String>();;
 
 
@@ -202,11 +220,11 @@ public abstract class TreeBaseEntity implements Serializable {
         String returnCode = new String();
 
         if (getChildcount() == null || getChildcount().equals(" ")) {
-            returnCode = "update status";
-        } else if (getChildcount().equals("InChild")) {
             returnCode = "closed";
+        } else if (getChildcount().equals("InChild")) {
+            returnCode = "opened";
         } else {
-            returnCode = "leafNode";
+            returnCode = "closed";
         }
         return returnCode;
     }
