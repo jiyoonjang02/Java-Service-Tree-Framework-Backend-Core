@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.UpdateProvider;
 import java.util.List;
 
 @Mapper
-public interface ArmsInstallerMybatisDao {
+public interface FileRepositoryInstallerDao {
 
     public Integer ddlExecute(ArmsInstallerEntity armsInstallerEntity);
 

@@ -32,7 +32,7 @@ import java.io.Serializable;
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @SequenceGenerator(name = "S_T_ARMS_FILEREPOSITORY", sequenceName = "S_T_ARMS_FILEREPOSITORY", allocationSize = 1)
-public class FileRepositoryDTO extends TreeSearchEntity implements Serializable {
+public class FileRepositoryEntity extends TreeSearchEntity implements Serializable {
 
     @Override
     @Id

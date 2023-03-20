@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.arms.armsinstaller.mapper.ArmsInstallerMybatisDao">
 
-    <update id="ddlExecute" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         CREATE TABLE ${c_title}(
             C_ID NUMBER NOT NULL,
             C_PARENTID NUMBER NOT NULL,
@@ -13,10 +13,8 @@
             C_TITLE VARCHAR2(4000 BYTE),
             C_TYPE VARCHAR2(4000 BYTE),
 
-            c_contents CLOB,
-            c_pdservice_id VARCHAR2(4000 BYTE),
-            c_pdservice_version_id VARCHAR2(4000 BYTE),
-            c_pdservice_jira_ids VARCHAR2(4000 BYTE),
+            c_tablename VARCHAR2(4000 BYTE),
+            c_result VARCHAR2(4000 BYTE),
             CONSTRAINT ${c_title}_PK PRIMARY KEY (C_ID)
             /*
             * CONSTRAINT T_ARMS_REQADD_FK1 FOREIGN KEY (OTHER_ID) REFERENCES OTHER T_ARMS_REQADD(C_ID) ON DELETE CASCADE
@@ -24,7 +22,7 @@
     </update>
 
 
-    <update id="ddlSequenceExecute" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlSequenceExecute" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         /*
         * 인덱스는 되도록 걸지 말것.
         * CREATE UNIQUE INDEX I_COMPREHENSIVETREE ON T_ARMS_REQADD
@@ -42,44 +40,44 @@
         NOORDER
     </update>
     
-    <update id="ddlExecute_comment_1" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_1" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON TABLE ${c_title} IS '기본 트리 스키마'
     </update>
-    <update id="ddlExecute_comment_2" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_2" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_ID IS '노드 아이디'
     </update>
-    <update id="ddlExecute_comment_3" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_3" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_PARENTID IS '부모 노드 아이디'
     </update>
-    <update id="ddlExecute_comment_4" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_4" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_POSITION IS '노드 포지션'
     </update>
-    <update id="ddlExecute_comment_5" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_5" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_LEFT IS '노드 좌측 끝 포인트'
     </update>
-    <update id="ddlExecute_comment_6" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_6" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_RIGHT IS '노드 우측 끝 포인트'
     </update>
-    <update id="ddlExecute_comment_7" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_7" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_LEVEL IS '노드 DEPTH'
     </update>
-    <update id="ddlExecute_comment_8" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_8" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_TITLE IS '노드 명'
     </update>
-    <update id="ddlExecute_comment_9" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlExecute_comment_9" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}.C_TYPE IS '노드 타입'
     </update>
 
-    <update id="dmlExecute_1" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="dmlExecute_1" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         Insert into ${c_title} (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
         Values (1, 0, 0, 1, 4, 0, 'PDSERVICECONNECT', 'root')
     </update>
-    <update id="dmlExecute_2" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="dmlExecute_2" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         Insert into ${c_title} (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
         Values (2, 1, 0, 2, 3, 1, '제품(서비스)-JIRA연결정보', 'drive')
     </update>
 
-    <update id="ddlLogExecute" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         CREATE TABLE ${c_title}_LOG(
         C_ID NUMBER NOT NULL,
         C_DATAID NUMBER NOT NULL,
@@ -94,14 +92,12 @@
         C_STATE VARCHAR2(4000 BYTE),
         C_DATE DATE NOT NULL,
 
-        c_contents CLOB,
-        c_pdservice_id VARCHAR2(4000 BYTE),
-        c_pdservice_version_id VARCHAR2(4000 BYTE),
-        c_pdservice_jira_ids VARCHAR2(4000 BYTE)
+        c_tablename VARCHAR2(4000 BYTE),
+        c_result VARCHAR2(4000 BYTE)
         )
     </update>
 
-    <update id="ddlLogSequenceExecute" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogSequenceExecute" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         /*
         * 인덱스는 되도록 걸지 말것.
         * CREATE UNIQUE INDEX I_COMPREHENSIVETREE ON T_ARMS_REQADD
@@ -119,55 +115,55 @@
         NOORDER
     </update>
 
-    <update id="ddlLogExecute_comment_1" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_1" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON TABLE ${c_title}_LOG IS '기본 트리 스키마 트리거 로그'
     </update>
 
-    <update id="ddlLogExecute_comment_2" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_2" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_ID IS '노드 시퀀스아이디'
     </update>
 
-    <update id="ddlLogExecute_comment_3" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_3" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_PARENTID IS '부모 노드 아이디'
     </update>
 
-    <update id="ddlLogExecute_comment_4" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_4" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_POSITION IS '노드 포지션'
     </update>
 
-    <update id="ddlLogExecute_comment_5" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_5" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_LEFT IS '노드 좌측 끝 포인트'
     </update>
 
-    <update id="ddlLogExecute_comment_6" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_6" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_RIGHT IS '노드 우측 끝 포인트'
     </update>
 
-    <update id="ddlLogExecute_comment_7" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_7" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_LEVEL IS '노드 DEPTH '
     </update>
 
-    <update id="ddlLogExecute_comment_8" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_8" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_TITLE IS '노드 명'
     </update>
 
-    <update id="ddlLogExecute_comment_9" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_9" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_TYPE IS '노드 타입'
     </update>
 
-    <update id="ddlLogExecute_comment_10" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_10" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_METHOD IS '노드 변경 행위'
     </update>
 
-    <update id="ddlLogExecute_comment_11" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_11" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_STATE IS '노드 상태값 ( 이전인지. 이후인지)'
     </update>
 
-    <update id="ddlLogExecute_comment_12" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_12" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_DATE IS '노드 변경 시'
     </update>
 
-    <update id="ddlLogExecute_comment_13" parameterType="com.arms.mappdservicenjira.model.MapPdServiceNJiraEntity">
+    <update id="ddlLogExecute_comment_13" parameterType="com.arms.armsinstaller.model.ArmsInstallerEntity">
         COMMENT ON COLUMN ${c_title}_LOG.C_DATAID IS '노드 아이디'
     </update>
 

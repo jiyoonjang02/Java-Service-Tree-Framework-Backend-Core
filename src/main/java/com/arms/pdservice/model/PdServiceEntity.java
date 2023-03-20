@@ -13,6 +13,7 @@ package com.arms.pdservice.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Getter;
 import lombok.Setter;
@@ -87,6 +88,7 @@ public class PdServiceEntity extends TreeSearchEntity implements Serializable {
     /*
      * Extend Bean Field
      */
+    @JsonIgnore
     private Boolean copyBooleanValue;
 
     @Transient

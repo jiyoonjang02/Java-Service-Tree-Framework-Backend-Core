@@ -26,12 +26,12 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_JIRACONNECTINFOLOG")
+@Table(name = "T_ARMS_JIRACONNECTINFO_LOG")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "S_T_ARMS_JIRACONNECTINFOLOG", sequenceName = "S_T_ARMS_JIRACONNECTINFOLOG", allocationSize = 1)
+@SequenceGenerator(name = "S_T_ARMS_JIRACONNECTINFO_LOG", sequenceName = "S_T_ARMS_JIRACONNECTINFO_LOG", allocationSize = 1)
 public class JiraConnectInfoLogEntity extends TreeSearchEntity implements Serializable {
 
     public JiraConnectInfoLogEntity() {
@@ -45,7 +45,7 @@ public class JiraConnectInfoLogEntity extends TreeSearchEntity implements Serial
 
  	@Override
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_JIRACONNECTINFOLOG")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_JIRACONNECTINFO_LOG")
     @Column(name = "c_id")
     public Long getC_id() {
         return super.getC_id();

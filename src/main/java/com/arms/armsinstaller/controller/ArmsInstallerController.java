@@ -11,6 +11,7 @@
  */
 package com.arms.armsinstaller.controller;
 
+import com.arms.armsinstaller.service.FileRepositoryInstaller;
 import com.egovframework.ple.treeframework.controller.CommonResponse;
 import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import lombok.extern.slf4j.Slf4j;
@@ -37,6 +38,10 @@ public class ArmsInstallerController extends TreeAbstractController<ArmsInstalle
     @Qualifier("armsInstaller")
     private ArmsInstaller armsInstaller;
 
+    @Autowired
+    @Qualifier("fileRepositoryInstaller")
+    private FileRepositoryInstaller fileRepositoryInstaller;
+
     @PostConstruct
     public void initialize() {
         setTreeService(armsInstaller);
@@ -46,6 +51,39 @@ public class ArmsInstallerController extends TreeAbstractController<ArmsInstalle
 
     @GetMapping("/makeDatabase")
     public ResponseEntity<?> makeDatabase() throws Exception {
+
+        fileRepositoryInstaller.makeDataBase();
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRACONNECTINFO");
+//        armsInstaller.makeDataBase("T_ARMS_JIRACONNECTINFOLOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUE");
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUELOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUEPRIORITY");
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUEPRIORITYLOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUESTATE");
+//        armsInstaller.makeDataBase("T_ARMS_JIRAISSUESTATELOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRAPROJECT");
+//        armsInstaller.makeDataBase("T_ARMS_JIRAPROJECTLOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_JIRAPROJECTVERSION");
+//        armsInstaller.makeDataBase("T_ARMS_JIRAPROJECTVERSIONLOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_MAPPDSERVICENJIRA");
+//        armsInstaller.makeDataBase("T_ARMS_MAPPDSERVICENJIRALOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICE");
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICELOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICEVERSION");
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICEVERSIONLOG");
+//
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICEVERSION");
+//        armsInstaller.makeDataBase("T_ARMS_PDSERVICEVERSIONLOG");
+
 
         return ResponseEntity
                 .ok(CommonResponse.success(armsInstaller.makeDataBase()));

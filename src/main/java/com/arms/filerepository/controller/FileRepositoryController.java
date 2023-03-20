@@ -11,7 +11,7 @@
  */
 package com.arms.filerepository.controller;
 
-import com.arms.filerepository.model.FileRepositoryDTO;
+import com.arms.filerepository.model.FileRepositoryEntity;
 import com.arms.filerepository.service.FileRepository;
 import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import com.egovframework.ple.treeframework.util.PropertiesReader;
@@ -39,7 +39,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping(value = {"/arms/fileRepository"})
-public class FileRepositoryController extends TreeAbstractController<FileRepository, FileRepositoryDTO> {
+public class FileRepositoryController extends TreeAbstractController<FileRepository, FileRepositoryEntity> {
 
     @Autowired
     @Qualifier("fileRepository")
@@ -54,15 +54,15 @@ public class FileRepositoryController extends TreeAbstractController<FileReposit
 
     @ResponseBody
     @RequestMapping(value = "/getFilesByNode.do", method = RequestMethod.GET)
-    public ModelAndView getFilesByNode(FileRepositoryDTO fileRepositoryDTO, HttpServletRequest request) throws Exception {
+    public ModelAndView getFilesByNode(FileRepositoryEntity fileRepositoryEntity, HttpServletRequest request) throws Exception {
 
         ParameterParser parser = new ParameterParser(request);
 
-        fileRepositoryDTO.setWhere("fileIdLink", parser.getLong("fileIdlink"));
-        fileRepositoryDTO.setWhere("c_title", fileRepositoryDTO.getC_title());
-        List<FileRepositoryDTO> list = fileRepository.getChildNode(fileRepositoryDTO);
+        fileRepositoryEntity.setWhere("fileIdLink", parser.getLong("fileIdlink"));
+        fileRepositoryEntity.setWhere("c_title", fileRepositoryEntity.getC_title());
+        List<FileRepositoryEntity> list = fileRepository.getChildNode(fileRepositoryEntity);
 
-        HashMap<String, List<FileRepositoryDTO>> map = new HashMap();
+        HashMap<String, List<FileRepositoryEntity>> map = new HashMap();
         map.put("files", list);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
@@ -76,9 +76,9 @@ public class FileRepositoryController extends TreeAbstractController<FileReposit
     public ModelAndView deleteFileByNode(@PathVariable(value ="fileId") Long fileId, ModelMap model,
                                          HttpServletRequest request) throws Exception {
 
-        FileRepositoryDTO fileRepositoryDTO = new FileRepositoryDTO();
-        fileRepositoryDTO.setC_id(fileId);
-        int result = fileRepository.removeNode(fileRepositoryDTO);
+        FileRepositoryEntity fileRepositoryEntity = new FileRepositoryEntity();
+        fileRepositoryEntity.setC_id(fileId);
+        int result = fileRepository.removeNode(fileRepositoryEntity);
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
         modelAndView.addObject("result", result);
@@ -94,15 +94,15 @@ public class FileRepositoryController extends TreeAbstractController<FileReposit
         PropertiesReader propertiesReader = new PropertiesReader("egovframework/egovProps/globals.properties");
         String uploadPath = propertiesReader.getProperty("Globals.fileStorePath");
 
-        FileRepositoryDTO fileRepositoryDTO = new FileRepositoryDTO();
-        fileRepositoryDTO.setWhere("c_id", fileId);
-        FileRepositoryDTO returnFileRepositoryDTO = fileRepository.getNode(fileRepositoryDTO);
+        FileRepositoryEntity fileRepositoryEntity = new FileRepositoryEntity();
+        fileRepositoryEntity.setWhere("c_id", fileId);
+        FileRepositoryEntity returnFileRepositoryEntity = fileRepository.getNode(fileRepositoryEntity);
 
         EgovFormBasedFileUtil.downloadFile(response, uploadPath
-                , returnFileRepositoryDTO.getServerSubPath()
-                , returnFileRepositoryDTO.getPhysicalName()
-                , returnFileRepositoryDTO.getContentType()
-                , returnFileRepositoryDTO.getFileName());
+                , returnFileRepositoryEntity.getServerSubPath()
+                , returnFileRepositoryEntity.getPhysicalName()
+                , returnFileRepositoryEntity.getContentType()
+                , returnFileRepositoryEntity.getFileName());
 
     }
 

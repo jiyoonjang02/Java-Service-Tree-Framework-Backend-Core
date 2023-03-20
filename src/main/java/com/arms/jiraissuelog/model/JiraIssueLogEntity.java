@@ -26,12 +26,12 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_JIRAISSUELOG")
+@Table(name = "T_ARMS_JIRAISSUE_LOG")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "S_T_ARMS_JIRAISSUELOG", sequenceName = "S_T_ARMS_JIRAISSUELOG", allocationSize = 1)
+@SequenceGenerator(name = "S_T_ARMS_JIRAISSUE_LOG", sequenceName = "S_T_ARMS_JIRAISSUE_LOG", allocationSize = 1)
 public class JiraIssueLogEntity extends TreeSearchEntity implements Serializable {
 
     public JiraIssueLogEntity() {
@@ -45,7 +45,7 @@ public class JiraIssueLogEntity extends TreeSearchEntity implements Serializable
 
  	@Override
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_JIRAISSUELOG")
+    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_JIRAISSUE_LOG")
     @Column(name = "c_id")
     public Long getC_id() {
         return super.getC_id();
