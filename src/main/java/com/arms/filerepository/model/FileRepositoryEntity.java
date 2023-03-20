@@ -13,6 +13,7 @@ package com.arms.filerepository.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import org.hibernate.annotations.Cache;
@@ -159,6 +160,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     /*
      * Extend Bean Field
      */
+    @JsonIgnore
     private Boolean copyBooleanValue;
 
     @Transient
