@@ -49,7 +49,7 @@ public abstract class TreePaginatedEntity extends TreeBaseEntity implements Seri
 
     /** firstIndex */
     @JsonIgnore
-    private int firstIndex = 1;
+    private int firstIndex = 0;
 
     /** lastIndex */
     @JsonIgnore

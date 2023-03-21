@@ -16,21 +16,29 @@ spring:
       max-request-size: 10240MB
   datasource:
     #Hibernate
-    url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
-    driverClassName: oracle.jdbc.driver.OracleDriver
-    username: OPERATION_DB
-    password: OPERATION_DB_1234
+    url: jdbc:mysql://192.168.25.46:3306/aRMS?characterEncoding=UTF-8&useLegacyDatetimeCode=false
+    driverClassName: com.mysql.cj.jdbc.Driver
+    username: mysqluser
+    password: mysqluserpassword
     #mybatis
     hikari:
-      driver-class-name: oracle.jdbc.driver.OracleDriver
-      jdbc-url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
-      username: OPERATION_DB
-      password: OPERATION_DB_1234
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://192.168.25.46:3306/aRMS?characterEncoding=UTF-8&useLegacyDatetimeCode=false
+      username: mysqluser
+      password: mysqluserpassword
+  flyway:
+    enabled: true
+    url: jdbc:mysql://192.168.25.46:3306/aRMS?characterEncoding=UTF-8&useLegacyDatetimeCode=false
+    user: mysqluser
+    password: mysqluserpassword
+    baseline-on-migrate: true           # flyway_schema_history 테이블을 자동으로 생성할지 여부
+    locations: classpath:com/arms/db
+
   jpa:
     open-in-view: false
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.Oracle10gDialect
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         show_sql: true
         format_sql: true
         use_sql_comments: false
@@ -60,7 +68,7 @@ server:
 
 # Database configuration props
 database:
-  driver: oracle.jdbc.driver.OracleDriver
-  url: jdbc:oracle:thin:@db.313.co.kr:1521:orcl
-  username: OPERATION_DB
-  password: OPERATION_DB_1234
+  driver: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://192.168.25.46:3306/aRMS?characterEncoding=UTF-8&useLegacyDatetimeCode=false
+  username: mysqluser
+  password: mysqluserpassword

@@ -11,7 +11,7 @@
  */
 package com.arms.pdserviceversion.service;
 
-import com.arms.pdserviceversion.model.PdServiceVersionDTO;
+import com.arms.pdserviceversion.model.PdServiceVersionEntity;
 import com.egovframework.ple.treeframework.service.TreeServiceImpl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
@@ -28,27 +28,27 @@ public class PdServiceVersionImpl extends TreeServiceImpl implements PdServiceVe
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @Override
-    public List<PdServiceVersionDTO> getVersionListByPdService(PdServiceVersionDTO pdServiceVersionDTO) throws Exception {
+    public List<PdServiceVersionEntity> getVersionListByPdService(PdServiceVersionEntity pdServiceVersionEntity) throws Exception {
 
-        pdServiceVersionDTO.setOrder(Order.asc("c_left"));
-        pdServiceVersionDTO.setWhere("c_pdservice_link", pdServiceVersionDTO.getC_id().toString());
-        List<PdServiceVersionDTO> pdServiceVersionDTOS = this.getChildNode(pdServiceVersionDTO);
-        logger.info("UserPdServiceVersionController ::  getVersion :: pdServiceVersionDTOS = " + pdServiceVersionDTOS.size());
+        pdServiceVersionEntity.setOrder(Order.asc("c_left"));
+        pdServiceVersionEntity.setWhere("c_pdservice_link", pdServiceVersionEntity.getC_id().toString());
+        List<PdServiceVersionEntity> pdServiceVersionEntities = this.getChildNode(pdServiceVersionEntity);
+        logger.info("UserPdServiceVersionController ::  getVersion :: pdServiceVersionDTOS = " + pdServiceVersionEntities.size());
 
-        return pdServiceVersionDTOS;
+        return pdServiceVersionEntities;
     }
 
     @Override
-    public List<PdServiceVersionDTO> getVersionListByCids(List<Long> cids) throws Exception {
+    public List<PdServiceVersionEntity> getVersionListByCids(List<Long> cids) throws Exception {
 
-        PdServiceVersionDTO versionDTO = new PdServiceVersionDTO();
+        PdServiceVersionEntity versionDTO = new PdServiceVersionEntity();
         Criterion criterion = Restrictions.in("c_id", cids);
 
         versionDTO.getCriterions().add(criterion);
 
-        List<PdServiceVersionDTO> pdServiceVersionDTOS = this.getChildNode(versionDTO);
-        logger.info("UserPdServiceVersionController ::  getVersions :: pdServiceVersionDTOS = " + pdServiceVersionDTOS.size());
+        List<PdServiceVersionEntity> pdServiceVersionEntities = this.getChildNode(versionDTO);
+        logger.info("UserPdServiceVersionController ::  getVersions :: pdServiceVersionDTOS = " + pdServiceVersionEntities.size());
 
-        return pdServiceVersionDTOS;
+        return pdServiceVersionEntities;
     }
 }

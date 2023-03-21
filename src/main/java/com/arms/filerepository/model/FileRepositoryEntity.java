@@ -32,12 +32,11 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "S_T_ARMS_FILEREPOSITORY", sequenceName = "S_T_ARMS_FILEREPOSITORY", allocationSize = 1)
 public class FileRepositoryEntity extends TreeSearchEntity implements Serializable {
 
     @Override
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_FILEREPOSITORY")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "c_id")
     public Long getC_id() {
         return super.getC_id();
@@ -68,6 +67,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
 
 
     @Column(name="C_FILE_NAME")
+    @Type(type="text")
     public String getFileName() {
         return fileName;
     }
@@ -77,6 +77,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_CONTENT_TYPE")
+    @Type(type="text")
     public String getContentType() {
         return contentType;
     }
@@ -86,6 +87,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_SERVER_SUB_PATH")
+    @Type(type="text")
     public String getServerSubPath() {
         return serverSubPath;
     }
@@ -95,6 +97,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_PHYSICAL_NAME")
+    @Type(type="text")
     public String getPhysicalName() {
         return physicalName;
     }
@@ -113,6 +116,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_NAME")
+    @Type(type="text")
     public String getName() {
         return name;
     }
@@ -122,6 +126,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_URL")
+    @Type(type="text")
     public String getUrl() {
         return url;
     }
@@ -131,6 +136,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_THUMBNAIL_URL")
+    @Type(type="text")
     public String getThumbnailUrl() {
         return thumbnailUrl;
     }
@@ -140,6 +146,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_DELETE_URL")
+    @Type(type="text")
     public String getDelete_url() {
         return delete_url;
     }
@@ -149,6 +156,7 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     }
 
     @Column(name="C_DELETE_TYPE")
+    @Type(type="text")
     public String getDelete_type() {
         return delete_type;
     }

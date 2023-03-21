@@ -33,7 +33,6 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "S_T_ARMS_FILEREPOSITORY_LOG", sequenceName = "S_T_ARMS_FILEREPOSITORY_LOG", allocationSize = 1)
 public class FileRepositoryLogEntity extends TreeSearchEntity implements Serializable {
 
     public FileRepositoryLogEntity() {
@@ -47,7 +46,7 @@ public class FileRepositoryLogEntity extends TreeSearchEntity implements Seriali
 
  	@Override
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_FILEREPOSITORY_LOG")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "c_id")
     public Long getC_id() {
         return super.getC_id();

@@ -33,12 +33,11 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-@SequenceGenerator(name = "S_T_ARMS_PDSERVICE", sequenceName = "S_T_ARMS_PDSERVICE", allocationSize = 1)
 public class PdServiceEntity extends TreeSearchEntity implements Serializable {
 
     @Override
     @Id
-    @GeneratedValue(strategy= GenerationType.SEQUENCE, generator="S_T_ARMS_PDSERVICE")
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "c_id")
     public Long getC_id() {
         return super.getC_id();
@@ -50,36 +49,46 @@ public class PdServiceEntity extends TreeSearchEntity implements Serializable {
     private String c_contents;
 
     @Column(name="c_etc")
+    @Type(type="text")
     private String c_etc;
 
     @Column(name="c_owner")
+    @Type(type="text")
     private String c_owner;
 
     @Column(name="c_reviewer01")
+    @Type(type="text")
     private String c_reviewer01;
 
     @Column(name="c_reviewer02")
+    @Type(type="text")
     private String c_reviewer02;
 
     @Column(name="c_reviewer03")
+    @Type(type="text")
     private String c_reviewer03;
 
     @Column(name="c_reviewer04")
+    @Type(type="text")
     private String c_reviewer04;
 
     @Column(name="c_reviewer05")
     private String c_reviewer05;
 
     @Column(name="c_writer_name")
+    @Type(type="text")
     private String c_writer_name;
 
     @Column(name="c_writer_cn")
+    @Type(type="text")
     private String c_writer_cn;
 
     @Column(name="c_writer_mail")
+    @Type(type="text")
     private String c_writer_mail;
 
     @Column(name="c_writer_date")
+    @Type(type="text")
     private String c_writer_date;
 
     @Column(name="c_fileid_link")

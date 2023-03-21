@@ -14,7 +14,7 @@ package com.arms.pdservice.controller;
 import com.arms.filerepository.service.FileRepository;
 import com.arms.pdservice.model.PdServiceEntity;
 import com.arms.pdservice.service.PdService;
-import com.arms.pdserviceversion.model.PdServiceVersionDTO;
+import com.arms.pdserviceversion.model.PdServiceVersionEntity;
 import com.arms.pdserviceversion.service.PdServiceVersion;
 import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import com.egovframework.ple.treeframework.util.FileHandler;
@@ -100,12 +100,12 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             //pdService.setDynamicReqStatusDB(addedNode);
 
             //Default Version 생성
-            PdServiceVersionDTO pdServiceVersionDTO = new PdServiceVersionDTO();
-            pdServiceVersionDTO.setRef(2L);
-            pdServiceVersionDTO.setC_title("BaseVersion");
-            pdServiceVersionDTO.setC_type("default");
-            pdServiceVersionDTO.setC_pdservice_link(addedNode.getC_id().toString());
-            pdServiceVersion.addNode(pdServiceVersionDTO);
+            PdServiceVersionEntity pdServiceVersionEntity = new PdServiceVersionEntity();
+            pdServiceVersionEntity.setRef(2L);
+            pdServiceVersionEntity.setC_title("BaseVersion");
+            pdServiceVersionEntity.setC_type("default");
+            pdServiceVersionEntity.setC_pdservice_link(addedNode.getC_id().toString());
+            pdServiceVersion.addNode(pdServiceVersionEntity);
 
             ModelAndView modelAndView = new ModelAndView("jsonView");
             modelAndView.addObject("result", addedNode);

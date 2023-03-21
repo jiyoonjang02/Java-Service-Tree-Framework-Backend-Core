@@ -11,14 +11,14 @@
  */
 package com.arms.pdserviceversion.service;
 
-import com.arms.pdserviceversion.model.PdServiceVersionDTO;
+import com.arms.pdserviceversion.model.PdServiceVersionEntity;
 import com.egovframework.ple.treeframework.service.TreeService;
 
 import java.util.List;
 
 public interface PdServiceVersion extends TreeService {
 
-    public List<PdServiceVersionDTO> getVersionListByPdService(PdServiceVersionDTO pdServiceVersionDTO) throws Exception;
+    public List<PdServiceVersionEntity> getVersionListByPdService(PdServiceVersionEntity pdServiceVersionEntity) throws Exception;
 
-    public List<PdServiceVersionDTO> getVersionListByCids(List<Long> pdServiceVersionDTO) throws Exception;
+    public List<PdServiceVersionEntity> getVersionListByCids(List<Long> pdServiceVersionDTO) throws Exception;
 }

@@ -23,7 +23,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.AllArgsConstructor;
-import com.arms.filerepositorylog.dao.FileRepositoryLogRepository;
 
 
 @AllArgsConstructor
@@ -31,7 +30,5 @@ import com.arms.filerepositorylog.dao.FileRepositoryLogRepository;
 public class FileRepositoryLogImpl extends TreeServiceImpl implements FileRepositoryLog{
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
-	private final FileRepositoryLogRepository fileRepositoryLogRepository;
 
 }

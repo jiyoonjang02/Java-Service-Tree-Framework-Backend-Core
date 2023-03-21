@@ -41,7 +41,7 @@ public class PdServiceImpl extends TreeServiceImpl implements PdService {
         pdServiceEntity.setOrder(Order.desc("c_id"));
         Criterion criterion = Restrictions.not(
                 // replace "id" below with property name, depending on what you're filtering against
-                Restrictions.in("c_id", new Object[] {1L, 2L})
+                Restrictions.in("c_id", new Object[] {new Long(1), new Long(2)})
         );
         pdServiceEntity.getCriterions().add(criterion);
         List<PdServiceEntity> list = this.getChildNode(pdServiceEntity);

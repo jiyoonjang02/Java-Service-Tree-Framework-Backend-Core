@@ -1,0 +1,234 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 2147483648 bytes for G1 virtual space
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   The process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3760), pid=521252, tid=522560
+#
+# JRE version:  (17.0.5+1) (build )
+# Java VM: OpenJDK 64-Bit Server VM (17.0.5+1-b653.25, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: git4idea.http.GitAskPassApp Username for 'https://github.com': 
+
+Host: Intel(R) Xeon(R) CPU           X5680  @ 3.33GHz, 24 cores, 143G,  Windows 7 , 64 bit Build 7601 (6.1.7601.24545)
+Time: Mon Mar 20 23:22:15 2023 대한민국 표준시 elapsed time: 0.019037 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x00000000004256b0):  JavaThread "Unknown thread" [_thread_in_vm, id=522560, stack(0x00000000021a0000,0x00000000022a0000)]
+
+Stack: [0x00000000021a0000,0x00000000022a0000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6830ca]
+V  [jvm.dll+0x83f4c4]
+V  [jvm.dll+0x840c6e]
+V  [jvm.dll+0x8412d3]
+V  [jvm.dll+0x2490b5]
+V  [jvm.dll+0x67ff99]
+V  [jvm.dll+0x6744aa]
+V  [jvm.dll+0x308f2b]
+V  [jvm.dll+0x3103e6]
+V  [jvm.dll+0x36013e]
+V  [jvm.dll+0x36036f]
+V  [jvm.dll+0x2df018]
+V  [jvm.dll+0x2dff84]
+V  [jvm.dll+0x810d91]
+V  [jvm.dll+0x36df31]
+V  [jvm.dll+0x7f028c]
+V  [jvm.dll+0x3f0cbf]
+V  [jvm.dll+0x3f2801]
+C  [jli.dll+0x526b]
+C  [ucrtbase.DLL+0x1cab0]
+C  [kernel32.dll+0x1556d]
+C  [ntdll.dll+0x5372d]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000007fee64e8f98, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+
+Other Threads:
+  0x000000001661fa20 GCTaskThread "GC Thread#0" [stack: 0x000000005db80000,0x000000005dc80000] [id=522060]
+  0x0000000000447450 ConcurrentGCThread "G1 Main Marker" [stack: 0x000000005def0000,0x000000005dff0000] [id=510700]
+  0x00000000004cf7b0 ConcurrentGCThread "G1 Conc#0" [stack: 0x000000005e120000,0x000000005e220000] [id=521944]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000007fee5c9fbd7]
+
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x000000000041f560] Heap_lock - owner thread: 0x00000000004256b0
+
+Heap address: 0x0000001001000000, size: 30688 MB, Compressed Oops mode: Non-zero disjoint base: 0x0000001000000000, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 0.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+<Empty>
+
+Heap:
+ garbage-first heap   total 0K, used 0K [0x0000001001000000, 0x000000177f000000)
+  region size 16384K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x000007fee608cd59]
+
+GC Heap History (0 events):
+No events
+
+Dll operation events (1 events):
+Event: 0.009 Loaded shared library C:\DEV\ideaIU-2022.3.2.win\jbr\bin\java.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x000000013fce0000 - 0x000000013fcea000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\java.exe
+0x0000000077850000 - 0x00000000779ef000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000077630000 - 0x000000007774f000 	C:\Windows\system32\kernel32.dll
+0x000007fefd5d0000 - 0x000007fefd637000 	C:\Windows\system32\KERNELBASE.dll
+0x000007feefb80000 - 0x000007feefb97000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\jli.dll
+0x000007fefb320000 - 0x000007fefb515000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.24483_none_e372d88f30fbb845\COMCTL32.dll
+0x000007feff780000 - 0x000007feff81f000 	C:\Windows\system32\msvcrt.dll
+0x000007fefd770000 - 0x000007fefd7d7000 	C:\Windows\system32\GDI32.dll
+0x0000000077750000 - 0x000000007784a000 	C:\Windows\system32\USER32.dll
+0x000007feff3c0000 - 0x000007feff3ce000 	C:\Windows\system32\LPK.dll
+0x000007fefde60000 - 0x000007fefdf2b000 	C:\Windows\system32\USP10.dll
+0x000007fefd7e0000 - 0x000007fefd851000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fef84a0000 - 0x000007fef84bb000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\VCRUNTIME140.dll
+0x000007fef84e0000 - 0x000007fef84e4000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-runtime-l1-1-0.dll
+0x000007feea660000 - 0x000007feea755000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\ucrtbase.DLL
+0x000007fef8490000 - 0x000007fef8493000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-timezone-l1-1-0.dll
+0x000007fef8410000 - 0x000007fef8413000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-file-l2-1-0.dll
+0x000007fef8360000 - 0x000007fef8363000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-localization-l1-2-0.dll
+0x000007fef8090000 - 0x000007fef8093000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-synch-l1-2-0.dll
+0x000007fef8040000 - 0x000007fef8043000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-processthreads-l1-1-1.dll
+0x000007fef7ee0000 - 0x000007fef7ee3000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-core-file-l1-2-0.dll
+0x000007fef7ed0000 - 0x000007fef7ed3000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-heap-l1-1-0.dll
+0x000007fef7ec0000 - 0x000007fef7ec4000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-string-l1-1-0.dll
+0x000007fef7eb0000 - 0x000007fef7eb4000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-stdio-l1-1-0.dll
+0x000007fef7ea0000 - 0x000007fef7ea4000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-convert-l1-1-0.dll
+0x000007fef7e90000 - 0x000007fef7e93000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-environment-l1-1-0.dll
+0x000007fef7e80000 - 0x000007fef7e83000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-filesystem-l1-1-0.dll
+0x000007fef7e70000 - 0x000007fef7e75000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-math-l1-1-0.dll
+0x000007fef7e40000 - 0x000007fef7e43000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-locale-l1-1-0.dll
+0x000007feff250000 - 0x000007feff27e000 	C:\Windows\system32\IMM32.DLL
+0x000007feff820000 - 0x000007feff92b000 	C:\Windows\system32\MSCTF.dll
+0x000007fef7e30000 - 0x000007fef7e3c000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\vcruntime140_1.dll
+0x000007fef3180000 - 0x000007fef320d000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\msvcp140.dll
+0x000007fef7e20000 - 0x000007fef7e23000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-time-l1-1-0.dll
+0x000007fef7e10000 - 0x000007fef7e13000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\api-ms-win-crt-utility-l1-1-0.dll
+0x000007fee59b0000 - 0x000007fee661b000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\server\jvm.dll
+0x000007feffa60000 - 0x000007feffb3b000 	C:\Windows\system32\ADVAPI32.dll
+0x000007fefe310000 - 0x000007fefe32f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007feff930000 - 0x000007feffa5c000 	C:\Windows\system32\RPCRT4.dll
+0x000007fef3a20000 - 0x000007fef3a29000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefde10000 - 0x000007fefde5d000 	C:\Windows\system32\WS2_32.dll
+0x000007fefd760000 - 0x000007fefd768000 	C:\Windows\system32\NSI.dll
+0x000007fefa0b0000 - 0x000007fefa0eb000 	C:\Windows\system32\WINMM.dll
+0x000007fefcdd0000 - 0x000007fefcddc000 	C:\Windows\system32\VERSION.dll
+0x000007fef87f0000 - 0x000007fef87fa000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\jimage.dll
+0x000007fef50d0000 - 0x000007fef51f5000 	C:\Windows\system32\DBGHELP.DLL
+0x000007fef83e0000 - 0x000007fef8405000 	C:\DEV\ideaIU-2022.3.2.win\jbr\bin\java.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\DEV\ideaIU-2022.3.2.win\jbr\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.24483_none_e372d88f30fbb845;C:\DEV\ideaIU-2022.3.2.win\jbr\bin\server
+
+VM Arguments:
+java_command: git4idea.http.GitAskPassApp Username for 'https://github.com': 
+java_class_path (initial): C:/DEV/ideaIU-2022.3.2.win/plugins/vcs-git/lib/git4idea-rt.jar;C:/DEV/ideaIU-2022.3.2.win/lib/externalProcess-rt.jar;C:/DEV/ideaIU-2022.3.2.win/lib/app.jar;C:/DEV/ideaIU-2022.3.2.win/lib/3rd-party-rt.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 5                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 18                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 16777216                                  {product} {ergonomic}
+    uintx GCDrainStackTargetSize                   = 64                                        {product} {ergonomic}
+   size_t InitialHeapSize                          = 2147483648                                {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 32178700288                               {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 16777216                                  {product} {ergonomic}
+   size_t MinHeapSize                              = 16777216                                  {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 32178700288                            {manageable} {ergonomic}
+     bool UseCompressedClassPointers               = true                           {product lp64_product} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags
+ #1: stderr all=off uptime,level,tags
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk1.8.0_181
+PATH=C:\Program Files\Git\mingw64/libexec/git-core;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\Administrator\bin;C:\Program Files\Microsoft\jdk-11.0.18.10-hotspot\bin;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Black Duck Software\protexIP\bin;C:\Program Files\HP_Fortify\HP_Fortify_SCA_and_Apps_4.31\bin;C:\ProgramData\Oracle\Java\javapath;C:\app\Administrator\product\11.2.0\dbhome_2\bin;C:\Program Files\Java\jdk1.8.0_181\bin;C:\app\Administrator\product\11.2.0\client_1\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Java\jdk1.8.0_181\bin;C:\Program Files\Git\cmd;C:\Program Files\TortoiseSVN\bin;C:\Program Files (x86)\Common Files\Acronis\VirtualFile\;C:\Program Files (x86)\Common Files\Acronis\VirtualFile64\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\DEV\apache-maven-3.0.5\bin;C:\Subversion\bin;C:\Program Files (x86)\Skype\Phone\;C:\HashiCorp\Vagrant\bin;C:\DEV\doxygen\bin;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\DEV\nodejs;C:\Users\Administrator\AppData\Roaming\npm;C:\graphviz-2.38\bin;C:\DEV\nodejs\;C:\Users\Administrator\AppData\Roaming\npm;C:\Program Files\Docker Toolbox
+USERNAME=Administrator
+DISPLAY=:0.0
+LC_ALL=en_US.UTF-8
+TERM=cygwin
+TMPDIR=C:/Users/ADMINI~1/AppData/Local/Temp
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=Intel64 Family 6 Model 44 Stepping 2, GenuineIntel
+TMP=C:\Users\ADMINI~1\AppData\Local\Temp
+TEMP=C:\Users\ADMINI~1\AppData\Local\Temp
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 7 , 64 bit Build 7601 (6.1.7601.24545)
+OS uptime: 4 days 8:17 hours
+
+CPU: total 24 (initial active 24) (6 cores per cpu, 2 threads per core) family 6 model 44 stepping 2 microcode 0x0, cx8, cmov, fxsr, ht, mmx, sse, sse2, sse3, ssse3, sse4.1, sse4.2, popcnt, tsc, tscinvbit, aes, clmul, clflush
+
+Memory: 4k page, system-wide physical 147443M (13681M free)
+TotalPageFile size 147441M (AvailPageFile size 1949M)
+current process WorkingSet (physical memory assigned to process): 14M, peak: 14M
+current process commit charge ("private bytes"): 165M, peak: 2212M
+
+vm_info: OpenJDK 64-Bit Server VM (17.0.5+1-b653.25) for windows-amd64 JRE (17.0.5+1-b653.25), built on 2023-01-04 by "builduser" with MS VC++ 16.10 / 16.11 (VS2019)
+
+END.

@@ -11,7 +11,7 @@
  */
 package com.arms.pdserviceversion.controller;
 
-import com.arms.pdserviceversion.model.PdServiceVersionDTO;
+import com.arms.pdserviceversion.model.PdServiceVersionEntity;
 import com.arms.pdserviceversion.service.PdServiceVersion;
 import com.egovframework.ple.treeframework.controller.TreeAbstractController;
 import com.egovframework.ple.treeframework.util.StringUtility;
@@ -37,7 +37,7 @@ import java.util.List;
 @Slf4j
 @Controller
 @RequestMapping(value = {"/arms/pdServiceVersion"})
-public class PdServiceVersionController extends TreeAbstractController<PdServiceVersion, PdServiceVersionDTO> {
+public class PdServiceVersionController extends TreeAbstractController<PdServiceVersion, PdServiceVersionEntity> {
 
     @Autowired
     @Qualifier("pdServiceVersion")
@@ -51,16 +51,16 @@ public class PdServiceVersionController extends TreeAbstractController<PdService
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
     @RequestMapping(value="/getVersionList.do",method= RequestMethod.GET)
-    public ModelAndView getVersionList(PdServiceVersionDTO pdServiceVersionDTO, ModelMap model,
+    public ModelAndView getVersionList(PdServiceVersionEntity pdServiceVersionEntity, ModelMap model,
                                        HttpServletRequest request) throws Exception {
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", pdServiceVersion.getVersionListByPdService(pdServiceVersionDTO));
+        modelAndView.addObject("result", pdServiceVersion.getVersionListByPdService(pdServiceVersionEntity));
         return modelAndView;
     }
 
     @RequestMapping(value="/getVersionListByCids.do",method= RequestMethod.GET)
-    public ModelAndView getVersionListByCids(PdServiceVersionDTO pdServiceVersionDTO, ModelMap model,
+    public ModelAndView getVersionListByCids(PdServiceVersionEntity pdServiceVersionEntity, ModelMap model,
                                              HttpServletRequest request) throws Exception {
 
         ParameterParser parser = new ParameterParser(request);
@@ -77,14 +77,14 @@ public class PdServiceVersionController extends TreeAbstractController<PdService
     }
 
     @RequestMapping(value="/updateVersionNode.do", method= RequestMethod.POST)
-    public ModelAndView updateVersionNode(PdServiceVersionDTO pdServiceVersionDTO,
+    public ModelAndView updateVersionNode(PdServiceVersionEntity pdServiceVersionEntity,
                                           BindingResult bindingResult) throws Exception {
         if (bindingResult.hasErrors())
             throw new RuntimeException();
 
 
         ModelAndView modelAndView = new ModelAndView("jsonView");
-        modelAndView.addObject("result", pdServiceVersion.updateNode(pdServiceVersionDTO));
+        modelAndView.addObject("result", pdServiceVersion.updateNode(pdServiceVersionEntity));
 
         return modelAndView;
     }
