@@ -104,7 +104,7 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             pdServiceVersionEntity.setRef(2L);
             pdServiceVersionEntity.setC_title("BaseVersion");
             pdServiceVersionEntity.setC_type("default");
-            pdServiceVersionEntity.setC_pdservice_link(addedNode.getC_id().toString());
+            pdServiceVersionEntity.setC_pdservice_link(addedNode.getC_id());
             pdServiceVersion.addNode(pdServiceVersionEntity);
 
             ModelAndView modelAndView = new ModelAndView("jsonView");

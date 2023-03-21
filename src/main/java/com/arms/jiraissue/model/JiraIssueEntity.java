@@ -9,7 +9,7 @@
  *  Written by 313 developer group <313@313.co.kr>, December 2010
  * </pre>
  */
-package com.arms.pdserviceversionlog.model;
+package com.arms.jiraissue.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
@@ -28,18 +28,18 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_PDSERVICEVERSION_LOG")
+@Table(name = "T_ARMS_JIRAISSUE")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PdServiceVersionLogEntity extends TreeSearchEntity implements Serializable {
+public class JiraIssueEntity extends TreeSearchEntity implements Serializable {
 
-    public PdServiceVersionLogEntity() {
+    public JiraIssueEntity() {
         super();
     }
 
-    public PdServiceVersionLogEntity(Boolean copyBooleanValue) {
+    public JiraIssueEntity(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
     }
@@ -52,21 +52,6 @@ public class PdServiceVersionLogEntity extends TreeSearchEntity implements Seria
         return super.getC_id();
     }
     //@Getter @Setter
-
-    @Type(type="text")
-    @Column(name = "c_start_date")
-    private String c_start_date;
-
-    @Type(type="text")
-    @Column(name = "c_end_date")
-    private String c_end_date;
-
-    @Column(name = "c_pdservice_link")
-    private Long c_pdservice_link;
-
-    @Lob
-    @Column(name="C_CONTENTS")
-    private String c_contents;
 
     /*
      * Extend Bean Field

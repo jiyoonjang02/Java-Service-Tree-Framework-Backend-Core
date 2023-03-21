@@ -218,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION_LOG` (
     `c_contents` longtext NULL,
     `c_start_date` text NULL,
     `c_end_date` text NULL,
-    `c_pdservice_link` text NULL
+    `c_pdservice_link` bigint(20) NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
 
@@ -237,7 +237,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION` (
     `c_contents` longtext NULL,
     `c_start_date` text NULL,
     `c_end_date` text NULL,
-    `c_pdservice_link` text NULL
+    `c_pdservice_link` bigint(20) NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
 
@@ -276,6 +276,405 @@ CREATE TRIGGER TG_DELETE_T_ARMS_PDSERVICEVERSION
     FOR EACH ROW
 BEGIN
     insert into T_ARMS_PDSERVICEVERSION_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
+END $$
+DELIMITER ;
+
+
+--
+-- Table structure for table `T_ARMS_JIRAISSUEPRIORITY`
+--
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY_LOG` (
+
+    `C_ID` bigint(20) NOT NULL COMMENT '노드 아이디',
+    `C_PARENTID` bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION` bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT` bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT` bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL` bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE` VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE` VARCHAR(255) COMMENT '노드 타입',
+
+    `C_METHOD`   text NULL COMMENT '노드 변경 행위',
+    `C_STATE`    text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `C_DATE`     date NULL COMMENT '노드 변경 시',
+
+    `c_jirapriority_id`     text NULL,
+    `c_jirapriority_desc`   text NULL,
+    `c_jirapriority_name`   text NULL,
+    `c_jirapriority_link`   text NULL
+
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (
+
+    `C_ID` bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
+    `C_PARENTID` bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION` bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT` bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT` bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL` bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE` VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE` VARCHAR(255) COMMENT '노드 타입',
+
+    `c_jirapriority_id`     text NULL,
+    `c_jirapriority_desc`   text NULL,
+    `c_jirapriority_name`   text NULL,
+    `c_jirapriority_link`   text NULL
+
+    ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+Insert into `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (1, 0, 0, 1, 4, 0, 'T_ARMS_JIRAISSUEPRIORITY', 'root');
+Insert into `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (2, 1, 0, 2, 3, 1, '제품(서비스) 버전', 'drive');
+
+
+DELIMITER $$
+CREATE TRIGGER TG_INSERT_T_ARMS_JIRAISSUEPRIORITY
+    BEFORE  INSERT ON T_ARMS_JIRAISSUEPRIORITY
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_JIRAISSUEPRIORITY_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이전데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_UPDATE_T_ARMS_JIRAISSUEPRIORITY
+    BEFORE  UPDATE ON T_ARMS_JIRAISSUEPRIORITY
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_JIRAISSUEPRIORITY_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'update','변경이전데이터',now());
+    insert into T_ARMS_JIRAISSUEPRIORITY_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이후데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_DELETE_T_ARMS_JIRAISSUEPRIORITY
+    BEFORE  DELETE ON T_ARMS_JIRAISSUEPRIORITY
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_JIRAISSUEPRIORITY_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
+END $$
+DELIMITER ;
+
+
+
+--
+-- Table structure for table `T_ARMS_REQADD`
+--
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD_LOG` (
+
+    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
+    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+
+    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
+    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `C_DATE`                date NULL COMMENT '노드 변경 시',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `C_REVIEWER01`          text NULL,
+    `C_REVIEWER01_STATUS`   text NULL,
+    `C_REVIEWER02`          text NULL,
+    `C_REVIEWER02_STATUS`   text NULL,
+    `C_REVIEWER03`          text NULL,
+    `C_REVIEWER03_STATUS`   text NULL,
+    `C_REVIEWER04`          text NULL,
+    `C_REVIEWER04_STATUS`   text NULL,
+    `C_REVIEWER05`          text NULL,
+    `C_REVIEWER05_STATUS`   text NULL,
+    `C_WRITER`              text NULL,
+    `C_WRITER_DATE`         text NULL,
+    `C_PRIORITY_LINK`       bigint(20) NULL,
+    `C_CONTENTS`            longtext NULL,
+    `C_REQ_STATUS_LINK`     bigint(20) NULL
+
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD` (
+
+    `C_ID` bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
+    `C_PARENTID` bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION` bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT` bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT` bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL` bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE` VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE` VARCHAR(255) COMMENT '노드 타입',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `C_REVIEWER01`          text NULL,
+    `C_REVIEWER01_STATUS`   text NULL,
+    `C_REVIEWER02`          text NULL,
+    `C_REVIEWER02_STATUS`   text NULL,
+    `C_REVIEWER03`          text NULL,
+    `C_REVIEWER03_STATUS`   text NULL,
+    `C_REVIEWER04`          text NULL,
+    `C_REVIEWER04_STATUS`   text NULL,
+    `C_REVIEWER05`          text NULL,
+    `C_REVIEWER05_STATUS`   text NULL,
+    `C_WRITER`              text NULL,
+    `C_WRITER_DATE`         text NULL,
+    `C_REQ_PRIORITY_LINK`   bigint(20) NULL,
+    `C_CONTENTS`            longtext NULL,
+    `C_REQ_STATUS_LINK`     bigint(20) NULL
+
+    ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+Insert into `aRMS`.`T_ARMS_REQADD` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (1, 0, 0, 1, 4, 0, 'T_ARMS_REQADD', 'root');
+Insert into `aRMS`.`T_ARMS_REQADD` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (2, 1, 0, 2, 3, 1, '요구사항', 'drive');
+
+
+DELIMITER $$
+CREATE TRIGGER TG_INSERT_T_ARMS_REQADD
+    BEFORE  INSERT ON T_ARMS_REQADD
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQADD_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이전데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_UPDATE_T_ARMS_REQADD
+    BEFORE  UPDATE ON T_ARMS_REQADD
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQADD_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'update','변경이전데이터',now());
+    insert into T_ARMS_REQADD_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이후데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_DELETE_T_ARMS_REQADD
+    BEFORE  DELETE ON T_ARMS_REQADD
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQADD_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
+END $$
+DELIMITER ;
+
+
+
+--
+-- Table structure for table `T_ARMS_REQCOMMENT`
+--
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT_LOG` (
+
+    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
+    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+
+    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
+    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `C_DATE`                date NULL COMMENT '노드 변경 시',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `c_req_link`            bigint(20) NULL,
+    `c_review_link`         bigint(20) NULL,
+    `c_sender`              text NULL,
+    `c_comment_date`        text NULL,
+    `c_comment`             text NULL
+
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT` (
+
+    `C_ID` bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
+    `C_PARENTID` bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION` bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT` bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT` bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL` bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE` VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE` VARCHAR(255) COMMENT '노드 타입',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `c_req_link`            bigint(20) NULL,
+    `c_review_link`         bigint(20) NULL,
+    `c_sender`              text NULL,
+    `c_comment_date`        text NULL,
+    `c_comment`             text NULL
+
+    ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+Insert into `aRMS`.`T_ARMS_REQCOMMENT` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (1, 0, 0, 1, 4, 0, 'T_ARMS_REQCOMMENT', 'root');
+Insert into `aRMS`.`T_ARMS_REQCOMMENT` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (2, 1, 0, 2, 3, 1, '요구사항', 'drive');
+
+
+DELIMITER $$
+CREATE TRIGGER TG_INSERT_T_ARMS_REQCOMMENT
+    BEFORE  INSERT ON T_ARMS_REQCOMMENT
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQCOMMENT_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이전데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_UPDATE_T_ARMS_REQCOMMENT
+    BEFORE  UPDATE ON T_ARMS_REQCOMMENT
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQCOMMENT_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'update','변경이전데이터',now());
+    insert into T_ARMS_REQCOMMENT_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이후데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_DELETE_T_ARMS_REQCOMMENT
+    BEFORE  DELETE ON T_ARMS_REQCOMMENT
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQCOMMENT_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
+END $$
+DELIMITER ;
+
+
+
+--
+-- Table structure for table `T_ARMS_REQREVIEW`
+--
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW_LOG` (
+
+    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
+    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+
+    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
+    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `C_DATE`                date NULL COMMENT '노드 변경 시',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `c_req_link`            bigint(20) NULL,
+
+    `c_review_sender`           text NULL,
+    `c_review_responder`        text NULL,
+    `c_review_creat_date`       text NULL,
+    `c_review_result_state`     text NULL,
+    `c_review_result_date`      text NULL
+
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW` (
+
+    `C_ID` bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
+    `C_PARENTID` bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `C_POSITION` bigint(20) NOT NULL COMMENT '노드 포지션',
+    `C_LEFT` bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `C_RIGHT` bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `C_LEVEL` bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `C_TITLE` VARCHAR(255) COMMENT '노드 명',
+    `C_TYPE` VARCHAR(255) COMMENT '노드 타입',
+
+    `C_PDSERVICE_LINK`      bigint(20) NULL,
+    `C_VERSION_LINK`        bigint(20) NULL,
+    `C_JIRA_LINK`           bigint(20) NULL,
+    `C_JIRA_VER_LINK`       bigint(20) NULL,
+    `C_ISSUE_LINK`          bigint(20) NULL,
+    `c_req_link`            bigint(20) NULL,
+
+    `c_review_sender`           text NULL,
+    `c_review_responder`        text NULL,
+    `c_review_creat_date`       text NULL,
+    `c_review_result_state`     text NULL,
+    `c_review_result_date`      text NULL
+
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='기본 트리 스키마 트리거 로그';
+
+
+Insert into `aRMS`.`T_ARMS_REQREVIEW` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (1, 0, 0, 1, 4, 0, 'T_ARMS_REQREVIEW', 'root');
+Insert into `aRMS`.`T_ARMS_REQREVIEW` (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+Values (2, 1, 0, 2, 3, 1, '요구사항', 'drive');
+
+
+DELIMITER $$
+CREATE TRIGGER TG_INSERT_T_ARMS_REQREVIEW
+    BEFORE  INSERT ON T_ARMS_REQREVIEW
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQREVIEW_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이전데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_UPDATE_T_ARMS_REQREVIEW
+    BEFORE  UPDATE ON T_ARMS_REQREVIEW
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQREVIEW_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'update','변경이전데이터',now());
+    insert into T_ARMS_REQREVIEW_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+    values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이후데이터',now());
+END $$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER TG_DELETE_T_ARMS_REQREVIEW
+    BEFORE  DELETE ON T_ARMS_REQREVIEW
+    FOR EACH ROW
+BEGIN
+    insert into T_ARMS_REQREVIEW_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
     values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
 END $$
 DELIMITER ;

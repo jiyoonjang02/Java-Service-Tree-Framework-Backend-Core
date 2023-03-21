@@ -158,6 +158,8 @@ dependencies {
 
     //Caused by: java.lang.ClassNotFoundException: org.springframework.security.web.savedrequest.DefaultSavedRequest
     implementation group: 'org.springframework.security', name: 'spring-security-web', version: '5.3.13.RELEASE'
+    // Caused by: java.lang.ClassNotFoundException: org.keycloak.adapters.springsecurity.token.KeycloakAuthenticationToken
+    implementation group: 'org.keycloak', name: 'keycloak-spring-security-adapter', version: '12.0.4'
 
 
     // hibernate
