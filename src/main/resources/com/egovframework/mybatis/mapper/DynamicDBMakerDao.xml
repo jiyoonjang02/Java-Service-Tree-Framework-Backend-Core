@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.arms.dynamicdbmaker.mapper.DynamicDBMakerDao">
+
+    <update id="ddlLogExecute" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+
+        CREATE TABLE IF NOT EXISTS ${c_title}_LOG (
+
+            `C_ID`              bigint(20) NOT NULL COMMENT '노드 아이디',
+            `C_PARENTID`        bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+            `C_POSITION`        bigint(20) NOT NULL COMMENT '노드 포지션',
+            `C_LEFT`            bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+            `C_RIGHT`           bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+            `C_LEVEL`           bigint(20) NOT NULL COMMENT '노드 DEPTH',
+            `C_TITLE`           VARCHAR(255) COMMENT '노드 명',
+            `C_TYPE`            VARCHAR(255) COMMENT '노드 타입',
+
+            `C_METHOD`          text NULL COMMENT '노드 변경 행위',
+            `C_STATE`           text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+            `C_DATE`            date NULL COMMENT '노드 변경 시',
+
+            `C_PDSERVICE_LINK`  bigint(20) NULL,
+            `C_VERSION_LINK`    bigint(20) NULL,
+            `C_JIRA_LINK`       bigint(20) NULL,
+            `C_JIRA_VER_LINK`   bigint(20) NULL,
+            `C_ISSUE_LINK`      bigint(20) NULL,
+
+            `C_REVIEWER01`          VARCHAR(255) NULL,
+            `C_REVIEWER01_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER02`          VARCHAR(255) NULL,
+            `C_REVIEWER02_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER03`          VARCHAR(255) NULL,
+            `C_REVIEWER03_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER04`          VARCHAR(255) NULL,
+            `C_REVIEWER04_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER05`          VARCHAR(255) NULL,
+            `C_REVIEWER05_STATUS`   VARCHAR(255) NULL,
+
+            `C_WRITER`              VARCHAR(255) NULL,
+            `C_WRITER_DATE`         VARCHAR(255) NULL,
+            `C_PRIORITY`            int NULL,
+            `C_CONTENTS`            longtext NULL,
+            `C_REQ_STATUS`          VARCHAR(255) NULL
+
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 테이블 로그';
+
+    </update>
+
+    <update id="ddlOrgExecute" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+
+        CREATE TABLE IF NOT EXISTS ${c_title} (
+
+            `C_ID`                  bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
+            `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+            `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
+            `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+            `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+            `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
+            `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
+            `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+
+            `C_PDSERVICE_LINK`      bigint(20) NULL,
+            `C_VERSION_LINK`        bigint(20) NULL,
+            `C_JIRA_LINK`           bigint(20) NULL,
+            `C_JIRA_VER_LINK`       bigint(20) NULL,
+            `C_ISSUE_LINK`          bigint(20) NULL,
+
+            `C_REVIEWER01`          VARCHAR(255) NULL,
+            `C_REVIEWER01_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER02`          VARCHAR(255) NULL,
+            `C_REVIEWER02_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER03`          VARCHAR(255) NULL,
+            `C_REVIEWER03_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER04`          VARCHAR(255) NULL,
+            `C_REVIEWER04_STATUS`   VARCHAR(255) NULL,
+            `C_REVIEWER05`          VARCHAR(255) NULL,
+            `C_REVIEWER05_STATUS`   VARCHAR(255) NULL,
+
+            `C_WRITER`              VARCHAR(255) NULL,
+            `C_WRITER_DATE`         VARCHAR(255) NULL,
+            `C_PRIORITY`            int NULL,
+            `C_CONTENTS`            longtext NULL,
+            `C_REQ_STATUS`          VARCHAR(255) NULL
+
+        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 테이블 로그';
+
+    </update>
+
+
+    <update id="dmlOrgExecute1" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+        Insert into ${c_title} (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+        Values (1, 0, 0, 1, 4, 0, 'REQADD Table', 'root');
+    </update>
+    <update id="dmlOrgExecute2" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+        Insert into ${c_title} (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE)
+        Values (2, 1, 0, 2, 3, 1, '요구사항', 'drive');
+    </update>
+
+
+    <update id="triggerInsertExecute" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+        CREATE TRIGGER TG_INSERT_${c_title}
+            BEFORE  INSERT ON ${c_title}
+            FOR EACH ROW
+        BEGIN
+            insert into ${c_title}_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+            values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이전데이터',now());
+        END;
+    </update>
+
+    <update id="triggerUpdateExecute" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+        CREATE TRIGGER TG_UPDATE_${c_title}
+            BEFORE  UPDATE ON ${c_title}
+            FOR EACH ROW
+        BEGIN
+            insert into ${c_title}_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+            values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'update','변경이전데이터',now());
+            insert into ${c_title}_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+            values (NEW.C_ID,NEW.C_PARENTID,NEW.C_POSITION,NEW.C_LEFT,NEW.C_RIGHT,NEW.C_LEVEL,NEW.C_TITLE,NEW.C_TYPE,'update','변경이후데이터',now());
+        END;
+    </update>
+
+    <update id="triggerDeleteExecute" parameterType="com.arms.dynamicdbmaker.model.DynamicDBMakerEntity">
+        CREATE TRIGGER TG_DELETE_${c_title}
+            BEFORE  DELETE ON ${c_title}
+            FOR EACH ROW
+        BEGIN
+            insert into ${c_title}_LOG (C_ID, C_PARENTID, C_POSITION, C_LEFT, C_RIGHT, C_LEVEL, C_TITLE, C_TYPE, C_METHOD, C_STATE, C_DATE)
+            values (OLD.C_ID,OLD.C_PARENTID,OLD.C_POSITION,OLD.C_LEFT,OLD.C_RIGHT,OLD.C_LEVEL,OLD.C_TITLE,OLD.C_TYPE,'delete','삭제된데이터',now());
+        END;
+    </update>
+
+
+</mapper>

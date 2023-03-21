@@ -11,17 +11,15 @@
  */
 package com.arms.pdservice.controller;
 
+import com.arms.dynamicdbmaker.service.DynamicDBMaker;
 import com.arms.filerepository.service.FileRepository;
 import com.arms.pdservice.model.PdServiceEntity;
 import com.arms.pdservice.service.PdService;
 import com.arms.pdserviceversion.model.PdServiceVersionEntity;
 import com.arms.pdserviceversion.service.PdServiceVersion;
 import com.egovframework.ple.treeframework.controller.TreeAbstractController;
-import com.egovframework.ple.treeframework.util.FileHandler;
-import com.egovframework.ple.treeframework.util.Util_TitleChecker;
+import com.egovframework.ple.treeframework.util.*;
 import com.egovframework.ple.treeframework.validation.group.AddNode;
-import com.egovframework.ple.treeframework.util.ParameterParser;
-import com.egovframework.ple.treeframework.util.EgovFormBasedFileVo;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -64,6 +62,10 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
     @Qualifier("pdServiceVersion")
     private PdServiceVersion pdServiceVersion;
 
+    @Autowired
+    @Qualifier("dynamicDBMaker")
+    private DynamicDBMaker dynamicDBMaker;
+
     @PostConstruct
     public void initialize() {
         setTreeService(pdService);
@@ -90,14 +92,12 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             PdServiceEntity addedNode = pdService.addNode(pdServiceEntity);
 
             //제품(서비스) 생성시 - 요구사항 TABLE 생성
-            //pdService.setDynamicReqAddDB(addedNode);
+            //제품(서비스) 생성시 - 요구사항 STATUS TABLE 생성
+            dynamicDBMaker.createSchema(addedNode.getC_id().toString());
 
             //C_ETC 컬럼에 요구사항 테이블 이름 기입
             addedNode.setC_etc(REQ_PREFIX_TABLENAME_BY_PDSERVICE + addedNode.getC_id().toString());
             pdService.updateNode(addedNode);
-
-            //제품(서비스) 생성시 - 요구사항 STATUS TABLE 생성
-            //pdService.setDynamicReqStatusDB(addedNode);
 
             //Default Version 생성
             PdServiceVersionEntity pdServiceVersionEntity = new PdServiceVersionEntity();
