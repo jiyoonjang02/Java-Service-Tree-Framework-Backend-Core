@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-03-23T10:50:50.658Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44" etag="0Y0LsfppDD6HYXzv2kZh" version="21.0.10" type="github">
+<mxfile host="app.diagrams.net" modified="2023-03-23T10:56:23.989Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44" etag="a1RGS91L8nZrVwCKy7ML" version="21.0.10" type="github">
   <diagram name="페이지-1" id="RUyc2Q7VVCUn38qS7GnB">
-    <mxGraphModel dx="1623" dy="1314" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1955" dy="1324" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -73,7 +73,7 @@
         <mxCell id="LiMFixPkiIBG6aPx5YbL-11" value="" style="fillColor=#F2931E;strokeColor=none;opacity=30;fontFamily=Courier New;" vertex="1" parent="1">
           <mxGeometry x="1080" y="660" width="630" height="280" as="geometry" />
         </mxCell>
-        <mxCell id="LiMFixPkiIBG6aPx5YbL-12" value="c_contents &lt; String : longtext &gt;&#xa;c_etc &lt; String : text &gt;&#xa;&#xa;c_owner &lt; String : text &gt;&#xa;c_reviewer01 &lt; String : text &gt;&#xa;c_reviewer02 &lt; String : text &gt;&#xa;c_reviewer03 &lt; String : text &gt;&#xa;c_reviewer04 &lt; String : text &gt;&#xa;c_reviewer05 &lt; String : text &gt;&#xa;c_writer_name &lt; String : text &gt;&#xa;c_writer_cn &lt; String : text &gt;&#xa;c_writer_mail &lt; String : text &gt;&#xa;c_writer_date &lt; String : text &gt;&#xa;c_fileid_link &lt; String : text &gt;" style="rounded=0;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontFamily=Courier New;fontSize=14;align=left;" vertex="1" parent="1">
+        <mxCell id="LiMFixPkiIBG6aPx5YbL-12" value="c_pdservice_contents &lt; String : longtext &gt;&#xa;c_pdservice_etc &lt; String : text &gt;&#xa;&#xa;c_pdservice_owner &lt; String : text &gt;&#xa;c_pdservice_reviewer01 &lt; String : text &gt;&#xa;c_pdservice_reviewer02 &lt; String : text &gt;&#xa;c_pdservice_reviewer03 &lt; String : text &gt;&#xa;c_pdservice_reviewer04 &lt; String : text &gt;&#xa;c_pdservice_reviewer05 &lt; String : text &gt;&#xa;c_pdservice_writer_name &lt; String : text &gt;&#xa;c_pdservice_writer_cn &lt; String : text &gt;&#xa;c_pdservice_writer_mail &lt; String : text &gt;&#xa;c_pdservice_writer_date &lt; String : text &gt;" style="rounded=0;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontFamily=Courier New;fontSize=14;align=left;" vertex="1" parent="1">
           <mxGeometry x="1095" y="670" width="600" height="260" as="geometry" />
         </mxCell>
         <mxCell id="LiMFixPkiIBG6aPx5YbL-13" value="" style="fillColor=#10739E;strokeColor=none;opacity=30;fontFamily=Courier New;" vertex="1" parent="1">
