@@ -311,7 +311,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT_LOG` (
     `c_contents`                longtext NULL,
     `c_etc`                     text NULL,
 
-    `c_jira_link`               text NULL,
+    `c_jira_url`               text NULL,
     `c_jira_id`                 text NULL,
     `c_jira_key`                text NULL,
     `c_jira_name`               text NULL,
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT_LOG` (
     `c_jira_avatar_24`          text NULL,
     `c_jira_avatar_16`          text NULL,
 
-    `c_jira_category_link`      text NULL,
+    `c_jira_category_url`      text NULL,
     `c_jira_category_id`        text NULL,
     `c_jira_category_name`      text NULL,
     `c_jira_category_desc`      text NULL
@@ -343,7 +343,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
     `c_contents`                longtext NULL,
     `c_etc`                     text NULL,
 
-    `c_jira_link`               text NULL,
+    `c_jira_url`               text NULL,
     `c_jira_id`                 text NULL,
     `c_jira_key`                text NULL,
     `c_jira_name`               text NULL,
@@ -353,7 +353,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
     `c_jira_avatar_24`          text NULL,
     `c_jira_avatar_16`          text NULL,
 
-    `c_jira_category_link`      text NULL,
+    `c_jira_category_url`      text NULL,
     `c_jira_category_id`        text NULL,
     `c_jira_category_name`      text NULL,
     `c_jira_category_desc`      text NULL
