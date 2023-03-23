@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2023-03-23T11:02:48.594Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44" etag="QKrraHB7YGp8HQIQf7NT" version="21.0.10" type="github">
+<mxfile host="app.diagrams.net" modified="2023-03-23T11:03:56.740Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36 Edg/111.0.1661.44" etag="o6qAmpwWuuUbYvqEffgR" version="21.0.10" type="github">
   <diagram name="페이지-1" id="RUyc2Q7VVCUn38qS7GnB">
     <mxGraphModel dx="1955" dy="1324" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -253,7 +253,7 @@
         <mxCell id="LiMFixPkiIBG6aPx5YbL-53" value="" style="fillColor=#F2931E;strokeColor=none;opacity=30;fontFamily=Courier New;" vertex="1" parent="1">
           <mxGeometry x="1080" y="2460" width="630" height="210" as="geometry" />
         </mxCell>
-        <mxCell id="LiMFixPkiIBG6aPx5YbL-54" value="c_jira_link &lt; Long : bigint &gt;&#xa;&#xa;c_jira_version_url &lt; String : text &gt;&#xa;c_jira_version_id &lt; String : text &gt;&#xa;c_jira_version_desc &lt; String : text &gt;&#xa;c_jira_version_name &lt; String : text &gt; ---------------- title 대체&#xa;c_jira_version_projectid &lt; String : text &gt;&#xa;c_jira_version_archived &lt; String : text &gt;&#xa;c_jira_version_released &lt; String : text &gt;&#xa;c_jira_version_releaseDate &lt; String : text &gt;" style="rounded=0;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontFamily=Courier New;fontSize=14;align=left;" vertex="1" parent="1">
+        <mxCell id="LiMFixPkiIBG6aPx5YbL-54" value="c_jira_issue_priority_id &lt; String : text &gt;&#xa;c_jira_issue_priority_url &lt; String : text &gt;&#xa;c_jira_issue_desc &lt; String : text &gt;&#xa;c_jira_issue_name &lt; String : text &gt; ---------------- title 대체" style="rounded=0;fillColor=#23445D;gradientColor=none;strokeColor=none;fontColor=#FFFFFF;fontStyle=0;fontFamily=Courier New;fontSize=14;align=left;" vertex="1" parent="1">
           <mxGeometry x="1095" y="2470" width="600" height="190" as="geometry" />
         </mxCell>
       </root>
