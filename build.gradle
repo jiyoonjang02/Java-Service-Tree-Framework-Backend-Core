@@ -128,6 +128,7 @@ publishing {
 
 repositories {
     mavenCentral()
+    maven { url "https://m2proxy.atlassian.com/repository/public" }
 }
 
 dependencyManagement {
@@ -192,6 +193,11 @@ dependencies {
 
     // flyway
     implementation 'org.flywaydb:flyway-core'
+    
+    //jira
+    implementation 'com.atlassian.jira:jira-rest-java-client-core:4.0.0'
+    implementation 'com.atlassian.jira:jira-rest-java-client-api:4.0.0'
+
 }
 
 configurations {

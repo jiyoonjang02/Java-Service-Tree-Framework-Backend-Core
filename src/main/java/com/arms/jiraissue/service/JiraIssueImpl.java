@@ -23,6 +23,12 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.NoSuchElementException;
 import lombok.AllArgsConstructor;
+import com.atlassian.jira.rest.client.api.JiraRestClient;
+import com.atlassian.jira.rest.client.api.domain.*;
+import com.atlassian.jira.rest.client.api.domain.input.IssueInput;
+import com.atlassian.jira.rest.client.api.domain.input.IssueInputBuilder;
+import com.atlassian.jira.rest.client.api.domain.input.VersionInput;
+import com.atlassian.jira.rest.client.internal.async.AsynchronousJiraRestClientFactory;
 
 
 @AllArgsConstructor
@@ -30,5 +36,9 @@ import lombok.AllArgsConstructor;
 public class JiraIssueImpl extends TreeServiceImpl implements JiraIssue{
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
+
+	public void test() {
+
+	}
 
 }
