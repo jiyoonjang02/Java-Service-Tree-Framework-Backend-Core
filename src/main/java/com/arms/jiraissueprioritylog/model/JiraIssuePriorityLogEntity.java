@@ -28,7 +28,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_JIRAISSUEPRIORITYLOG")
+@Table(name = "T_ARMS_JIRAISSUEPRIORITY_LOG")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)

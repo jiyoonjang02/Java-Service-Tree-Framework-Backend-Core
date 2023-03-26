@@ -28,7 +28,7 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_JIRACONNECTINFOLOG")
+@Table(name = "T_ARMS_JIRACONNECTINFO_LOG")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)

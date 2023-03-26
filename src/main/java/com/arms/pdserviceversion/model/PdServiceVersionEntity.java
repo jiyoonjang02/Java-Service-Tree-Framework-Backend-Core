@@ -59,6 +59,10 @@ public class PdServiceVersionEntity extends TreeSearchEntity implements Serializ
     @Column(name="C_CONTENTS")
     private String c_contents;
 
+    @Type(type="text")
+    @Column(name = "c_etc")
+    private String c_etc;
+
     /*
      * Extend Bean Field
      */

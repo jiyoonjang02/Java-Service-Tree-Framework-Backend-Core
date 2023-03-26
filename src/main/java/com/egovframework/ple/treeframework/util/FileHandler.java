@@ -11,12 +11,11 @@ import java.util.List;
 public class FileHandler {
 
     public static HashMap<String, List<EgovFormBasedFileVo>> upload(MultipartHttpServletRequest multiRequest,
-                                                                    long fileIdLink,
                                                                     String c_title,
                                                                     FileRepository fileRepository,
                                                                     Logger logger) throws Exception {
 
-        logger.info("FileHandler :: upload :: fileIdLink -> " + fileIdLink + " , c_title -> " + c_title);
+        logger.info("FileHandler :: upload :: c_title -> " + c_title);
 
         // Spring multipartResolver 미사용 시 (commons-fileupload 활용)
         //List<EgovFormBasedFileVo> list = EgovFormBasedFileUtil.uploadFiles(request, uploadDir, maxFileSize);
@@ -43,7 +42,6 @@ public class FileHandler {
 
             fileRepositoryEntity.setDelete_url(egovFormBasedFileVo.getDelete_url());
             fileRepositoryEntity.setDelete_type(egovFormBasedFileVo.getDelete_type());
-            fileRepositoryEntity.setFileIdLink(fileIdLink);
 
             fileRepositoryEntity.setRef(new Long(2));
             fileRepositoryEntity.setC_title(c_title);

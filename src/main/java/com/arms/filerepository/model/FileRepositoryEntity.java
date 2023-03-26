@@ -44,7 +44,6 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
 
     //@Getter @Setter
     //필드명과 컬럼명이 다를 경우는 하기와 같이 처리.
-    private Long fileIdLink;
     private String fileName;
     private String contentType;
     private String serverSubPath;
@@ -55,16 +54,6 @@ public class FileRepositoryEntity extends TreeSearchEntity implements Serializab
     private String thumbnailUrl;
     private String delete_url;
     private String delete_type;
-
-    @Column(name="C_FILE_ID_LINK")
-    public Long getFileIdLink() {
-        return fileIdLink;
-    }
-
-    public void setFileIdLink(Long fileIdLink) {
-        this.fileIdLink = fileIdLink;
-    }
-
 
     @Column(name="C_FILE_NAME")
     @Type(type="text")

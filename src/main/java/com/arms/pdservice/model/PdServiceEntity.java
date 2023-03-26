@@ -75,24 +75,13 @@ public class PdServiceEntity extends TreeSearchEntity implements Serializable {
     @Column(name="c_reviewer05")
     private String c_reviewer05;
 
-    @Column(name="c_writer_name")
+    @Column(name="c_writer")
     @Type(type="text")
-    private String c_writer_name;
+    private String c_writer;
 
-    @Column(name="c_writer_cn")
+    @Column(name="c_create_date")
     @Type(type="text")
-    private String c_writer_cn;
-
-    @Column(name="c_writer_mail")
-    @Type(type="text")
-    private String c_writer_mail;
-
-    @Column(name="c_writer_date")
-    @Type(type="text")
-    private String c_writer_date;
-
-    @Column(name="c_fileid_link")
-    private Long c_fileid_link;
+    private String c_create_date;
 
     /*
      * Extend Bean Field
