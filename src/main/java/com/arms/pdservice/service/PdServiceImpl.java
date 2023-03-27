@@ -46,7 +46,7 @@ public class PdServiceImpl extends TreeServiceImpl implements PdService {
         pdServiceEntity.getCriterions().add(criterion);
         List<PdServiceEntity> list = this.getChildNode(pdServiceEntity);
         for (PdServiceEntity dto: list) {
-            dto.setC_contents("force empty");
+            dto.setC_pdservice_contents("force empty");
         }
         return list;
     }

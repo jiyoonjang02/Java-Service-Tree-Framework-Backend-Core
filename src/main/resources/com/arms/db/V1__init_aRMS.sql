@@ -3,54 +3,56 @@
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_FILEREPOSITORY_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_FILE_NAME`                    text NULL,
-    `C_FILE_CONTENT_TYPE`            text NULL,
-    `C_FILE_SERVER_SUB_PATH`         text NULL,
-    `C_FILE_PHYSICAL_NAME`           text NULL,
-    `C_FILE_SIZE`                    bigint(20) NULL,
-    `C_FILE_TAG_NAME`                text NULL,
-    `C_FILE_URL`                     text NULL,
-    `C_FILE_THUMBNAIL_URL`           text NULL,
-    `C_FILE_DELETE_URL`              text NULL,
-    `C_FILE_DELETE_TYPE`             text NULL
+    `c_file_name`                    text NULL,
+    `c_file_content_type`            text NULL,
+    `c_file_server_sub_path`         text NULL,
+    `c_file_physical_name`           text NULL,
+    `c_file_size`                    bigint(20) NULL,
+    `c_file_tag_name`                text NULL,
+    `c_file_url`                     text NULL,
+    `c_file_thumbnail_url`           text NULL,
+    `c_file_delete_url`              text NULL,
+    `c_file_delete_type`             text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='파일 레파지토리 트리거 로그';
 
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_FILEREPOSITORY` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_FILE_NAME`                    text NULL,
-    `C_FILE_CONTENT_TYPE`            text NULL,
-    `C_FILE_SERVER_SUB_PATH`         text NULL,
-    `C_FILE_PHYSICAL_NAME`           text NULL,
-    `C_FILE_SIZE`                    bigint(20) NULL,
-    `C_FILE_TAG_NAME`                text NULL,
-    `C_FILE_URL`                     text NULL,
-    `C_FILE_THUMBNAIL_URL`           text NULL,
-    `C_FILE_DELETE_URL`              text NULL,
-    `C_FILE_DELETE_TYPE`             text NULL
+    `c_file_name`                    text NULL,
+    `c_file_content_type`            text NULL,
+    `c_file_server_sub_path`         text NULL,
+    `c_file_physical_name`           text NULL,
+    `c_file_size`                    bigint(20) NULL,
+    `c_file_tag_name`                text NULL,
+    `c_file_url`                     text NULL,
+    `c_file_thumbnail_url`           text NULL,
+    `c_file_delete_url`              text NULL,
+    `c_file_delete_type`             text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='파일 레파지토리';
 
@@ -99,18 +101,18 @@ DELIMITER ;
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_pdservice_contents`      longtext NULL,
     `c_pdservice_etc`           text NULL,
@@ -128,14 +130,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_pdservice_contents`      longtext NULL,
     `c_pdservice_etc`           text NULL,
@@ -146,7 +148,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE` (
     `c_pdservice_reviewer03`    text NULL,
     `c_pdservice_reviewer04`    text NULL,
     `c_pdservice_reviewer05`    text NULL,
-    `c_pdservice_writer`        text NULL
+    `c_pdservice_writer`        text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='제품(서비스)';
 
@@ -194,18 +198,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_pdservice_link`          bigint(20) NULL,
 
@@ -220,14 +224,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_pdservice_link`          bigint(20) NULL,
 
@@ -235,7 +239,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION` (
     `c_pds_version_etc`         text NULL,
 
     `c_pds_version_start_date`  text NULL,
-    `c_pds_version_end_date`    text NULL
+    `c_pds_version_end_date`    text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='제품(서비스) 버전';
 
@@ -284,18 +290,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_jira_contents`           longtext NULL,
     `c_jira_etc`                text NULL,
@@ -320,14 +326,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_jira_contents`           longtext NULL,
     `c_jira_etc`                text NULL,
@@ -345,7 +351,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
     `c_jira_category_url`       text NULL,
     `c_jira_category_id`        text NULL,
     `c_jira_category_name`      text NULL,
-    `c_jira_category_desc`      text NULL
+    `c_jira_category_desc`      text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 프로젝트';
 
@@ -395,18 +403,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_jira_link`                   bigint(20) NULL,
 
@@ -424,14 +432,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_jira_link`                   bigint(20) NULL,
 
@@ -442,7 +450,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION` (
     `c_jira_version_projectid`      text NULL,
     `c_jira_version_archived`       text NULL,
     `c_jira_version_released`       text NULL,
-    `c_jira_version_releaseDate`    text NULL
+    `c_jira_version_releaseDate`    text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 프로젝트 버전';
 
@@ -491,18 +501,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_jira_server_contents`    longtext NULL,
     `c_jira_server_etc`         text NULL,
@@ -517,14 +527,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_jira_server_contents`    longtext NULL,
     `c_jira_server_etc`         text NULL,
@@ -532,7 +542,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER` (
     `c_jira_server_base_url`    text NULL,
     `c_jira_server_version`     text NULL,
     `c_jira_server_build`       text NULL,
-    `c_jira_server_title`       text NULL
+    `c_jira_server_title`       text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 서버 정보';
 
@@ -581,18 +593,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_issue_id`                text NULL,
     `c_issue_url`               text NULL,
@@ -623,14 +635,14 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_issue_id`                text NULL,
     `c_issue_url`               text NULL,
@@ -654,7 +666,9 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE` (
 
     `c_issue_status`            bigint(20) NULL,
     `c_issue_priority`          bigint(20) NULL,
-    `c_issue_resolution`        bigint(20) NULL
+    `c_issue_resolution`        bigint(20) NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈';
 
@@ -705,18 +719,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_issue_type_id`           text NULL,
     `c_issue_type_desc`         text NULL,
@@ -728,19 +742,21 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_issue_type_id`           text NULL,
     `c_issue_type_desc`         text NULL,
     `c_issue_type_name`         text NULL,
-    `c_issue_type_url`          text NULL
+    `c_issue_type_url`          text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 타입';
 
@@ -790,18 +806,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_issue_priority_id`       text NULL,
     `c_issue_priority_desc`     text NULL,
@@ -813,19 +829,21 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_issue_priority_id`       text NULL,
     `c_issue_priority_desc`     text NULL,
     `c_issue_priority_name`     text NULL,
-    `c_issue_priority_url`      text NULL
+    `c_issue_priority_url`      text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 우선순위';
 
@@ -875,18 +893,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_issue_status_id`       text NULL,
     `c_issue_status_desc`     text NULL,
@@ -898,19 +916,21 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_issue_status_id`       text NULL,
     `c_issue_status_desc`     text NULL,
     `c_issue_status_name`     text NULL,
-    `c_issue_status_url`      text NULL
+    `c_issue_status_url`      text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 상태값';
 
@@ -959,18 +979,18 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
     `c_issue_resolution_id`     text NULL,
     `c_issue_resolution_desc`   text NULL,
@@ -982,19 +1002,21 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
     `c_issue_resolution_id`     text NULL,
     `c_issue_resolution_desc`   text NULL,
     `c_issue_resolution_name`   text NULL,
-    `c_issue_resolution_url`    text NULL
+    `c_issue_resolution_url`    text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 해결책';
 
@@ -1044,72 +1066,74 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD_LOG` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
 
-    `C_REQ_REVIEWER01`          text NULL,
-    `C_REQ_REVIEWER01_STATUS`   text NULL,
-    `C_REQ_REVIEWER02`          text NULL,
-    `C_REQ_REVIEWER02_STATUS`   text NULL,
-    `C_REQ_REVIEWER03`          text NULL,
-    `C_REQ_REVIEWER03_STATUS`   text NULL,
-    `C_REQ_REVIEWER04`          text NULL,
-    `C_REQ_REVIEWER04_STATUS`   text NULL,
-    `C_REQ_REVIEWER05`          text NULL,
-    `C_REQ_REVIEWER05_STATUS`   text NULL,
-    `C_REQ_WRITER`              text NULL,
-    `C_REQ_CREATE_DATE`         text NULL,
-    `C_REQ_PRIORITY_LINK`       bigint(20) NULL,
-    `C_REQ_CONTENTS`            longtext NULL,
-    `C_REQ_ETC`                 text NULL,
-    `C_REQ_STATUS_LINK`         bigint(20) NULL
+    `c_req_reviewer01`          text NULL,
+    `c_req_reviewer01_status`   text NULL,
+    `c_req_reviewer02`          text NULL,
+    `c_req_reviewer02_status`   text NULL,
+    `c_req_reviewer03`          text NULL,
+    `c_req_reviewer03_status`   text NULL,
+    `c_req_reviewer04`          text NULL,
+    `c_req_reviewer04_status`   text NULL,
+    `c_req_reviewer05`          text NULL,
+    `c_req_reviewer05_status`   text NULL,
+    `c_req_writer`              text NULL,
+    `c_req_create_date`         text NULL,
+    `c_req_priority_link`       bigint(20) NULL,
+    `c_req_contents`            longtext NULL,
+    `c_req_etc`                 text NULL,
+    `c_req_status_link`         bigint(20) NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 트리거 로그';
 
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
 
-    `C_REQ_REVIEWER01`          text NULL,
-    `C_REQ_REVIEWER01_STATUS`   text NULL,
-    `C_REQ_REVIEWER02`          text NULL,
-    `C_REQ_REVIEWER02_STATUS`   text NULL,
-    `C_REQ_REVIEWER03`          text NULL,
-    `C_REQ_REVIEWER03_STATUS`   text NULL,
-    `C_REQ_REVIEWER04`          text NULL,
-    `C_REQ_REVIEWER04_STATUS`   text NULL,
-    `C_REQ_REVIEWER05`          text NULL,
-    `C_REQ_REVIEWER05_STATUS`   text NULL,
-    `C_REQ_WRITER`              text NULL,
-    `C_REQ_CREATE_DATE`         text NULL,
-    `C_REQ_PRIORITY_LINK`       bigint(20) NULL,
-    `C_REQ_CONTENTS`            longtext NULL,
-    `C_REQ_ETC`                 text NULL,
-    `C_REQ_STATUS_LINK`         bigint(20) NULL
+    `c_req_reviewer01`          text NULL,
+    `c_req_reviewer01_status`   text NULL,
+    `c_req_reviewer02`          text NULL,
+    `c_req_reviewer02_status`   text NULL,
+    `c_req_reviewer03`          text NULL,
+    `c_req_reviewer03_status`   text NULL,
+    `c_req_reviewer04`          text NULL,
+    `c_req_reviewer04_status`   text NULL,
+    `c_req_reviewer05`          text NULL,
+    `c_req_reviewer05_status`   text NULL,
+    `c_req_writer`              text NULL,
+    `c_req_create_date`         text NULL,
+    `c_req_priority_link`       bigint(20) NULL,
+    `c_req_contents`            longtext NULL,
+    `c_req_etc`                 text NULL,
+    `c_req_status_link`         bigint(20) NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항';
 
@@ -1159,50 +1183,52 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT_LOG` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
 
-    `c_req_sender`          text NULL,
-    `c_req_comment_date`    text NULL,
-    `c_req_comment`         text NULL,
-    `c_req_etc`             text NULL
+    `c_req_sender`              text NULL,
+    `c_req_comment_date`        text NULL,
+    `c_req_comment`             text NULL,
+    `c_req_etc`                 text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 커멘트 트리거 로그';
 
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
 
-    `c_req_sender`          text NULL,
-    `c_req_comment_date`    text NULL,
-    `c_req_comment`         text NULL,
-    `c_req_etc`             text NULL
+    `c_req_sender`              text NULL,
+    `c_req_comment_date`        text NULL,
+    `c_req_comment`             text NULL,
+    `c_req_etc`                 text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 커멘트';
 
@@ -1251,22 +1277,22 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW_LOG` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
 
     `c_review_sender`           text NULL,
     `c_review_responder`        text NULL,
@@ -1279,28 +1305,30 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
 
     `c_review_sender`           text NULL,
     `c_review_responder`        text NULL,
     `c_review_creat_date`       text NULL,
     `c_review_result_state`     text NULL,
-    `c_review_result_date`      text NULL
+    `c_review_result_date`      text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰';
 
@@ -1348,56 +1376,54 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT_LOG` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
-    `c_req_review_link`     bigint(20) NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
+    `c_req_review_link`         bigint(20) NULL,
 
-    `c_req_sender`          text NULL,
-    `c_req_comment_date`    text NULL,
-    `c_req_comment`         text NULL,
-    `c_req_etc`             text NULL
+    `c_req_sender`              text NULL,
+    `c_req_comment_date`        text NULL,
+    `c_req_comment`             text NULL,
+    `c_req_etc`                 text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰 커멘트 트리거 로그';
 
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT` (
 
-    `C_ID`                  bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`              text NULL COMMENT '노드 변경 행위',
-    `C_STATE`               text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                date NULL COMMENT '노드 변경 시',
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_version_link`            bigint(20) NULL,
+    `c_req_link`                bigint(20) NULL,
+    `c_req_review_link`         bigint(20) NULL,
 
-    `C_PDSERVICE_LINK`      bigint(20) NULL,
-    `C_VERSION_LINK`        bigint(20) NULL,
-    `c_req_link`            bigint(20) NULL,
-    `c_req_review_link`     bigint(20) NULL,
+    `c_req_sender`              text NULL,
+    `c_req_comment_date`        text NULL,
+    `c_req_comment`             text NULL,
+    `c_req_etc`                 text NULL,
 
-    `c_req_sender`          text NULL,
-    `c_req_comment_date`    text NULL,
-    `c_req_comment`         text NULL,
-    `c_req_etc`             text NULL
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰 커멘트 트리거 로그';
 
@@ -1445,98 +1471,100 @@ DELIMITER ;
 --
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQSTATUS_LOG` (
 
-    `C_ID`                      bigint(20) NOT NULL COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_METHOD`                  text NULL COMMENT '노드 변경 행위',
-    `C_STATE`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-    `C_DATE`                    date NULL COMMENT '노드 변경 시',
+    `c_method`                  text NULL COMMENT '노드 변경 행위',
+    `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+    `c_date`                    date NULL COMMENT '노드 변경 시',
 
-    `C_PDSERVICE_LINK`          bigint(20) NULL,
-    `C_PDSERVICE_NAME`          text NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_pdservice_name`          text NULL,
 
-    `C_PDS_VERSION_LINK`        bigint(20) NULL,
-    `C_PDS_VERSION_NAME`        text NULL,
+    `c_pds_version_link`        bigint(20) NULL,
+    `c_pds_version_name`        text NULL,
 
-    `C_JIRA_LINK`               bigint(20) NULL,
-    `C_JIRA_NAME`               text NULL,
-    `C_JIRA_KEY`                text NULL,
-    `C_JIRA_URL`                text NULL,
+    `c_jira_link`               bigint(20) NULL,
+    `c_jira_name`               text NULL,
+    `c_jira_key`                text NULL,
+    `c_jira_url`                text NULL,
 
-    `C_JIRA_VERSION_LINK`       bigint(20) NULL,
-    `C_JIRA_VERSION_NAME`       text NULL,
-    `C_JIRA_VERSION_URL`        text NULL,
+    `c_jira_verison_link`       bigint(20) NULL,
+    `c_jira_verison_name`       text NULL,
+    `c_jira_verison_url`        text NULL,
 
-    `C_REQ_LINK`                bigint(20) NULL,
-    `C_REQ_NAME`                text NULL,
+    `c_req_link`                bigint(20) NULL,
+    `c_req_name`                text NULL,
 
-    `C_REQ_PRIORITY_LINK`       bigint(20) NULL,
-    `C_REQ_PRIORITY_NAME`       text NULL,
+    `c_req_priority_link`       bigint(20) NULL,
+    `c_req_priority_name`       text NULL,
 
-    `C_REQ_STATUS_LINK`         bigint(20) NULL,
-    `C_REQ_STATUS_NAME`         text NULL,
+    `c_req_status_link`         bigint(20) NULL,
+    `c_req_status_name`         text NULL,
 
-    `C_REQ_ISSUE_ID`            text NULL,
-    `C_REQ_ISSUE_URL`           text NULL,
+    `c_req_issue_id`            text NULL,
+    `c_req_issue_url`           text NULL,
 
-    `C_REQ_ISSUE_STATUS_NAME`   text NULL,
-    `C_REQ_ISSUE_STATUS_URL`    text NULL,
+    `c_req_issue_status_name`   text NULL,
+    `c_req_issue_status_url`    text NULL,
 
-    `C_REQ_REL_ISSUE`           text NULL,
-    `C_REQ_SUB_ISSUE`           text NULL
+    `c_req_rel_issue`           text NULL,
+    `c_req_sub_issue`           text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 - 이슈 결과 장표 트리거 로그';
 
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQSTATUS` (
 
-    `C_ID`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
-    `C_PARENTID`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-    `C_POSITION`                bigint(20) NOT NULL COMMENT '노드 포지션',
-    `C_LEFT`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-    `C_RIGHT`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-    `C_LEVEL`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
-    `C_TITLE`                   VARCHAR(255) COMMENT '노드 명',
-    `C_TYPE`                    VARCHAR(255) COMMENT '노드 타입',
+    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+    `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+    `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+    `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+    `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+    `c_title`                   VARCHAR(255) COMMENT '노드 명',
+    `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-    `C_PDSERVICE_LINK`          bigint(20) NULL,
-    `C_PDSERVICE_NAME`          text NULL,
+    `c_pdservice_link`          bigint(20) NULL,
+    `c_pdservice_name`          text NULL,
 
-    `C_PDS_VERSION_LINK`        bigint(20) NULL,
-    `C_PDS_VERSION_NAME`        text NULL,
+    `c_pds_version_link`        bigint(20) NULL,
+    `c_pds_version_name`        text NULL,
 
-    `C_JIRA_LINK`               bigint(20) NULL,
-    `C_JIRA_NAME`               text NULL,
-    `C_JIRA_KEY`                text NULL,
-    `C_JIRA_URL`                text NULL,
+    `c_jira_link`               bigint(20) NULL,
+    `c_jira_name`               text NULL,
+    `c_jira_key`                text NULL,
+    `c_jira_url`                text NULL,
 
-    `C_JIRA_VERSION_LINK`       bigint(20) NULL,
-    `C_JIRA_VERSION_NAME`       text NULL,
-    `C_JIRA_VERSION_URL`        text NULL,
+    `c_jira_verison_link`       bigint(20) NULL,
+    `c_jira_verison_name`       text NULL,
+    `c_jira_verison_url`        text NULL,
 
-    `C_REQ_LINK`                bigint(20) NULL,
-    `C_REQ_NAME`                text NULL,
+    `c_req_link`                bigint(20) NULL,
+    `c_req_name`                text NULL,
 
-    `C_REQ_PRIORITY_LINK`       bigint(20) NULL,
-    `C_REQ_PRIORITY_NAME`       text NULL,
+    `c_req_priority_link`       bigint(20) NULL,
+    `c_req_priority_name`       text NULL,
 
-    `C_REQ_STATUS_LINK`         bigint(20) NULL,
-    `C_REQ_STATUS_NAME`         text NULL,
+    `c_req_status_link`         bigint(20) NULL,
+    `c_req_status_name`         text NULL,
 
-    `C_REQ_ISSUE_KEY`            text NULL,
-    `C_REQ_ISSUE_URL`           text NULL,
+    `c_req_issue_id`            text NULL,
+    `c_req_issue_url`           text NULL,
 
-    `C_REQ_ISSUE_STATUS_NAME`   text NULL,
-    `C_REQ_ISSUE_STATUS_URL`    text NULL,
+    `c_req_issue_status_name`   text NULL,
+    `c_req_issue_status_url`    text NULL,
 
-    `C_REQ_REL_ISSUE`           text NULL,
-    `C_REQ_SUB_ISSUE`           text NULL
+    `c_req_rel_issue`           text NULL,
+    `c_req_sub_issue`           text NULL,
+
+    PRIMARY KEY (`c_id`)
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 - 이슈 결과 장표';
 

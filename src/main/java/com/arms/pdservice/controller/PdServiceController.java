@@ -96,7 +96,7 @@ public class PdServiceController extends TreeAbstractController<PdService, PdSer
             dynamicDBMaker.createSchema(addedNode.getC_id().toString());
 
             //C_ETC 컬럼에 요구사항 테이블 이름 기입
-            addedNode.setC_etc(REQ_PREFIX_TABLENAME_BY_PDSERVICE + addedNode.getC_id().toString());
+            addedNode.setC_pdservice_etc(REQ_PREFIX_TABLENAME_BY_PDSERVICE + addedNode.getC_id().toString());
             pdService.updateNode(addedNode);
 
             //Default Version 생성
