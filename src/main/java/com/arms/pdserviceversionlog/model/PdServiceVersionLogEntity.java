@@ -12,6 +12,7 @@
 package com.arms.pdserviceversionlog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class PdServiceVersionLogEntity extends TreeSearchEntity implements Serializable {
+public class PdServiceVersionLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public PdServiceVersionLogEntity() {
         super();
@@ -53,20 +54,24 @@ public class PdServiceVersionLogEntity extends TreeSearchEntity implements Seria
     }
     //@Getter @Setter
 
-    @Type(type="text")
-    @Column(name = "c_start_date")
-    private String c_start_date;
-
-    @Type(type="text")
-    @Column(name = "c_end_date")
-    private String c_end_date;
-
     @Column(name = "c_pdservice_link")
     private Long c_pdservice_link;
 
+    @Type(type="text")
+    @Column(name = "c_pds_version_start_date")
+    private String c_pds_version_start_date;
+
+    @Type(type="text")
+    @Column(name = "c_pds_version_end_date")
+    private String c_pds_version_end_date;
+
     @Lob
-    @Column(name="C_CONTENTS")
-    private String c_contents;
+    @Column(name="c_pds_version_contents")
+    private String c_pds_version_contents;
+
+    @Type(type="text")
+    @Column(name = "c_pds_version_etc")
+    private String c_pds_version_etc;
 
     /*
      * Extend Bean Field

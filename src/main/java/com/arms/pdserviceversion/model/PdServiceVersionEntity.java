@@ -44,24 +44,24 @@ public class PdServiceVersionEntity extends TreeSearchEntity implements Serializ
     }
 
     //@Getter @Setter
-    @Type(type="text")
-    @Column(name = "c_start_date")
-    private String c_start_date;
-
-    @Type(type="text")
-    @Column(name = "c_end_date")
-    private String c_end_date;
-
     @Column(name = "c_pdservice_link")
     private Long c_pdservice_link;
 
-    @Lob
-    @Column(name="c_contents")
-    private String c_contents;
+    @Type(type="text")
+    @Column(name = "c_pds_version_start_date")
+    private String c_pds_version_start_date;
 
     @Type(type="text")
-    @Column(name = "c_etc")
-    private String c_etc;
+    @Column(name = "c_pds_version_end_date")
+    private String c_pds_version_end_date;
+
+    @Lob
+    @Column(name="c_pds_version_contents")
+    private String c_pds_version_contents;
+
+    @Type(type="text")
+    @Column(name = "c_pds_version_etc")
+    private String c_pds_version_etc;
 
     /*
      * Extend Bean Field
