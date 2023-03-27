@@ -56,7 +56,7 @@ public class PdServiceVersionEntity extends TreeSearchEntity implements Serializ
     private Long c_pdservice_link;
 
     @Lob
-    @Column(name="C_CONTENTS")
+    @Column(name="c_contents")
     private String c_contents;
 
     @Type(type="text")

@@ -6,41 +6,38 @@
 
         CREATE TABLE IF NOT EXISTS ${c_title}_LOG (
 
-            `C_ID`              bigint(20) NOT NULL COMMENT '노드 아이디',
-            `C_PARENTID`        bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-            `C_POSITION`        bigint(20) NOT NULL COMMENT '노드 포지션',
-            `C_LEFT`            bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-            `C_RIGHT`           bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-            `C_LEVEL`           bigint(20) NOT NULL COMMENT '노드 DEPTH',
-            `C_TITLE`           VARCHAR(255) COMMENT '노드 명',
-            `C_TYPE`            VARCHAR(255) COMMENT '노드 타입',
+            `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+            `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+            `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+            `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+            `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+            `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+            `c_title`                   VARCHAR(255) COMMENT '노드 명',
+            `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-            `C_METHOD`          text NULL COMMENT '노드 변경 행위',
-            `C_STATE`           text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
-            `C_DATE`            date NULL COMMENT '노드 변경 시',
+            `c_method`                  text NULL COMMENT '노드 변경 행위',
+            `c_state`                   text NULL COMMENT '노드 상태값 ( 이전인지. 이후인지)',
+            `c_date`                    date NULL COMMENT '노드 변경 시',
 
-            `C_PDSERVICE_LINK`  bigint(20) NULL,
-            `C_VERSION_LINK`    bigint(20) NULL,
-            `C_JIRA_LINK`       bigint(20) NULL,
-            `C_JIRA_VER_LINK`   bigint(20) NULL,
-            `C_ISSUE_LINK`      bigint(20) NULL,
+            `c_pdservice_link`          bigint(20) NULL,
+            `c_version_link`            bigint(20) NULL,
 
-            `C_REVIEWER01`          VARCHAR(255) NULL,
-            `C_REVIEWER01_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER02`          VARCHAR(255) NULL,
-            `C_REVIEWER02_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER03`          VARCHAR(255) NULL,
-            `C_REVIEWER03_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER04`          VARCHAR(255) NULL,
-            `C_REVIEWER04_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER05`          VARCHAR(255) NULL,
-            `C_REVIEWER05_STATUS`   VARCHAR(255) NULL,
-
-            `C_WRITER`              VARCHAR(255) NULL,
-            `C_WRITER_DATE`         VARCHAR(255) NULL,
-            `C_PRIORITY`            int NULL,
-            `C_CONTENTS`            longtext NULL,
-            `C_REQ_STATUS`          VARCHAR(255) NULL
+            `c_req_reviewer01`          text NULL,
+            `c_req_reviewer01_status`   text NULL,
+            `c_req_reviewer02`          text NULL,
+            `c_req_reviewer02_status`   text NULL,
+            `c_req_reviewer03`          text NULL,
+            `c_req_reviewer03_status`   text NULL,
+            `c_req_reviewer04`          text NULL,
+            `c_req_reviewer04_status`   text NULL,
+            `c_req_reviewer05`          text NULL,
+            `c_req_reviewer05_status`   text NULL,
+            `c_req_writer`              text NULL,
+            `c_req_create_date`         text NULL,
+            `c_req_priority_link`       bigint(20) NULL,
+            `c_req_contents`            longtext NULL,
+            `c_req_etc`                 text NULL,
+            `c_req_status_link`         bigint(20) NULL
 
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 테이블 로그';
 
@@ -50,39 +47,36 @@
 
         CREATE TABLE IF NOT EXISTS ${c_title} (
 
-            `C_ID`                  bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
-            `C_PARENTID`            bigint(20) NOT NULL COMMENT '부모 노드 아이디',
-            `C_POSITION`            bigint(20) NOT NULL COMMENT '노드 포지션',
-            `C_LEFT`                bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
-            `C_RIGHT`               bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
-            `C_LEVEL`               bigint(20) NOT NULL COMMENT '노드 DEPTH',
-            `C_TITLE`               VARCHAR(255) COMMENT '노드 명',
-            `C_TYPE`                VARCHAR(255) COMMENT '노드 타입',
+            `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+            `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
+            `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
+            `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
+            `c_right`                   bigint(20) NOT NULL COMMENT '노드 우측 끝 포인트',
+            `c_level`                   bigint(20) NOT NULL COMMENT '노드 DEPTH',
+            `c_title`                   VARCHAR(255) COMMENT '노드 명',
+            `c_type`                    VARCHAR(255) COMMENT '노드 타입',
 
-            `C_PDSERVICE_LINK`      bigint(20) NULL,
-            `C_VERSION_LINK`        bigint(20) NULL,
-            `C_JIRA_LINK`           bigint(20) NULL,
-            `C_JIRA_VER_LINK`       bigint(20) NULL,
-            `C_ISSUE_LINK`          bigint(20) NULL,
+            `c_pdservice_link`          bigint(20) NULL,
+            `c_version_link`            bigint(20) NULL,
 
-            `C_REVIEWER01`          VARCHAR(255) NULL,
-            `C_REVIEWER01_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER02`          VARCHAR(255) NULL,
-            `C_REVIEWER02_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER03`          VARCHAR(255) NULL,
-            `C_REVIEWER03_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER04`          VARCHAR(255) NULL,
-            `C_REVIEWER04_STATUS`   VARCHAR(255) NULL,
-            `C_REVIEWER05`          VARCHAR(255) NULL,
-            `C_REVIEWER05_STATUS`   VARCHAR(255) NULL,
+            `c_req_reviewer01`          text NULL,
+            `c_req_reviewer01_status`   text NULL,
+            `c_req_reviewer02`          text NULL,
+            `c_req_reviewer02_status`   text NULL,
+            `c_req_reviewer03`          text NULL,
+            `c_req_reviewer03_status`   text NULL,
+            `c_req_reviewer04`          text NULL,
+            `c_req_reviewer04_status`   text NULL,
+            `c_req_reviewer05`          text NULL,
+            `c_req_reviewer05_status`   text NULL,
+            `c_req_writer`              text NULL,
+            `c_req_create_date`         text NULL,
+            `c_req_priority_link`       bigint(20) NULL,
+            `c_req_contents`            longtext NULL,
+            `c_req_etc`                 text NULL,
+            `c_req_status_link`         bigint(20) NULL
 
-            `C_WRITER`              VARCHAR(255) NULL,
-            `C_WRITER_DATE`         VARCHAR(255) NULL,
-            `C_PRIORITY`            int NULL,
-            `C_CONTENTS`            longtext NULL,
-            `C_REQ_STATUS`          VARCHAR(255) NULL
-
-        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 테이블 로그';
+        ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 테이블';
 
     </update>
 
