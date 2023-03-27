@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_FILEREPOSITORY_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_FILEREPOSITORY` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -50,9 +50,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_FILEREPOSITORY` (
     `c_file_url`                     text NULL,
     `c_file_thumbnail_url`           text NULL,
     `c_file_delete_url`              text NULL,
-    `c_file_delete_type`             text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_file_delete_type`             text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='파일 레파지토리';
 
@@ -130,7 +128,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -148,9 +146,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICE` (
     `c_pdservice_reviewer03`    text NULL,
     `c_pdservice_reviewer04`    text NULL,
     `c_pdservice_reviewer05`    text NULL,
-    `c_pdservice_writer`        text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_pdservice_writer`        text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='제품(서비스)';
 
@@ -224,7 +220,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -239,9 +235,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_PDSERVICEVERSION` (
     `c_pds_version_etc`         text NULL,
 
     `c_pds_version_start_date`  text NULL,
-    `c_pds_version_end_date`    text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_pds_version_end_date`    text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='제품(서비스) 버전';
 
@@ -326,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -351,9 +345,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECT` (
     `c_jira_category_url`       text NULL,
     `c_jira_category_id`        text NULL,
     `c_jira_category_name`      text NULL,
-    `c_jira_category_desc`      text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_jira_category_desc`      text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 프로젝트';
 
@@ -432,7 +424,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -450,9 +442,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAPROJECTVERSION` (
     `c_jira_version_projectid`      text NULL,
     `c_jira_version_archived`       text NULL,
     `c_jira_version_released`       text NULL,
-    `c_jira_version_releaseDate`    text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_jira_version_releaseDate`    text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 프로젝트 버전';
 
@@ -527,7 +517,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -542,9 +532,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRASERVER` (
     `c_jira_server_base_url`    text NULL,
     `c_jira_server_version`     text NULL,
     `c_jira_server_build`       text NULL,
-    `c_jira_server_title`       text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_jira_server_title`       text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 서버 정보';
 
@@ -635,7 +623,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -666,9 +654,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUE` (
 
     `c_issue_status`            bigint(20) NULL,
     `c_issue_priority`          bigint(20) NULL,
-    `c_issue_resolution`        bigint(20) NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_issue_resolution`        bigint(20) NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈';
 
@@ -742,7 +728,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -754,9 +740,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUETYPE` (
     `c_issue_type_id`           text NULL,
     `c_issue_type_desc`         text NULL,
     `c_issue_type_name`         text NULL,
-    `c_issue_type_url`          text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_issue_type_url`          text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 타입';
 
@@ -829,7 +813,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -841,9 +825,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUEPRIORITY` (
     `c_issue_priority_id`       text NULL,
     `c_issue_priority_desc`     text NULL,
     `c_issue_priority_name`     text NULL,
-    `c_issue_priority_url`      text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_issue_priority_url`      text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 우선순위';
 
@@ -916,7 +898,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -928,9 +910,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUESTATUS` (
     `c_issue_status_id`       text NULL,
     `c_issue_status_desc`     text NULL,
     `c_issue_status_name`     text NULL,
-    `c_issue_status_url`      text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_issue_status_url`      text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 상태값';
 
@@ -1002,7 +982,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1014,9 +994,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_JIRAISSUERESOLUTION` (
     `c_issue_resolution_id`     text NULL,
     `c_issue_resolution_desc`   text NULL,
     `c_issue_resolution_name`   text NULL,
-    `c_issue_resolution_url`    text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_issue_resolution_url`    text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='지라 이슈 해결책';
 
@@ -1104,7 +1082,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1131,9 +1109,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQADD` (
     `c_req_priority_link`       bigint(20) NULL,
     `c_req_contents`            longtext NULL,
     `c_req_etc`                 text NULL,
-    `c_req_status_link`         bigint(20) NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_req_status_link`         bigint(20) NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항';
 
@@ -1210,7 +1186,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1226,9 +1202,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQCOMMENT` (
     `c_req_sender`              text NULL,
     `c_req_comment_date`        text NULL,
     `c_req_comment`             text NULL,
-    `c_req_etc`                 text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_req_etc`                 text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 커멘트';
 
@@ -1305,7 +1279,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1326,9 +1300,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEW` (
     `c_review_responder`        text NULL,
     `c_review_creat_date`       text NULL,
     `c_review_result_state`     text NULL,
-    `c_review_result_date`      text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_review_result_date`      text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰';
 
@@ -1404,7 +1376,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1421,9 +1393,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT` (
     `c_req_sender`              text NULL,
     `c_req_comment_date`        text NULL,
     `c_req_comment`             text NULL,
-    `c_req_etc`                 text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_req_etc`                 text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰 커멘트 트리거 로그';
 
@@ -1522,7 +1492,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQSTATUS_LOG` (
 
 CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQSTATUS` (
 
-    `c_id`                      bigint(20) NOT NULL COMMENT '노드 아이디',
+    `c_id`                      bigint(20) AUTO_INCREMENT primary key COMMENT '노드 아이디',
     `c_parentid`                bigint(20) NOT NULL COMMENT '부모 노드 아이디',
     `c_position`                bigint(20) NOT NULL COMMENT '노드 포지션',
     `c_left`                    bigint(20) NOT NULL COMMENT '노드 좌측 끝 포인트',
@@ -1562,9 +1532,7 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQSTATUS` (
     `c_req_issue_status_url`    text NULL,
 
     `c_req_rel_issue`           text NULL,
-    `c_req_sub_issue`           text NULL,
-
-    PRIMARY KEY (`c_id`)
+    `c_req_sub_issue`           text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 - 이슈 결과 장표';
 
