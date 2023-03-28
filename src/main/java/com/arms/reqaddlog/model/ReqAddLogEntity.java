@@ -12,6 +12,7 @@
 package com.arms.reqaddlog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReqAddLogEntity extends TreeSearchEntity implements Serializable {
+public class ReqAddLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public ReqAddLogEntity() {
         super();
@@ -52,6 +53,67 @@ public class ReqAddLogEntity extends TreeSearchEntity implements Serializable {
         return super.getC_id();
     }
     //@Getter @Setter
+
+    @Column(name = "c_req_reviewer01")
+    @Type(type="text")
+    private String c_req_reviewer01;
+
+    @Column(name = "c_req_reviewer02")
+    private String c_req_reviewer02;
+
+    @Column(name = "c_req_reviewer03")
+    @Type(type="text")
+    private String c_req_reviewer03;
+
+    @Column(name = "c_req_reviewer04")
+    @Type(type="text")
+    private String c_req_reviewer04;
+
+    @Column(name = "c_req_reviewer05")
+    @Type(type="text")
+    private String c_req_reviewer05;
+
+    @Column(name = "c_req_reviewer01_status")
+    @Type(type="text")
+    private String c_req_reviewer01_status;
+
+    @Column(name = "c_req_reviewer02_status")
+    @Type(type="text")
+    private String c_req_reviewer02_status;
+
+    @Column(name = "c_req_reviewer03_status")
+    @Type(type="text")
+    private String c_req_reviewer03_status;
+
+    @Column(name = "c_req_reviewer04_status")
+    @Type(type="text")
+    private String c_req_reviewer04_status;
+
+    @Column(name = "c_req_reviewer05_status")
+    @Type(type="text")
+    private String c_req_reviewer05_status;
+
+    @Column(name = "c_req_writer")
+    @Type(type="text")
+    private String c_req_writer;
+
+    @Column(name = "c_req_create_date")
+    @Type(type="text")
+    private String c_req_create_date;
+
+    @Column(name = "c_req_priority_link")
+    private Long c_req_priority_link;
+
+    @Column(name = "c_req_status_link")
+    private Long c_req_status_link;
+
+    @Lob
+    @Column(name = "c_req_contents")
+    private String c_req_contents;
+
+    @Column(name = "c_req_etc")
+    @Type(type="text")
+    private String c_req_etc;
 
     /*
      * Extend Bean Field

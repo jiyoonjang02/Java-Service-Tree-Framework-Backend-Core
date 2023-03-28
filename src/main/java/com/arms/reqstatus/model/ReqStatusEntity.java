@@ -53,6 +53,84 @@ public class ReqStatusEntity extends TreeSearchEntity implements Serializable {
     }
     //@Getter @Setter
 
+    @Column(name = "c_pdservice_link")
+    private Long c_pdservice_link;
+
+    @Column(name = "c_pdservice_name")
+    @Type(type="text")
+    private String c_pdservice_name;
+
+    @Column(name = "c_pdserviceversion_link")
+    private Long c_version_link;
+
+    @Column(name = "c_jira_link")
+    private Long c_jira_link;
+
+    @Column(name = "c_jira_ver_link")
+    private Long c_jira_ver_link;
+
+    //ReqStatus Issue Link
+    @Column(name = "c_issue_link")
+    private Long c_issue_link;
+
+    @Column(name = "c_reviewer01")
+    @Type(type="text")
+    private String c_reviewer01;
+
+    @Column(name = "c_reviewer02")
+    private String c_reviewer02;
+
+    @Column(name = "c_reviewer03")
+    @Type(type="text")
+    private String c_reviewer03;
+
+    @Column(name = "c_reviewer04")
+    @Type(type="text")
+    private String c_reviewer04;
+
+    @Column(name = "c_reviewer05")
+    @Type(type="text")
+    private String c_reviewer05;
+
+    @Column(name = "c_reviewer01_status")
+    @Type(type="text")
+    private String c_reviewer01_status;
+
+    @Column(name = "c_reviewer02_status")
+    @Type(type="text")
+    private String c_reviewer02_status;
+
+    @Column(name = "c_reviewer03_status")
+    @Type(type="text")
+    private String c_reviewer03_status;
+
+    @Column(name = "c_reviewer04_status")
+    @Type(type="text")
+    private String c_reviewer04_status;
+
+    @Column(name = "c_reviewer05_status")
+    @Type(type="text")
+    private String c_reviewer05_status;
+
+    @Column(name = "c_writer")
+    @Type(type="text")
+    private String c_writer;
+
+    @Column(name = "c_writer_date")
+    @Type(type="text")
+    private String c_writer_date;
+
+    @Column(name = "c_priority")
+    @Type(type="text")
+    private Long c_priority;
+
+    @Column(name = "c_req_status")
+    @Type(type="text")
+    private String c_req_status;
+
+    @Lob
+    @Column(name = "c_contents")
+    private String c_contents;
     /*
      * Extend Bean Field
      */

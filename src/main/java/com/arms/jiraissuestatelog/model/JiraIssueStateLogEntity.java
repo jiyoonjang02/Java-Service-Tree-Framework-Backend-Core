@@ -12,6 +12,7 @@
 package com.arms.jiraissuestatelog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class JiraIssueStateLogEntity extends TreeSearchEntity implements Serializable {
+public class JiraIssueStateLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public JiraIssueStateLogEntity() {
         super();
@@ -51,7 +52,24 @@ public class JiraIssueStateLogEntity extends TreeSearchEntity implements Seriali
     public Long getC_id() {
         return super.getC_id();
     }
+
     //@Getter @Setter
+
+    @Column(name = "c_issue_status_id")
+    @Type(type="text")
+    private String c_issue_status_id;
+
+    @Column(name = "c_issue_status_desc")
+    @Type(type="text")
+    private String c_issue_status_desc;
+
+    @Column(name = "c_issue_status_name")
+    @Type(type="text")
+    private String c_issue_status_name;
+
+    @Column(name = "c_issue_status_url")
+    @Type(type="text")
+    private String c_issue_status_url;
 
     /*
      * Extend Bean Field

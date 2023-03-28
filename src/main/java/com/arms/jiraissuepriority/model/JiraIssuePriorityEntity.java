@@ -51,7 +51,24 @@ public class JiraIssuePriorityEntity extends TreeSearchEntity implements Seriali
     public Long getC_id() {
         return super.getC_id();
     }
+    
     //@Getter @Setter
+
+    @Column(name = "c_issue_priority_id")
+    @Type(type="text")
+    private String c_issue_priority_id;
+
+    @Column(name = "c_issue_priority_desc")
+    @Type(type="text")
+    private String c_issue_priority_desc;
+
+    @Column(name = "c_issue_priority_name")
+    @Type(type="text")
+    private String c_issue_priority_name;
+
+    @Column(name = "c_issue_priority_url")
+    @Type(type="text")
+    private String c_issue_priority_url;
 
     /*
      * Extend Bean Field

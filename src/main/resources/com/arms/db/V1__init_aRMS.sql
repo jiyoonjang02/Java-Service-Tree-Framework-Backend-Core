@@ -1366,10 +1366,10 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT_LOG` (
     `c_req_link`                bigint(20) NULL,
     `c_req_review_link`         bigint(20) NULL,
 
-    `c_req_sender`              text NULL,
-    `c_req_comment_date`        text NULL,
-    `c_req_comment`             text NULL,
-    `c_req_etc`                 text NULL
+    `c_req_review_comment_sender`      text NULL,
+    `c_req_review_comment_date`        text NULL,
+    `c_req_review_comment_contents`    text NULL,
+    `c_req_review_comment_etc`         text NULL
 
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰 커멘트 트리거 로그';
 
@@ -1390,10 +1390,10 @@ CREATE TABLE IF NOT EXISTS `aRMS`.`T_ARMS_REQREVIEWCOMMENT` (
     `c_req_link`                bigint(20) NULL,
     `c_req_review_link`         bigint(20) NULL,
 
-    `c_req_sender`              text NULL,
-    `c_req_comment_date`        text NULL,
-    `c_req_comment`             text NULL,
-    `c_req_etc`                 text NULL
+    `c_req_review_comment_sender`      text NULL,
+    `c_req_review_comment_date`        text NULL,
+    `c_req_review_comment_contents`    text NULL,
+    `c_req_review_comment_etc`         text NULL
 
 ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='요구사항 리뷰 커멘트 트리거 로그';
 

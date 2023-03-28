@@ -53,6 +53,8 @@ public class FileRepositoryLogEntity extends TreeSearchEntity implements Seriali
     }
     //@Getter @Setter
 
+
+
     /*
      * Extend Bean Field
      */

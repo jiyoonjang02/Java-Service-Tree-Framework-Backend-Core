@@ -1,7 +1,7 @@
 /*
  * @author Dongmin.lee
- * @since 2023-03-21
- * @version 23.03.21
+ * @since 2023-03-28
+ * @version 23.03.28
  * @see <pre>
  *  Copyright (C) 2007 by 313 DEV GRP, Inc - All Rights Reserved
  *  Unauthorized copying of this file, via any medium is strictly prohibited
@@ -9,7 +9,7 @@
  *  Written by 313 developer group <313@313.co.kr>, December 2010
  * </pre>
  */
-package com.arms.jiraproject.model;
+package com.arms.jiraserver.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
@@ -28,18 +28,18 @@ import java.io.Serializable;
 @Entity
 @Getter
 @Setter
-@Table(name = "T_ARMS_JIRAPROJECT")
+@Table(name = "T_ARMS_JIRASERVER")
 @SelectBeforeUpdate(value=true)
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class JiraProjectEntity extends TreeSearchEntity implements Serializable {
+public class JiraServerEntity extends TreeSearchEntity implements Serializable {
 
-    public JiraProjectEntity() {
+    public JiraServerEntity() {
         super();
     }
 
-    public JiraProjectEntity(Boolean copyBooleanValue) {
+    public JiraServerEntity(Boolean copyBooleanValue) {
         super();
         this.copyBooleanValue = copyBooleanValue;
     }
@@ -55,62 +55,28 @@ public class JiraProjectEntity extends TreeSearchEntity implements Serializable 
     //@Getter @Setter
 
     @Lob
-    @Column(name = "c_jira_contents")
-    private String c_jira_contents;
+    @Column(name = "c_jira_server_contents")
+    private String c_jira_server_contents;
 
-    @Column(name = "c_jira_etc")
+    @Column(name = "c_jira_server_etc")
     @Type(type="text")
-    private String c_jira_etc;
+    private String c_jira_server_etc;
 
-    @Column(name = "c_jira_url")
+    @Column(name = "c_jira_server_base_url")
     @Type(type="text")
-    private String c_jira_url;
+    private String c_jira_server_base_url;
 
-    @Column(name = "c_jira_id")
+    @Column(name = "c_jira_server_version")
     @Type(type="text")
-    private String c_jira_id;
+    private String c_jira_server_version;
 
-    @Column(name = "c_jira_key")
+    @Column(name = "c_jira_server_build")
     @Type(type="text")
-    private String c_jira_key;
+    private String c_jira_server_build;
 
-    @Column(name = "c_jira_name")
+    @Column(name = "c_jira_server_title")
     @Type(type="text")
-    private String c_jira_name;
-
-
-    @Column(name = "c_jira_avatar_48")
-    @Type(type="text")
-    private String c_jira_avatar_48;
-
-    @Column(name = "c_jira_avatar_32")
-    @Type(type="text")
-    private String c_jira_avatar_32;
-
-    @Column(name = "c_jira_avatar_24")
-    @Type(type="text")
-    private String c_jira_avatar_24;
-
-    @Column(name = "c_jira_avatar_16")
-    @Type(type="text")
-    private String c_jira_avatar_16;
-
-    @Column(name = "c_jira_category_url")
-    @Type(type="text")
-    private String c_jira_category_url;
-
-    @Column(name = "c_jira_category_id")
-    @Type(type="text")
-    private String c_jira_category_id;
-
-    @Column(name = "c_jira_category_name")
-    @Type(type="text")
-    private String c_jira_category_name;
-
-    @Column(name = "c_jira_category_desc")
-    @Type(type="text")
-    private String c_jira_category_desc;
-
+    private String c_jira_server_title;
 
     /*
      * Extend Bean Field

@@ -12,6 +12,7 @@
 package com.arms.reqcommentlog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReqCommentLogEntity extends TreeSearchEntity implements Serializable {
+public class ReqCommentLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public ReqCommentLogEntity() {
         super();
@@ -51,7 +52,32 @@ public class ReqCommentLogEntity extends TreeSearchEntity implements Serializabl
     public Long getC_id() {
         return super.getC_id();
     }
+
     //@Getter @Setter
+
+    @Column(name = "c_pdservice_link")
+    private Long c_pdservice_link;
+
+    @Column(name = "c_version_link")
+    private Long c_version_link;
+
+    @Column(name = "c_req_link")
+    private Long c_req_link;
+
+    @Column(name = "c_req_sender")
+    @Type(type="text")
+    private String c_req_sender;
+
+    @Column(name = "c_req_comment_date")
+    private String c_req_comment_date;
+
+    @Column(name = "c_req_comment")
+    @Type(type="text")
+    private String c_req_comment;
+
+    @Column(name = "c_req_etc")
+    @Type(type="text")
+    private String c_req_etc;
 
     /*
      * Extend Bean Field

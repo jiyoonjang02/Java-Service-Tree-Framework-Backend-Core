@@ -51,7 +51,32 @@ public class ReqCommentEntity extends TreeSearchEntity implements Serializable {
     public Long getC_id() {
         return super.getC_id();
     }
+    
     //@Getter @Setter
+    @Column(name = "c_pdservice_link")
+    private Long c_pdservice_link;
+
+    @Column(name = "c_version_link")
+    private Long c_version_link;
+
+    @Column(name = "c_req_link")
+    private Long c_req_link;
+
+    @Column(name = "c_req_sender")
+    @Type(type="text")
+    private String c_req_sender;
+
+    @Column(name = "c_req_comment_date")
+    @Type(type="text")
+    private String c_req_comment_date;
+
+    @Column(name = "c_req_comment")
+    @Type(type="text")
+    private String c_req_comment;
+
+    @Column(name = "c_req_etc")
+    @Type(type="text")
+    private String c_req_etc;
 
     /*
      * Extend Bean Field

@@ -56,77 +56,73 @@ public class ReqAddEntity extends TreeSearchEntity implements Serializable {
     @Column(name = "c_pdservice_link")
     private Long c_pdservice_link;
 
-    @Column(name = "c_pdserviceversion_link")
+    @Column(name = "c_version_link")
     private Long c_version_link;
 
-    @Column(name = "c_jira_link")
-    private Long c_jira_link;
-
-    @Column(name = "c_jira_ver_link")
-    private Long c_jira_ver_link;
 
     //ReqStatus Issue Link
-    @Column(name = "c_issue_link")
-    private Long c_issue_link;
 
-    @Column(name = "c_reviewer01")
+    @Column(name = "c_req_reviewer01")
     @Type(type="text")
-    private String c_reviewer01;
+    private String c_req_reviewer01;
 
-    @Column(name = "c_reviewer02")
-    private String c_reviewer02;
+    @Column(name = "c_req_reviewer02")
+    private String c_req_reviewer02;
 
-    @Column(name = "c_reviewer03")
+    @Column(name = "c_req_reviewer03")
     @Type(type="text")
-    private String c_reviewer03;
+    private String c_req_reviewer03;
 
-    @Column(name = "c_reviewer04")
+    @Column(name = "c_req_reviewer04")
     @Type(type="text")
-    private String c_reviewer04;
+    private String c_req_reviewer04;
 
-    @Column(name = "c_reviewer05")
+    @Column(name = "c_req_reviewer05")
     @Type(type="text")
-    private String c_reviewer05;
+    private String c_req_reviewer05;
 
-    @Column(name = "c_reviewer01_status")
+    @Column(name = "c_req_reviewer01_status")
     @Type(type="text")
-    private String c_reviewer01_status;
+    private String c_req_reviewer01_status;
 
-    @Column(name = "c_reviewer02_status")
+    @Column(name = "c_req_reviewer02_status")
     @Type(type="text")
-    private String c_reviewer02_status;
+    private String c_req_reviewer02_status;
 
-    @Column(name = "c_reviewer03_status")
+    @Column(name = "c_req_reviewer03_status")
     @Type(type="text")
-    private String c_reviewer03_status;
+    private String c_req_reviewer03_status;
 
-    @Column(name = "c_reviewer04_status")
+    @Column(name = "c_req_reviewer04_status")
     @Type(type="text")
-    private String c_reviewer04_status;
+    private String c_req_reviewer04_status;
 
-    @Column(name = "c_reviewer05_status")
+    @Column(name = "c_req_reviewer05_status")
     @Type(type="text")
-    private String c_reviewer05_status;
+    private String c_req_reviewer05_status;
 
-    @Column(name = "c_writer")
+    @Column(name = "c_req_writer")
     @Type(type="text")
-    private String c_writer;
+    private String c_req_writer;
 
-    @Column(name = "c_writer_date")
+    @Column(name = "c_req_create_date")
     @Type(type="text")
-    private String c_writer_date;
+    private String c_req_create_date;
 
-    @Column(name = "c_priority")
-    @Type(type="text")
-    private Long c_priority;
+    @Column(name = "c_req_priority_link")
+    private Long c_req_priority_link;
 
-    @Column(name = "c_req_status")
-    @Type(type="text")
-    private String c_req_status;
+    @Column(name = "c_req_status_link")
+    private Long c_req_status_link;
 
     @Lob
-    @Column(name = "c_contents")
-    private String c_contents;
+    @Column(name = "c_req_contents")
+    private String c_req_contents;
+
+    @Column(name = "c_req_etc")
+    @Type(type="text")
+    private String c_req_etc;
+
     /*
      * Extend Bean Field
      */

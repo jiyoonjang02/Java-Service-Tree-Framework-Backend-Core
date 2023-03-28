@@ -51,7 +51,24 @@ public class JiraIssueResolutionEntity extends TreeSearchEntity implements Seria
     public Long getC_id() {
         return super.getC_id();
     }
+    
     //@Getter @Setter
+
+    @Column(name = "c_issue_resolution_id")
+    @Type(type="text")
+    private String c_issue_resolution_id;
+
+    @Column(name = "c_issue_resolution_desc")
+    @Type(type="text")
+    private String c_issue_resolution_desc;
+
+    @Column(name = "c_issue_resolution_name")
+    @Type(type="text")
+    private String c_issue_resolution_name;
+
+    @Column(name = "c_issue_resolution_url")
+    @Type(type="text")
+    private String c_issue_resolution_url;
 
     /*
      * Extend Bean Field

@@ -12,6 +12,7 @@
 package com.arms.jiraprojectlog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class JiraProjectLogEntity extends TreeSearchEntity implements Serializable {
+public class JiraProjectLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public JiraProjectLogEntity() {
         super();
@@ -51,7 +52,65 @@ public class JiraProjectLogEntity extends TreeSearchEntity implements Serializab
     public Long getC_id() {
         return super.getC_id();
     }
+
     //@Getter @Setter
+
+    @Lob
+    @Column(name = "c_jira_contents")
+    private String c_jira_contents;
+
+    @Column(name = "c_jira_etc")
+    @Type(type="text")
+    private String c_jira_etc;
+
+    @Column(name = "c_jira_url")
+    @Type(type="text")
+    private String c_jira_url;
+
+    @Column(name = "c_jira_id")
+    @Type(type="text")
+    private String c_jira_id;
+
+    @Column(name = "c_jira_key")
+    @Type(type="text")
+    private String c_jira_key;
+
+    @Column(name = "c_jira_name")
+    @Type(type="text")
+    private String c_jira_name;
+
+
+    @Column(name = "c_jira_avatar_48")
+    @Type(type="text")
+    private String c_jira_avatar_48;
+
+    @Column(name = "c_jira_avatar_32")
+    @Type(type="text")
+    private String c_jira_avatar_32;
+
+    @Column(name = "c_jira_avatar_24")
+    @Type(type="text")
+    private String c_jira_avatar_24;
+
+    @Column(name = "c_jira_avatar_16")
+    @Type(type="text")
+    private String c_jira_avatar_16;
+
+    @Column(name = "c_jira_category_url")
+    @Type(type="text")
+    private String c_jira_category_url;
+
+    @Column(name = "c_jira_category_id")
+    @Type(type="text")
+    private String c_jira_category_id;
+
+    @Column(name = "c_jira_category_name")
+    @Type(type="text")
+    private String c_jira_category_name;
+
+    @Column(name = "c_jira_category_desc")
+    @Type(type="text")
+    private String c_jira_category_desc;
 
     /*
      * Extend Bean Field

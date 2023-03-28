@@ -12,6 +12,7 @@
 package com.arms.reqreviewlog.model;
 
 import com.egovframework.ple.treeframework.model.TreeBaseEntity;
+import com.egovframework.ple.treeframework.model.TreeLogBaseEntity;
 import com.egovframework.ple.treeframework.model.TreeSearchEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
@@ -33,7 +34,7 @@ import java.io.Serializable;
 @DynamicInsert(value=true)
 @DynamicUpdate(value=true)
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class ReqReviewLogEntity extends TreeSearchEntity implements Serializable {
+public class ReqReviewLogEntity extends TreeLogBaseEntity implements Serializable {
 
     public ReqReviewLogEntity() {
         super();
@@ -51,8 +52,36 @@ public class ReqReviewLogEntity extends TreeSearchEntity implements Serializable
     public Long getC_id() {
         return super.getC_id();
     }
-    //@Getter @Setter
 
+    //@Getter @Setter
+    @Column(name = "c_pdservice_link")
+    private Long c_pdservice_link;
+
+    @Column(name = "c_version_link")
+    private Long c_version_link;
+
+    @Column(name = "c_req_link")
+    private Long c_req_link;
+
+    @Column(name = "c_review_sender")
+    @Type(type="text")
+    private String c_review_sender;
+
+    @Column(name = "c_review_responder")
+    @Type(type="text")
+    private String c_review_responder;
+
+    @Column(name = "c_review_creat_date")
+    @Type(type="text")
+    private String c_review_creat_date;
+
+    @Column(name = "c_review_result_state")
+    @Type(type="text")
+    private String c_review_result_state;
+
+    @Column(name = "c_review_result_date")
+    @Type(type="text")
+    private String c_review_result_date;
     /*
      * Extend Bean Field
      */

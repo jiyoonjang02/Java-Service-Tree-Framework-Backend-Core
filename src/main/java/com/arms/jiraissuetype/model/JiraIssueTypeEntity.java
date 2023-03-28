@@ -51,7 +51,24 @@ public class JiraIssueTypeEntity extends TreeSearchEntity implements Serializabl
     public Long getC_id() {
         return super.getC_id();
     }
+    
     //@Getter @Setter
+
+    @Column(name = "c_issue_type_id")
+    @Type(type="text")
+    private String c_issue_type_id;
+
+    @Column(name = "c_issue_type_desc")
+    @Type(type="text")
+    private String c_issue_type_desc;
+
+    @Column(name = "c_issue_type_name")
+    @Type(type="text")
+    private String c_issue_type_name;
+
+    @Column(name = "c_issue_type_url")
+    @Type(type="text")
+    private String c_issue_type_url;
 
     /*
      * Extend Bean Field

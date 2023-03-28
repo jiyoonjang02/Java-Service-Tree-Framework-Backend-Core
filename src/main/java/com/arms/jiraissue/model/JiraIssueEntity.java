@@ -51,7 +51,77 @@ public class JiraIssueEntity extends TreeSearchEntity implements Serializable {
     public Long getC_id() {
         return super.getC_id();
     }
+
     //@Getter @Setter
+
+    @Column(name = "c_issue_id")
+    @Type(type="text")
+    private String c_issue_id;
+
+    @Column(name = "c_issue_url")
+    @Type(type="text")
+    private String c_issue_url;
+
+    @Column(name = "c_issue_desc")
+    @Type(type="text")
+    private String c_issue_desc;
+
+    @Column(name = "c_issue_key")
+    @Type(type="text")
+    private String c_issue_key;
+
+    @Column(name = "c_issue_summary")
+    @Type(type="text")
+    private String c_issue_summary;
+
+    @Column(name = "c_issue_type")
+    @Type(type="text")
+    private String c_issue_type;
+
+    @Column(name = "c_issue_labels")
+    @Type(type="text")
+    private String c_issue_labels;
+
+    @Column(name = "c_issue_components")
+    @Type(type="text")
+    private String c_issue_components;
+
+    @Column(name = "c_issue_link_yn")
+    @Type(type="text")
+    private String c_issue_link_yn;
+
+    @Column(name = "c_issue_subtask_yn")
+    @Type(type="text")
+    private String c_issue_subtask_yn;
+
+    @Column(name = "c_issue_affected_versions")
+    @Type(type="text")
+    private String c_issue_affected_versions;
+
+    @Column(name = "c_issue_fix_versions")
+    @Type(type="text")
+    private String c_issue_fix_versions;
+
+    @Column(name = "c_issue_create_date")
+    @Type(type="text")
+    private String c_issue_create_date;
+
+    @Column(name = "c_issue_update_date")
+    @Type(type="text")
+    private String c_issue_update_date;
+
+    @Column(name = "c_issue_due_date")
+    @Type(type="text")
+    private String c_issue_due_date;
+
+    @Column(name = "c_issue_status")
+    private Long c_issue_status;
+
+    @Column(name = "c_issue_priority")
+    private Long c_issue_priority;
+
+    @Column(name = "c_issue_resolution")
+    private Long c_issue_resolution;
 
     /*
      * Extend Bean Field
